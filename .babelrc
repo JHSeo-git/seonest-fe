@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@/components": "./components",
+          "@/lib": "./lib",
+          "@/assets": "./assets",
+          "@/hooks": "./hooks",
+          "@/config": "./config",
+          "@stitches.js": "./stitches.config.ts"
+        }
+      }
+    ]
+  ]
+}
