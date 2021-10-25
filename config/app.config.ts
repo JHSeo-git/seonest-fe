@@ -7,7 +7,7 @@ const appConfig = {
   email: 'qnfqnfqnf@gmail.com',
   github: 'https://github,com/JHSeo-git',
   utterances: {
-    repo: 'JHSeo-git/catch-a-nest',
+    repo: 'JHSeo-git/seonest-comments',
     label: 'comment',
     issueTerm: 'pathname',
     theme: 'github-light',
