@@ -1,14 +1,14 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 import {
   InfiniteData,
   QueryClient,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
   useQueryClient,
-} from "react-query";
-import produce from "immer";
-import getTempPosts from "@/lib/api/posts/getTempPosts";
-import { Post } from "@/lib/api/posts/types";
+} from 'react-query';
+import produce from 'immer';
+import getTempPosts from '@/lib/api/posts/getTempPosts';
+import { Post } from '@/lib/api/posts/types';
 
 export default function useGetTempPostsQuery(
   userId?: number,
@@ -21,7 +21,7 @@ export default function useGetTempPostsQuery(
           Post[],
           (string | number)[]
         >,
-        "queryKey" | "queryFn"
+        'queryKey' | 'queryFn'
       >
     | undefined = {}
 ) {
@@ -38,9 +38,13 @@ export default function useGetTempPostsQuery(
 
 export async function prefetchGetTempPostsQuery(
   userId?: number,
+  oldQueryClient?: QueryClient,
   options: UseInfiniteQueryOptions<Post[], unknown, Post[], Post[]> = {}
 ) {
-  const queryClient = new QueryClient();
+  let queryClient: QueryClient | undefined = oldQueryClient;
+  if (!queryClient) {
+    queryClient = new QueryClient();
+  }
   await queryClient.prefetchInfiniteQuery(
     createKey(userId),
     ({ pageParam = undefined }) => getTempPosts(userId, pageParam),
@@ -75,5 +79,5 @@ export function useGetTempPostsQueryUpdator() {
   }, [queryClient]);
 }
 
-const createKey = (userId?: number) => ["tempPosts", userId ?? "all"];
+const createKey = (userId?: number) => ['tempPosts', userId ?? 'all'];
 useGetTempPostsQuery.createKey = createKey;

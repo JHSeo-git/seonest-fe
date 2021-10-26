@@ -1,38 +1,36 @@
 import { UseFormRegister } from 'react-hook-form';
-import {
-  useIsEditPostValue,
-  usePostShortDescriptionValue,
-  usePostTitleValue,
-  useVisiblePublishScreenState,
-} from '@/lib/recoil/writeState';
-import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
-import WriteThumbnail from './WriteThumbnail';
-import { WriteInputs } from './Write';
-import useLazyClose from '@/hooks/useLazyClose';
-import Modal from '../common/Modal';
 import { styled } from '@stitches.js';
+import useLazyClose from '@/hooks/useLazyClose';
+import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
+import Modal from '../common/Modal';
 import Button from '../common/Button';
+import { WriteInputs } from './Write';
+import WriteThumbnail from './WriteThumbnail';
 
 export type PublishScreenProps = {
+  isEditPost: boolean;
+  visible: boolean;
+  title: string;
+  shortDescription?: string;
+  thumbnailUrl?: string;
   register: UseFormRegister<WriteInputs>;
   onPublish: () => void;
-  handleThumbnailUrl: (url: string) => void;
+  handleThumbnailUrl: (url: string | undefined) => void;
+  onClose: () => void;
 };
 
 const PublishScreen = ({
+  isEditPost,
+  visible,
+  title,
+  shortDescription,
+  thumbnailUrl,
   register,
   onPublish,
   handleThumbnailUrl,
+  onClose,
 }: PublishScreenProps) => {
-  const [visible, setVisible] = useVisiblePublishScreenState();
   const { lazyClosed } = useLazyClose(visible, 200);
-  const isEditPost = useIsEditPostValue();
-  const title = usePostTitleValue();
-  const shortDescription = usePostShortDescriptionValue();
-
-  const onCancel = () => {
-    setVisible(false);
-  };
 
   if (!visible && lazyClosed) return null;
 
@@ -40,7 +38,10 @@ const PublishScreen = ({
     <ModalBox visible={visible}>
       <Wrapper>
         <h1>{title}</h1>
-        <WriteThumbnail handleThumbnailUrl={handleThumbnailUrl} />
+        <WriteThumbnail
+          thumbnailUrl={thumbnailUrl}
+          handleThumbnailUrl={handleThumbnailUrl}
+        />
         <TextAreaBox
           {...register('shortDescription')}
           maxLength={160}
@@ -49,7 +50,7 @@ const PublishScreen = ({
           placeholder="Please write short description"
         />
         <ButtonBox>
-          <Button kind="redScale" onClick={onCancel}>
+          <Button kind="redScale" onClick={onClose}>
             CANCEL
           </Button>
           <Button
