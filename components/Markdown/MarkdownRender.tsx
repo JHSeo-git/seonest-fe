@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -70,10 +69,11 @@ const components: ComponentType = {
         </a>
       );
     }
+
     return (
-      <Link href={href ?? ''} passHref>
-        <a {...props}>{children}</a>
-      </Link>
+      <a href={href} {...props}>
+        {children}
+      </a>
     );
   },
   img: ({ node, src, ...props }) => {
