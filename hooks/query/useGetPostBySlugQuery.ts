@@ -1,13 +1,13 @@
-import getPostBySlug from "@/lib/api/posts/getPostBySlug";
-import { Post } from "@/lib/api/posts/types";
-import { QueryClient, useQuery, UseQueryOptions } from "react-query";
+import getPostBySlug from '@/lib/api/posts/getPostBySlug';
+import { Post } from '@/lib/api/posts/types';
+import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
 
 export default function useGetPostBySlugQuery(
   slug: string,
   options:
     | Omit<
         UseQueryOptions<Post, unknown, Post, string[]>,
-        "queryKey" | "queryFn"
+        'queryKey' | 'queryFn'
       >
     | undefined = {}
 ) {
@@ -16,9 +16,13 @@ export default function useGetPostBySlugQuery(
 
 export async function prefetchGetPostBySlugQuery(
   slug: string,
+  oldQueryClient?: QueryClient,
   options: UseQueryOptions<Post, unknown, Post> = {}
 ) {
-  const queryClient = new QueryClient();
+  let queryClient: QueryClient | undefined = oldQueryClient;
+  if (!queryClient) {
+    queryClient = new QueryClient();
+  }
   await queryClient.prefetchQuery(
     createKey(slug),
     () => getPostBySlug(slug),
@@ -27,5 +31,5 @@ export async function prefetchGetPostBySlugQuery(
   return queryClient;
 }
 
-const createKey = (slug: string) => ["post", slug];
+const createKey = (slug: string) => ['post', slug];
 useGetPostBySlugQuery.createKey = createKey;

@@ -1,4 +1,3 @@
-import { useIsEditPostValue } from '@/lib/recoil/writeState';
 import { styled } from '@stitches.js';
 import Button from '../common/Button';
 import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
@@ -7,20 +6,20 @@ import Pencil2Icon from '@/assets/icons/pencil2.svg';
 import CameraIcon from '@/assets/icons/camera.svg';
 
 export type WriteButtonsProps = {
-  onBackClick(): void;
-  onTempClick(): void;
-  onPreviewClick(): void;
-  onPostClick(): void;
+  isEditPost: boolean;
+  onBackClick: () => void;
+  onTempClick: () => void;
+  onPreviewClick: () => void;
+  onPostClick: () => void;
 };
 
 const WriteButtons = ({
+  isEditPost,
   onBackClick,
   onTempClick,
   onPreviewClick,
   onPostClick,
 }: WriteButtonsProps) => {
-  const isEditPost = useIsEditPostValue();
-
   return (
     <Box>
       <IconButton

@@ -1,20 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import EmptyImage from '@/assets/images/undraw-empty.svg';
-import { usePostThumbnailUrlState } from '@/lib/recoil/writeState';
 import useUploadImage from '@/hooks/useUploadImage';
 import { styled } from '@stitches.js';
 import Button from '../common/Button';
 import PlusIcon from '@/assets/icons/plus.svg';
 
 export type WriteThumbnailProps = {
-  handleThumbnailUrl: (url: string) => void;
+  thumbnailUrl?: string;
+  handleThumbnailUrl: (url: string | undefined) => void;
 };
 
-const WriteThumbnail = ({ handleThumbnailUrl }: WriteThumbnailProps) => {
+const WriteThumbnail = ({
+  thumbnailUrl,
+  handleThumbnailUrl,
+}: WriteThumbnailProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { upload } = useUploadImage();
-  const [thumbnailUrl, setThumbnailUrl] = usePostThumbnailUrlState();
+  const [localThumbnailUrl, setLocalThumbnailUrl] = useState(thumbnailUrl);
+  // const [thumbnailUrl, setThumbnailUrl] = usePostThumbnailUrlState();
 
   const onClick = () => {
     if (!ref.current) return;
@@ -28,29 +32,34 @@ const WriteThumbnail = ({ handleThumbnailUrl }: WriteThumbnailProps) => {
       if (!imageUrl) {
         return;
       }
-      setThumbnailUrl(imageUrl);
+      setLocalThumbnailUrl(imageUrl);
       handleThumbnailUrl(imageUrl);
     }
   };
 
+  const onRemove = () => {
+    setLocalThumbnailUrl(undefined);
+    handleThumbnailUrl(undefined);
+  };
+
   useEffect(() => {
-    if (!thumbnailUrl) return;
-    handleThumbnailUrl(thumbnailUrl);
-  }, [thumbnailUrl, handleThumbnailUrl]);
+    if (!localThumbnailUrl) return;
+    handleThumbnailUrl(localThumbnailUrl);
+  }, [localThumbnailUrl, handleThumbnailUrl]);
 
   return (
     <>
-      {thumbnailUrl ? (
+      {localThumbnailUrl ? (
         <ImageWrapper>
           <Image
             className="image-thumbnail"
-            src={thumbnailUrl}
+            src={localThumbnailUrl}
             alt="thumbnail"
             layout="fill"
             placeholder="empty"
             objectFit="cover"
           />
-          <UpdateButton kind="blueScale" onClick={() => setThumbnailUrl(null)}>
+          <UpdateButton kind="blueScale" onClick={onRemove}>
             REMOVE
           </UpdateButton>
         </ImageWrapper>

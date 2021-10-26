@@ -1,27 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Editor } from '@toast-ui/react-editor';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import {
-  PostAllContentType,
-  useExistsTempPostValue,
-  useResetAllState,
-  useSetLoadTempPost,
-  useSetVisiblePublishScreen,
-} from '@/lib/recoil/writeState';
+import { useRouter } from 'next/router';
+import React, { useRef, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { styled } from '@stitches.js';
+import { Editor } from '@toast-ui/react-editor';
 import useSavePost from '@/hooks/useSavePost';
-import WriteButtons from './WriteButtons';
+import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
+import { Post } from '@/lib/api/posts/types';
+import { PostAllContentType } from '@/lib/types/types';
+import Popup from '../common/Popup';
 import WriteTitle from './WriteTitle';
-import TuiEditor from '../Markdown/TuiEditor';
+import WriteButtons from './WriteButtons';
 import PublishScreen from './PublishScreen';
 import PreviewScreen from './PreviewScreen';
-import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
-import { styled } from '@stitches.js';
-import Popup from '../common/Popup';
+import TuiEditor from '../Markdown/TuiEditor';
 
 export type WriteProps = {
   slug?: string;
+  post?: Post | null;
+  lastTempPost?: Post | null;
 };
 
 export type WriteInputs = {
@@ -30,33 +27,42 @@ export type WriteInputs = {
   thumbnailUrl?: string;
 };
 
-const Write = ({ slug }: WriteProps) => {
-  const router = useRouter();
+const validateTextRequired = (text?: string) => {
+  if (text && text.trim().length > 0) return true;
+  return false;
+};
+
+function Write({ slug, post, lastTempPost }: WriteProps) {
   const editorRef = useRef<Editor>(null);
-  const titleRef = useRef<HTMLTextAreaElement>(null);
-  const reset = useResetAllState();
-
-  const existsTempPost = useExistsTempPostValue();
-  const setLoadTempPost = useSetLoadTempPost();
-
-  // publish prepare
-  const { register, handleSubmit, setValue } = useForm<WriteInputs>();
-  const handleThumbnailUrl = (url: string) => {
-    setValue('thumbnailUrl', url);
-  };
-  const validateTextRequired = (text?: string) => {
-    if (text && text.trim().length > 0) return true;
-    return false;
-  };
-
-  // popup hook
-  const setVisiblePublishScreen = useSetVisiblePublishScreen();
-  const [visiblePopup, setVisiblePopup] = useState(existsTempPost);
-  const [visibleAlert, setVisibleAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState<string>('');
+  const router = useRouter();
 
   // save post hook
   const { savePost, saveTempPost, error } = useSavePost();
+  const [useLastTemp, setUseLastTemp] = useState(false);
+
+  // publish prepare
+  const { register, handleSubmit, setValue, getValues } = useForm<WriteInputs>({
+    defaultValues: {
+      title: useLastTemp ? lastTempPost?.title : post?.title,
+      shortDescription: useLastTemp
+        ? lastTempPost?.short_description ?? undefined
+        : post?.short_description ?? undefined,
+      thumbnailUrl: useLastTemp
+        ? lastTempPost?.thumbnail ?? undefined
+        : post?.thumbnail ?? undefined,
+    },
+  });
+  const handleThumbnailUrl = (url: string | undefined) => {
+    setValue('thumbnailUrl', url);
+  };
+
+  // popup hook
+  const [visiblePublishScreen, setVisiblePublishScreen] = useState(false);
+  const [visiblePopup, setVisiblePopup] = useState(
+    !!lastTempPost && !post?.is_temp
+  );
+  const [visibleAlert, setVisibleAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>('');
 
   // submit
   const onPublish = async (data: WriteInputs, isTemp = false) => {
@@ -85,25 +91,11 @@ const Write = ({ slug }: WriteProps) => {
       if (isTemp) {
         await saveTempPost({ slug, post: publishPost });
       } else {
-        await savePost({ slug, post: publishPost });
-        router.replace('/posts');
+        const newPost = await savePost({ slug, post: publishPost });
+        router.replace(`/posts/${newPost.url_slug}`);
       }
       toast.success('👍 Success Save!');
     } catch (e) {}
-  };
-
-  // load Temp post Popup OK handler
-  const onOK = () => {
-    setLoadTempPost(true);
-    setVisiblePopup(false);
-  };
-  const onCancel = () => {
-    setVisiblePopup(false);
-  };
-
-  // alert Popup OK handler
-  const onAlertOK = () => {
-    setVisibleAlert(false);
   };
 
   // Buttons props
@@ -129,11 +121,6 @@ const Write = ({ slug }: WriteProps) => {
     setVisiblePublishScreen(true);
   };
 
-  // 페이지 unmount될 때 write editor와 관련된 state 모두 reset
-  useEffect(() => {
-    return () => reset();
-  }, [reset]);
-
   // preview
   const [visiblePreview, setVisiblePreview] = useState(false);
   const [previewMarkdown, setPreviewMarkdown] = useState('');
@@ -148,9 +135,6 @@ const Write = ({ slug }: WriteProps) => {
     setPreviewMarkdown(markdown!);
     setVisiblePreview(true);
   };
-  const onPreviewClose = () => {
-    setVisiblePreview(false);
-  };
 
   // alert when exit page with unsavedChanges
   useWarnIfUnsavedChanges(true);
@@ -158,15 +142,15 @@ const Write = ({ slug }: WriteProps) => {
   return (
     <>
       <Box>
-        <WriteTitle
-          ref={titleRef}
-          register={register}
-          placeholder="Please write title"
-        />
+        <WriteTitle register={register} placeholder="Please write title" />
         <EditorWrapper>
-          <TuiEditor ref={editorRef} />
+          <TuiEditor
+            ref={editorRef}
+            markdown={useLastTemp ? lastTempPost?.body : post?.body}
+          />
         </EditorWrapper>
         <WriteButtons
+          isEditPost={!!slug && !post?.is_temp}
           onBackClick={onBackClick}
           onTempClick={handleSubmit(
             async (data) => await onPublish(data, true)
@@ -174,33 +158,41 @@ const Write = ({ slug }: WriteProps) => {
           onPreviewClick={onPreviewClick}
           onPostClick={handleSubmit(onPostClick)}
         />
-        <PublishScreen
-          handleThumbnailUrl={handleThumbnailUrl}
-          register={register}
-          onPublish={handleSubmit(async (data) => await onPublish(data))}
-        />
-        <PreviewScreen
-          markdown={previewMarkdown}
-          onClose={onPreviewClose}
-          visible={visiblePreview}
-        />
       </Box>
+      <PreviewScreen
+        visible={visiblePreview}
+        markdown={previewMarkdown}
+        onClose={() => setVisiblePreview(false)}
+      />
+      <PublishScreen
+        isEditPost={!!slug && !post?.is_temp}
+        visible={visiblePublishScreen}
+        title={getValues('title')}
+        shortDescription={getValues('shortDescription')}
+        thumbnailUrl={getValues('thumbnailUrl')}
+        register={register}
+        handleThumbnailUrl={handleThumbnailUrl}
+        onPublish={handleSubmit(async (data) => await onPublish(data))}
+        onClose={() => setVisiblePublishScreen(false)}
+      />
       <Popup
         visible={visiblePopup}
         title="Load Temp Post?"
-        onCancel={onCancel}
-        onOK={onOK}
-        openDelay={true}
+        onCancel={() => setVisiblePopup(false)}
+        onOK={() => {
+          setUseLastTemp(true);
+          setVisiblePopup(false);
+        }}
       />
       <Popup
         visible={visibleAlert}
         title="Alert"
         message={alertMessage}
-        onOK={onAlertOK}
+        onOK={() => setVisibleAlert(false)}
       />
     </>
   );
-};
+}
 
 const Box = styled('div', {
   position: 'absolute',

@@ -74,7 +74,8 @@ const Title = styled('h1', {
 
 const Message = styled('p', {
   m: 0,
-  my: '$3',
+  px: '$3',
+  py: '$2',
   color: '$mauve11',
 });
 
