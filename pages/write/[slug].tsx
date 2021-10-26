@@ -1,38 +1,80 @@
 import React, { useMemo } from 'react';
-import { useRouter } from 'next/router';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { dehydrate } from 'react-query/hydration';
 import AppLayout from '@/components/AppLayout';
 import PageSEO from '@/components/SEO/PageSEO';
 import Write from '@/components/Write';
-import useLoadPost from '@/hooks/useLoadPost';
 import { useUserValue } from '@/lib/recoil/authState';
 import AppError from '@/components/AppError';
+import useGetPostBySlugQuery, {
+  prefetchGetPostBySlugQuery,
+} from '@/hooks/query/useGetPostBySlugQuery';
+import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
+import useGetLastTempPostBySlugQuery, {
+  prefetchGetLastTempPostBySlugQuery,
+} from '@/hooks/query/useGetLastTempPostBySlugQuery';
 
-function LoadedEditPage({ slug }: { slug: string }) {
-  const { loaded } = useLoadPost(slug);
-  const title = `${slug.length > 10 ? `${slug.slice(0, 10)}...` : slug}`;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const postSlugs = await getAllPostSlug(true);
+  const paths = postSlugs.map((slug) => ({
+    params: { slug },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+};
 
-  if (!loaded) return null;
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: GetStaticPropsContext) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
 
-  return (
-    <>
-      <PageSEO title={title} description="new post" noRobots={true} />
-      <AppLayout layoutType="naked">
-        <Write slug={slug} />
-      </AppLayout>
-    </>
-  );
-}
+  if (typeof params.slug !== 'string') {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/404',
+      },
+      props: {},
+    };
+  }
 
-function EditPage() {
+  const queryClient = await prefetchGetPostBySlugQuery(params.slug);
+  await prefetchGetLastTempPostBySlugQuery(params.slug, queryClient);
+
+  return {
+    revalidate: 10,
+    props: {
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      slug: params.slug,
+    },
+  };
+};
+
+type EditPageProps = {
+  slug: string;
+};
+
+function EditPage({ slug }: EditPageProps) {
+  const { data: postData } = useGetPostBySlugQuery(slug);
+  const { data: lastTempData } = useGetLastTempPostBySlugQuery(slug);
+
+  const post = useMemo(() => {
+    if (!postData) return null;
+    return postData;
+  }, [postData]);
+
+  const lastTempPost = useMemo(() => {
+    if (!lastTempData) return null;
+    return lastTempData;
+  }, [lastTempData]);
+
   const user = useUserValue();
-  const router = useRouter();
-  const { slug } = router.query;
-
-  const guardSlug = useMemo(() => {
-    if (!slug) return null;
-    if (typeof slug !== 'string') return null;
-    return slug;
-  }, [slug]);
 
   if (!user) {
     return (
@@ -42,9 +84,14 @@ function EditPage() {
     );
   }
 
-  if (!guardSlug) return null;
-
-  return <LoadedEditPage slug={guardSlug} />;
+  return (
+    <>
+      <PageSEO title="Edit post" description="edit post" noRobots={true} />
+      <AppLayout layoutType="naked">
+        <Write slug={slug} post={post} lastTempPost={lastTempPost} />
+      </AppLayout>
+    </>
+  );
 }
 
 export default EditPage;

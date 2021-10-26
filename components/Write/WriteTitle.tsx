@@ -1,7 +1,5 @@
-import { forwardRef } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { styled } from '@stitches.js';
-import { usePostTitleState } from '@/lib/recoil/writeState';
 import { WriteInputs } from './Write';
 
 export type WriteTitleProps = {
@@ -9,35 +7,31 @@ export type WriteTitleProps = {
   placeholder?: string;
 };
 
-const WriteTitle = forwardRef<HTMLTextAreaElement, WriteTitleProps>(
-  ({ register, placeholder }, ref) => {
-    const [postTitle, setPostTitle] = usePostTitleState();
+const WriteTitle = ({ register, placeholder }: WriteTitleProps) => {
+  const handleAutoHeight = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.currentTarget.style.height = 'auto';
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+  };
 
-    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      handleAutoHeight(e);
-      setPostTitle(e.target.value);
-    };
+  // TODO: event invoke handleAutoHeight when initial value of ref
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleAutoHeight(e);
+  };
 
-    const handleAutoHeight = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      e.currentTarget.style.height = 'auto';
-      e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
-    };
-
-    return (
-      <Box>
-        <TextAreaBox
-          {...register('title')}
-          ref={ref}
-          rows={1}
-          placeholder={placeholder}
-          value={postTitle ?? ''}
-          onChange={onChange}
-          autoFocus
-        />
-      </Box>
-    );
-  }
-);
+  return (
+    <Box>
+      <TextAreaBox
+        {...register('title')}
+        // ref={ref}
+        rows={1}
+        placeholder={placeholder}
+        // value={title ?? ''}
+        onChange={onChange}
+        autoFocus
+      />
+    </Box>
+  );
+};
 
 WriteTitle.displayName = 'WriteTitle';
 

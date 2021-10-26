@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useEffect } from 'react';
 import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
-import { usePostMarkdownValue } from '@/lib/recoil/writeState';
 import { TuiEditorWithForwardedProps } from './TuiEditorWrapper';
 
 import dynamic from 'next/dynamic';
@@ -9,13 +8,15 @@ const Editor = dynamic<TuiEditorWithForwardedProps>(
   { ssr: false }
 );
 
-export type TuiEditorProps = EditorProps & {};
+export type TuiEditorProps = EditorProps & {
+  markdown?: string;
+};
 
 const TuiEditor = forwardRef<
   React.ElementRef<typeof EditorType> | undefined,
   TuiEditorProps
->(({ ...props }, ref) => {
-  const markdown = usePostMarkdownValue();
+>(({ markdown, ...props }, ref) => {
+  // const markdown = usePostMarkdownValue();
 
   const forceUpdate = useCallback(
     (markdown: string) => {

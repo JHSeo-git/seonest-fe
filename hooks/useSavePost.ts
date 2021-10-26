@@ -3,10 +3,10 @@ import saveNewPost from '@/lib/api/posts/saveNewPost';
 import saveNewTempPost from '@/lib/api/posts/saveNewTempPost';
 import saveTempPost from '@/lib/api/posts/saveTempPost';
 import updatePost from '@/lib/api/posts/updatePost';
-import { PostAllContentType } from '@/lib/recoil/writeState';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import { useSetScreenLoadingState } from '@/lib/recoil/appState';
+import { PostAllContentType } from '@/lib/types/types';
 
 export default function useSavePost() {
   const router = useRouter();

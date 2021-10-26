@@ -1,6 +1,6 @@
-import getPosts from "@/lib/api/posts/getPosts";
-import { Post } from "@/lib/api/posts/types";
-import { QueryClient, useQuery, UseQueryOptions } from "react-query";
+import getPosts from '@/lib/api/posts/getPosts';
+import { Post } from '@/lib/api/posts/types';
+import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
 
 export default function useGetPostsByLatestQuery(
   userId?: number,
@@ -8,7 +8,7 @@ export default function useGetPostsByLatestQuery(
   options:
     | Omit<
         UseQueryOptions<Post[], unknown, Post[], (string | number)[]>,
-        "queryKey" | "queryFn"
+        'queryKey' | 'queryFn'
       >
     | undefined = {}
 ) {
@@ -22,9 +22,13 @@ export default function useGetPostsByLatestQuery(
 export async function prefetchGetPostsByLatestQuery(
   userId?: number,
   takeLatest = 5,
+  oldQueryClient?: QueryClient,
   options: UseQueryOptions<Post[], unknown, Post[]> = {}
 ) {
-  const queryClient = new QueryClient();
+  let queryClient: QueryClient | undefined = oldQueryClient;
+  if (!queryClient) {
+    queryClient = new QueryClient();
+  }
   await queryClient.prefetchQuery(
     createKey(takeLatest),
     () => getPosts(userId, undefined, takeLatest),
@@ -33,5 +37,5 @@ export async function prefetchGetPostsByLatestQuery(
   return queryClient;
 }
 
-const createKey = (takeLatest: number) => ["latestPost", takeLatest];
+const createKey = (takeLatest: number) => ['latestPost', takeLatest];
 useGetPostsByLatestQuery.createKey = createKey;

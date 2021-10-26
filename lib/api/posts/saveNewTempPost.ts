@@ -1,4 +1,4 @@
-import { PostAllContentType } from '@/lib/recoil/writeState';
+import { PostAllContentType } from '@/lib/types/types';
 import client from '../client';
 import { Post } from './types';
 
