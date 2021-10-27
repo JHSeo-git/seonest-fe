@@ -76,8 +76,10 @@ const components: ComponentType = {
       </a>
     );
   },
-  img: ({ node, src, ...props }) => {
-    return <img src={src} loading="lazy" {...props} />;
+  img: ({ node, src, alt, ...props }) => {
+    // TODO: image optimization
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} loading="lazy" {...props} alt={alt} />;
   },
   code: ({ node, ref, inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '');
