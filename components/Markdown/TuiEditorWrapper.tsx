@@ -109,7 +109,6 @@ const Box = styled('div', {
     outlineColor: '$sky6',
   },
 
-  // TODO: editor override style
   // toastui-editor
   '.toastui-editor-main': {
     bc: '$loContrast',
