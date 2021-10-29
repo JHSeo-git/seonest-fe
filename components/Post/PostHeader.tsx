@@ -39,7 +39,7 @@ function PostHeader({ post }: PostHeaderProps) {
           <WithIcon>
             <CalendarIcon className="icon" />
             <span className="text">
-              {stringToDateMoreDetail(post.created_at)}
+              {stringToDateMoreDetail(post.updated_at)}
             </span>
           </WithIcon>
           {post.read_time && (

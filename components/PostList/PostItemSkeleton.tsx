@@ -15,6 +15,8 @@ const PostItemSkeleton = React.forwardRef<React.ElementRef<'div'>, {}>(
   }
 );
 
+PostItemSkeleton.displayName = 'PostItemSkeleton';
+
 const ItemBox = styled('div', {
   '&:not(:last-child)': {
     borderBottom: '1px solid $colors$mauve6',
