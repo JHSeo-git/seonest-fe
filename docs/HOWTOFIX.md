@@ -380,3 +380,34 @@ ssg로 페이지를 리팩토링 하고 lighthouse report를 실행한 결과도
 (접근성 점수도 1점 오름)
 
 빌드 시간이 늘어나는 것에 대한 막연한 두려움이 있긴 하지만 그래도 사용자 경험 입장에서는 매우 향상되니 좋은 것 같다.
+
+## monorepo out
+
+fe, be를 모노레포 프로젝트로 관리하다가 이제서야 분리하였다.
+굳이 모노레포로 관리해야될 이유가 하나도 없었다.
+
+모노레포로 관리해야되는 프로젝트는 공통된 라이브러리를 써야 한다던지, shared가 많이 필요한 프로젝트라던지 그랬어야 했는데 나는 해당이 안되었는데 그냥 써보겠다고 막 쓰다보니 모노레포로 만들어서 개발을 하고 있었다.
+
+지금은 분리해서 가져가는게 낫다라고 판단하고, 현재는 나눠서 진행한다.
+
+## stitches.js
+
+emotion을 과감하게 버리고 near-zero-runtim css-in-js 툴인 stitches.js를 사용한다.
+
+일단 token, theme관리하는 부분이 꽤나 마음에 들었고, 런타임에서 동작하는 스타일을 제외시키다 보니 좀 더 나은 사용자경험을 줄 수 있다는 판단하에 진행하였다.
+
+또한, variant를 관리하는 부분도 괜찮았다.
+
+다만 nested가 깊어질 때 타입추론 실패 라던지, template literal type을 많이 사용하다보니 엔진에서 타입을 추론할 때 늦게 된다던지, 안된다던지 경우가 있는데 이런 경우는 하드웨어에 영향을 받는건지 에디터에 영향을 받는 건지는 모르겠지만 그 부분에 있어서 조금 더 개선이 있으면 좋겠다.
+
+## react-markdown
+
+markdown-it을 버리고 react component로 markdown을 쓸 수 있는 react-markdown으로 변경했다.
+
+nextjs는 jamstack에서 사용될 수 있는 한 두가지 mdx 라이브러리를 추천하는데, 나 같은 경우는 pre-rendering 시에 파일을 읽거나 하지 않기 때문에 제외를 하고, pre-rendering시에 api를 호출하고 난 뒤 결과를 parse하는 부분에 개발을 하였다.
+
+마찬가지로 remark, rehype 플러그인을 그대로 쓸 수 있기도 하고, component를 react component로 손쉽게 오버라이딩 가능하기 때문에 (hook하여) 사용하는 것도 가능하다.
+
+## change babel to swc: nextjs12
+
+nextjs12 에서 babel을 쓰는 것을 swc로 바꾸었다. 다만, .babelrc 처럼 바벨 설정이 있는 경우 optimization을 제외하게 되므로 이를 적용하기 위해서는 babel 설정 파일이 없어야 한다.
