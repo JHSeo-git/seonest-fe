@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Post } from '@/lib/api/posts/types';
 import { useUserValue } from '@/lib/recoil/authState';
@@ -8,10 +9,11 @@ import useDeletePost from '@/hooks/useDeletePost';
 import { useRouter } from 'next/router';
 import { styled } from '@stitches.js';
 import Button from '../common/Button';
-import CalendarIcon from '@/assets/icons/calendar.svg';
-import ClockIcon from '@/assets/icons/clock.svg';
-import EyeIcon from '@/assets/icons/eye.svg';
 import Popup from '../common/Popup';
+import EyeIcon from '@/assets/icons/eye.svg';
+import CubeIcon from '@/assets/icons/cube.svg';
+import ClockIcon from '@/assets/icons/clock.svg';
+import CalendarIcon from '@/assets/icons/calendar.svg';
 
 export type PostHeaderProps = {
   post: Post;
@@ -70,6 +72,19 @@ function PostHeader({ post }: PostHeaderProps) {
             </Button>
           )}
         </SubInfo>
+        {post.categories && post.categories.length > 0 && (
+          <SubInfo>
+            {post.categories.map((category) => (
+              <Link
+                key={category.id}
+                href={`/categories/${category.url_slug}`}
+                passHref
+              >
+                <CategoryBox>{category.name}</CategoryBox>
+              </Link>
+            ))}
+          </SubInfo>
+        )}
         {post.thumbnail && (
           <ImageWrapper>
             <Image
@@ -146,6 +161,22 @@ const WithIcon = styled('div', {
       pink: {
         color: '$pink9',
       },
+    },
+  },
+});
+
+const CategoryBox = styled('a', {
+  px: '$2',
+  py: '$1',
+  br: '$pill',
+  bc: '$blue4',
+  fontSize: '$sm',
+  fontWeight: 'bold',
+  color: '$blue11',
+
+  '@hover': {
+    '&:hover': {
+      bc: '$blue5',
     },
   },
 });

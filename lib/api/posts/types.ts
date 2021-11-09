@@ -7,6 +7,14 @@ export type PostShortInfo = {
   url_slug: string;
 };
 
+export type Category = {
+  id: number;
+  name: string;
+  url_slug: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Post = {
   id: number;
   title: string;
@@ -20,6 +28,7 @@ export type Post = {
   updated_at: string;
   read_count?: number;
   read_time?: number;
+  categories?: Category[];
   next_post?: PostShortInfo;
   prev_post?: PostShortInfo;
 };
