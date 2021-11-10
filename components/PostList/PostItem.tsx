@@ -158,13 +158,11 @@ function PostItem({ post, loading }: PostItemProps) {
             {post.categories && post.categories.length > 0 && (
               <ContentCategories>
                 {post.categories.map((category) => (
-                  <Link
-                    key={category.id}
-                    href={`/categories/${category.url_slug}`}
-                    passHref
-                  >
-                    <CategoryLink>{category.name}</CategoryLink>
-                  </Link>
+                  <li key={category.id}>
+                    <Link href={`/categories/${category.url_slug}`} passHref>
+                      <CategoryLink>{category.name}</CategoryLink>
+                    </Link>
+                  </li>
                 ))}
               </ContentCategories>
             )}
@@ -228,15 +226,22 @@ const ContentCategories = styled('ul', {
   display: 'flex',
   ai: 'center',
   gap: '$1',
-  mb: '$1',
+  mb: '$2',
+
+  '& li': {
+    display: 'block',
+  },
 });
 
 const CategoryLink = styled('a', {
+  display: 'flex',
+  jc: 'center',
+  ai: 'center',
   py: '$1',
   px: '$2',
   bc: '$blue4',
   color: '$blue11',
-  br: '$pill',
+  br: '$2',
   fontSize: '$xs',
   fontWeight: 'bold',
 
