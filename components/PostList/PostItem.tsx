@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import markdownToText from 'markdown-to-text';
 import { styled } from '@stitches.js';
 import { Post } from '@/lib/api/posts/types';
 import { getDiffOfNow } from '@/lib/utils/dateUtils';
@@ -125,6 +126,16 @@ export type PostItemProps = {
   viewThumbnail?: boolean;
 };
 
+function getDescription(post: Post) {
+  if (post.short_description) {
+    return post.short_description;
+  }
+  if (post.body) {
+    return markdownToText(post.body).slice(0, 150);
+  }
+  return '';
+}
+
 function PostItem({ post, loading }: PostItemProps) {
   return (
     <PostItemBox>
@@ -144,7 +155,7 @@ function PostItem({ post, loading }: PostItemProps) {
           </ImageWrapper>
           <ContentWrapper>
             <ContentHeader>{post.title}</ContentHeader>
-            <ContentDescription>{post.short_description}</ContentDescription>
+            <ContentDescription>{getDescription(post)}</ContentDescription>
             <ContentInfo
               createdAt={post.created_at}
               updatedAt={post.updated_at}
