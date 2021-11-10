@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import markdownToText from 'markdown-to-text';
 import { styled } from '@stitches.js';
 import { Post } from '@/lib/api/posts/types';
 import { getDiffOfNow } from '@/lib/utils/dateUtils';
@@ -125,6 +126,16 @@ export type PostItemProps = {
   viewThumbnail?: boolean;
 };
 
+function getDescription(post: Post) {
+  if (post.short_description) {
+    return post.short_description;
+  }
+  if (post.body) {
+    return markdownToText(post.body).slice(0, 150);
+  }
+  return '';
+}
+
 function PostItem({ post, loading }: PostItemProps) {
   return (
     <PostItemBox>
@@ -144,7 +155,18 @@ function PostItem({ post, loading }: PostItemProps) {
           </ImageWrapper>
           <ContentWrapper>
             <ContentHeader>{post.title}</ContentHeader>
-            <ContentDescription>{post.short_description}</ContentDescription>
+            {post.categories && post.categories.length > 0 && (
+              <ContentCategories>
+                {post.categories.map((category) => (
+                  <li key={category.id}>
+                    <Link href={`/categories/${category.url_slug}`} passHref>
+                      <CategoryLink>{category.name}</CategoryLink>
+                    </Link>
+                  </li>
+                ))}
+              </ContentCategories>
+            )}
+            <ContentDescription>{getDescription(post)}</ContentDescription>
             <ContentInfo
               createdAt={post.created_at}
               updatedAt={post.updated_at}
@@ -165,7 +187,7 @@ const PostItemBox = styled('li', {
 });
 
 const LinkBox = styled('a', {
-  height: '14rem',
+  height: '15rem',
   display: 'flex',
   gap: '$4',
   py: '$6',
@@ -195,8 +217,39 @@ const ContentHeader = styled('h3', {
   m: 0,
   fontSize: '$2xl',
   color: '$mauve12',
-  mb: '$2',
+  mb: '$1',
   ellipsisLine: 1,
+});
+
+const ContentCategories = styled('ul', {
+  p: 0,
+  display: 'flex',
+  ai: 'center',
+  gap: '$1',
+  mb: '$2',
+
+  '& li': {
+    display: 'block',
+  },
+});
+
+const CategoryLink = styled('a', {
+  display: 'flex',
+  jc: 'center',
+  ai: 'center',
+  py: '$1',
+  px: '$2',
+  bc: '$blue4',
+  color: '$blue11',
+  br: '$2',
+  fontSize: '$xs',
+  fontWeight: 'bold',
+
+  '@hover': {
+    '&:hover': {
+      bc: '$blue5',
+    },
+  },
 });
 
 const ContentDescription = styled('p', {

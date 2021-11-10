@@ -1,17 +1,13 @@
 import appConfig from '@/config/app.config';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef } from 'react';
-// import useIntersectionObserver from './useIntersectionObserver';
 
 export function useUtterances() {
   const ref = useRef<HTMLElement>(null);
   const router = useRouter();
-  // lazy loading ... 굳이?
-  // const entry = useIntersectionObserver(ref, true);
 
   const handleRegenerate = useCallback(() => {
     if (!ref?.current) return;
-    // if (!entry) return;
 
     while (ref.current.firstChild) {
       ref.current.removeChild(ref.current.firstChild);

@@ -12,6 +12,7 @@ import Container from '@/components/common/Container';
 import PostSEO from '@/components/SEO/PostSEO';
 import FloatAction from '@/components/FloatAction';
 import PostSkeleton from '@/components/Post/PostSkeleton';
+import AppError from '@/components/AppError';
 
 export const getStaticProps: GetStaticProps = async ({
   params,
@@ -65,7 +66,12 @@ function PostPage({ slug }: PostPageProps) {
     return data;
   }, [data]);
 
-  if (!post) return null;
+  if (!post)
+    return (
+      <AppLayout layoutType="naked">
+        <AppError message="Not Found Page" status="404" />
+      </AppLayout>
+    );
 
   return (
     <>
