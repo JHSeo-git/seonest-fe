@@ -48,11 +48,18 @@ function HomePage() {
             <Link href="/posts" passHref>
               <Button
                 as="a"
-                size="small"
                 kind="blueScale"
                 css={{
+                  width: '100%',
+                  px: '$2',
+                  py: '$2',
                   display: 'flex',
                   ai: 'center',
+
+                  '@sm': {
+                    width: 'auto',
+                    py: '$1',
+                  },
                 }}
               >
                 <span>More</span>
