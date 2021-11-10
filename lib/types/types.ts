@@ -3,4 +3,5 @@ export type PostAllContentType = {
   markdown: string | null;
   shortDescription: string | null;
   thumbnailUrl: string | null;
+  categories?: string[];
 };

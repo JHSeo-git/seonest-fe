@@ -6,7 +6,7 @@ import { styled } from '@stitches.js';
 import { Editor } from '@toast-ui/react-editor';
 import useSavePost from '@/hooks/useSavePost';
 import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
-import { Post } from '@/lib/api/posts/types';
+import { Category, Post } from '@/lib/api/posts/types';
 import { PostAllContentType } from '@/lib/types/types';
 import Popup from '../common/Popup';
 import WriteTitle from './WriteTitle';
@@ -25,6 +25,7 @@ export type WriteInputs = {
   title: string;
   shortDescription?: string;
   thumbnailUrl?: string;
+  categories?: string[];
 };
 
 const validateTextRequired = (text?: string) => {
@@ -50,6 +51,10 @@ function Write({ slug, post, lastTempPost }: WriteProps) {
       thumbnailUrl: useLastTemp
         ? lastTempPost?.thumbnail ?? undefined
         : post?.thumbnail ?? undefined,
+      categories: useLastTemp
+        ? lastTempPost?.categories?.map((category) => category.name) ??
+          undefined
+        : post?.categories?.map((category) => category.name) ?? undefined,
     },
   });
   const handleThumbnailUrl = (url: string | undefined) => {
@@ -67,7 +72,7 @@ function Write({ slug, post, lastTempPost }: WriteProps) {
   // submit
   const onPublish = async (data: WriteInputs, isTemp = false) => {
     try {
-      const { title, shortDescription, thumbnailUrl } = data;
+      const { title, shortDescription, thumbnailUrl, categories } = data;
       const markdown = editorRef?.current?.getInstance().getMarkdown();
 
       if (!validateTextRequired(title)) {
@@ -86,6 +91,7 @@ function Write({ slug, post, lastTempPost }: WriteProps) {
         markdown: markdown!,
         shortDescription: shortDescription ?? '',
         thumbnailUrl: thumbnailUrl ?? '',
+        categories,
       };
 
       if (isTemp) {
@@ -167,9 +173,7 @@ function Write({ slug, post, lastTempPost }: WriteProps) {
       <PublishScreen
         isEditPost={!!slug && !post?.is_temp}
         visible={visiblePublishScreen}
-        title={getValues('title')}
-        shortDescription={getValues('shortDescription')}
-        thumbnailUrl={getValues('thumbnailUrl')}
+        getValues={getValues}
         register={register}
         handleThumbnailUrl={handleThumbnailUrl}
         onPublish={handleSubmit(async (data) => await onPublish(data))}

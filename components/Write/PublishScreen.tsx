@@ -1,4 +1,4 @@
-import { UseFormRegister } from 'react-hook-form';
+import { useForm, UseFormGetValues, UseFormRegister } from 'react-hook-form';
 import { styled } from '@stitches.js';
 import useLazyClose from '@/hooks/useLazyClose';
 import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
@@ -6,13 +6,12 @@ import Modal from '../common/Modal';
 import Button from '../common/Button';
 import { WriteInputs } from './Write';
 import WriteThumbnail from './WriteThumbnail';
+import { useState } from 'react';
 
 export type PublishScreenProps = {
   isEditPost: boolean;
   visible: boolean;
-  title: string;
-  shortDescription?: string;
-  thumbnailUrl?: string;
+  getValues: UseFormGetValues<WriteInputs>;
   register: UseFormRegister<WriteInputs>;
   onPublish: () => void;
   handleThumbnailUrl: (url: string | undefined) => void;
@@ -22,40 +21,95 @@ export type PublishScreenProps = {
 const PublishScreen = ({
   isEditPost,
   visible,
-  title,
-  shortDescription,
-  thumbnailUrl,
+  getValues,
   register,
   onPublish,
   handleThumbnailUrl,
   onClose,
 }: PublishScreenProps) => {
   const { lazyClosed } = useLazyClose(visible, 200);
+  const {
+    register: categoryRegister,
+    getValues: categoryGetValues,
+    reset,
+  } = useForm({
+    defaultValues: {
+      category: '',
+    },
+  });
+  const [localCategories, setLocalCategories] = useState(
+    getValues('categories')
+  );
+
+  const removeCategory = (category: string) => {
+    setLocalCategories(localCategories?.filter((c) => c !== category));
+  };
+
+  const addCategory = () => {
+    const category = categoryGetValues('category');
+    if (!category) return;
+    reset({ category: '' });
+    if (localCategories?.includes(category)) return;
+    setLocalCategories([...(localCategories ?? []), category]);
+  };
+
+  const onSubmit = () => {
+    if (localCategories) {
+      register('categories', { value: localCategories });
+    }
+    onPublish();
+  };
 
   if (!visible && lazyClosed) return null;
 
   return (
     <ModalBox visible={visible}>
       <Wrapper>
-        <h1>{title}</h1>
+        <h1>{getValues('title')}</h1>
         <WriteThumbnail
-          thumbnailUrl={thumbnailUrl}
+          thumbnailUrl={getValues('thumbnailUrl')}
           handleThumbnailUrl={handleThumbnailUrl}
         />
         <TextAreaBox
           {...register('shortDescription')}
           maxLength={160}
           tabIndex={0}
-          defaultValue={shortDescription ?? ''}
+          defaultValue={getValues('shortDescription') ?? ''}
           placeholder="Please write short description"
         />
+        <CategoryArea
+          css={{
+            mb: '$3',
+          }}
+        >
+          {localCategories?.map((category, i) => (
+            <Button
+              key={i}
+              kind="solidBlueScale"
+              shape="pill"
+              onClick={() => removeCategory(category)}
+            >
+              {category}
+            </Button>
+          ))}
+          <CategoryInput
+            {...categoryRegister('category')}
+            tabIndex={-1}
+            placeholder="Type Category"
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addCategory();
+              }
+            }}
+          />
+        </CategoryArea>
         <ButtonBox>
           <Button kind="redScale" onClick={onClose}>
             CANCEL
           </Button>
           <Button
             kind="blueScale"
-            onClick={onPublish}
+            onClick={onSubmit}
             // loading={loading}
           >
             {isEditPost ? 'UPDATE' : 'SAVE'}
@@ -123,6 +177,37 @@ const TextAreaBox = styled('textarea', {
 
   '&::placeholder': {
     color: '$mauve8',
+  },
+});
+
+const CategoryArea = styled('div', {
+  display: 'flex',
+  ai: 'center',
+  flexWrap: 'wrap',
+  gap: '$3',
+});
+
+const CategoryInput = styled('input', {
+  outline: 'none',
+  border: 'none',
+  display: 'inline-flex',
+  jc: 'center',
+  ai: 'center',
+  px: '$4',
+  py: '$2',
+  br: '$pill',
+  bc: '$mauve3',
+  width: '10rem',
+  fontSize: '$sm',
+  color: '$blue11',
+  lineHeight: 1.5,
+
+  '&::placeholder': {
+    color: '$mauve10',
+  },
+
+  '&:focus, &:focus-visible': {
+    bc: '$blue3',
   },
 });
 

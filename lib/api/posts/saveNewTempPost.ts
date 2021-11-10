@@ -7,12 +7,14 @@ export default async function saveNewTempPost({
   markdown,
   shortDescription,
   thumbnailUrl,
+  categories,
 }: PostAllContentType) {
   const response = await client.post<Post>(`/api/temps/new`, {
     title,
     body: markdown,
     shortDescription,
     thumbnail: thumbnailUrl,
+    categories,
   });
 
   return response.data;
