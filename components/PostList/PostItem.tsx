@@ -155,6 +155,19 @@ function PostItem({ post, loading }: PostItemProps) {
           </ImageWrapper>
           <ContentWrapper>
             <ContentHeader>{post.title}</ContentHeader>
+            {post.categories && post.categories.length > 0 && (
+              <ContentCategories>
+                {post.categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    href={`/categories/${category.url_slug}`}
+                    passHref
+                  >
+                    <CategoryLink>{category.name}</CategoryLink>
+                  </Link>
+                ))}
+              </ContentCategories>
+            )}
             <ContentDescription>{getDescription(post)}</ContentDescription>
             <ContentInfo
               createdAt={post.created_at}
@@ -176,7 +189,7 @@ const PostItemBox = styled('li', {
 });
 
 const LinkBox = styled('a', {
-  height: '14rem',
+  height: '15rem',
   display: 'flex',
   gap: '$4',
   py: '$6',
@@ -206,8 +219,32 @@ const ContentHeader = styled('h3', {
   m: 0,
   fontSize: '$2xl',
   color: '$mauve12',
-  mb: '$2',
+  mb: '$1',
   ellipsisLine: 1,
+});
+
+const ContentCategories = styled('ul', {
+  p: 0,
+  display: 'flex',
+  ai: 'center',
+  gap: '$1',
+  mb: '$1',
+});
+
+const CategoryLink = styled('a', {
+  py: '$1',
+  px: '$2',
+  bc: '$blue4',
+  color: '$blue11',
+  br: '$pill',
+  fontSize: '$xs',
+  fontWeight: 'bold',
+
+  '@hover': {
+    '&:hover': {
+      bc: '$blue5',
+    },
+  },
 });
 
 const ContentDescription = styled('p', {
