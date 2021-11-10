@@ -168,7 +168,7 @@ const WithIcon = styled('div', {
 const CategoryBox = styled('a', {
   px: '$3',
   py: '$2',
-  br: '$pill',
+  br: '$2',
   bc: '$blue4',
   fontSize: '$sm',
   fontWeight: 'bold',
