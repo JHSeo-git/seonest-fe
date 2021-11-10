@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import markdownToText from 'markdown-to-text';
 import { styled } from '@stitches.js';
 import { Post } from '@/lib/api/posts/types';
@@ -137,6 +138,12 @@ function getDescription(post: Post) {
 }
 
 function PostItem({ post, loading }: PostItemProps) {
+  const router = useRouter();
+
+  const onPushRouter = (href: string) => {
+    router.push(href);
+  };
+
   return (
     <PostItemBox>
       <Link href={`/posts/${post.url_slug}`} passHref>
@@ -159,9 +166,14 @@ function PostItem({ post, loading }: PostItemProps) {
               <ContentCategories>
                 {post.categories.map((category) => (
                   <li key={category.id}>
-                    <Link href={`/categories/${category.url_slug}`} passHref>
-                      <CategoryLink>{category.name}</CategoryLink>
-                    </Link>
+                    <CategoryLink
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onPushRouter(`/categories/${category.url_slug}`);
+                      }}
+                    >
+                      {category.name}
+                    </CategoryLink>
                   </li>
                 ))}
               </ContentCategories>
@@ -233,7 +245,7 @@ const ContentCategories = styled('ul', {
   },
 });
 
-const CategoryLink = styled('a', {
+const CategoryLink = styled('button', {
   display: 'flex',
   jc: 'center',
   ai: 'center',
