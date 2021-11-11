@@ -11,7 +11,6 @@ import useGetPostBySlugQuery, {
 import Container from '@/components/common/Container';
 import PostSEO from '@/components/SEO/PostSEO';
 import FloatAction from '@/components/FloatAction';
-import PostSkeleton from '@/components/Post/PostSkeleton';
 import AppError from '@/components/AppError';
 
 export const getStaticProps: GetStaticProps = async ({

@@ -32,9 +32,6 @@ function HomePage() {
     return data;
   }, [data]);
 
-  if (error) {
-  }
-
   return (
     <>
       <PageSEO title="Seonest" description="Seo's honest nest" />
@@ -43,7 +40,7 @@ function HomePage() {
           <h1>Slow but Steady</h1>
         </Hero>
         <Container>
-          <PostList posts={posts} />
+          {posts && <PostList posts={posts} />}
           <LinkWrapper>
             <Link href="/posts" passHref>
               <Button

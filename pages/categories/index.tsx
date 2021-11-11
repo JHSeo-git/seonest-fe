@@ -3,13 +3,13 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { dehydrate } from 'react-query';
 import { styled } from '@stitches.js';
-import AppError from '@/components/AppError';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
 import PageSEO from '@/components/SEO/PageSEO';
 import useGetCategoriesQuery, {
   prefetchGetCategoriesQuery,
 } from '@/hooks/query/useGetCategoriesQuery';
+import EmptyPanel from '@/components/common/EmptyPanel';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetCategoriesQuery();
@@ -28,13 +28,6 @@ function CategoriesPage() {
     if (!data) return null;
     return data;
   }, [data]);
-
-  if (!categories)
-    return (
-      <AppLayout layoutType="naked">
-        <AppError message="Not Found Page" status="404" />
-      </AppLayout>
-    );
 
   return (
     <>
@@ -59,7 +52,7 @@ function CategoriesPage() {
               ))}
             </Box>
           ) : (
-            <div>empty</div>
+            <EmptyPanel />
           )}
         </Container>
       </AppLayout>
@@ -71,7 +64,7 @@ function CategoriesPage() {
 const Title = styled('h1', {
   fontSize: '$4xl',
   fontWeight: 'bold',
-  color: '$mauve12',
+  color: '$mauve11',
   m: 0,
   mb: '$4',
   pb: '$4',
@@ -80,26 +73,35 @@ const Title = styled('h1', {
 
 const Box = styled('div', {
   display: 'grid',
-  gap: '$2',
-  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '$4',
+  gridTemplateColumns: 'repeat(1, 1fr)',
+
+  '@xs': {
+    gap: '$2',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
 });
 
 const CategoryLink = styled('a', {
-  height: '$8',
+  height: '6rem',
   display: 'flex',
   jc: 'center',
   ai: 'center',
   br: '$2',
-  bc: '$blue4',
   color: '$blue10',
   fontSize: '$xl',
   fontWeight: 'bold',
   transition: 'box-shadow 0.2s ease',
+  backgroundImage: 'linear-gradient(to right, $blue4, $sky4)',
 
   '@hover': {
     '&:hover': {
       boxShadow: '$interactiveShadow1',
     },
+  },
+
+  '@xs': {
+    height: '8rem',
   },
 });
 

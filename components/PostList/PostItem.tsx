@@ -237,6 +237,7 @@ const ContentCategories = styled('ul', {
   p: 0,
   display: 'flex',
   ai: 'center',
+  flexWrap: 'wrap',
   gap: '$1',
   mb: '$2',
 

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { GetStaticProps } from 'next';
+import { styled } from '@stitches.js';
 import { dehydrate } from 'react-query/hydration';
 import AppLayout from '@/components/AppLayout';
 import PageSEO from '@/components/SEO/PageSEO';
@@ -9,6 +10,7 @@ import useGetPostsQuery, {
 } from '@/hooks/query/useGetPostsQuery';
 import Container from '@/components/common/Container';
 import FloatAction from '@/components/FloatAction';
+import UndrawEmpty from '@/assets/images/undraw-empty.svg';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetPostsQuery();
@@ -39,11 +41,18 @@ function PostsPage() {
       <PageSEO title="Posts" description="Seo's honest posts" />
       <AppLayout>
         <Container>
-          <PostList
-            posts={posts}
-            hasNextPage={hasNextPage}
-            fetchNext={fetchNext}
-          />
+          {posts ? (
+            <PostList
+              posts={posts}
+              hasNextPage={hasNextPage}
+              fetchNext={fetchNext}
+            />
+          ) : (
+            <EmptyBox>
+              <UndrawEmpty className="empty" />
+              <h2>There are no Posts</h2>
+            </EmptyBox>
+          )}
         </Container>
         {/* <FloatLinkButton iconName="write" to="/write" /> */}
         <FloatAction />
@@ -51,5 +60,21 @@ function PostsPage() {
     </>
   );
 }
+
+const EmptyBox = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  jc: 'center',
+  ai: 'center',
+  '.empty': {
+    my: '$4',
+    width: '90%',
+    height: 'auto',
+  },
+  h2: {
+    fontSize: '$3xl',
+    color: '$mauve10',
+  },
+});
 
 export default PostsPage;

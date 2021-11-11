@@ -1,5 +1,5 @@
-import getCategories from '@/lib/api/posts/getCategories';
-import { Category } from '@/lib/api/posts/types';
+import getCategories from '@/lib/api/categories/getCategories';
+import { Category } from '@/lib/api/categories/types';
 import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
 
 export default function useGetCategoriesQuery(

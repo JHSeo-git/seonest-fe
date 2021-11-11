@@ -7,8 +7,6 @@ import MenuIcon from '@/assets/icons/menu.svg';
 import Button from '../common/Button';
 import useAuthManage from '@/hooks/useAuthManage';
 
-const MenuItem = styled('li', {});
-
 const Menus = () => {
   const userValue = useUserValue();
   const { logout } = useAuthManage();
@@ -30,36 +28,41 @@ const Menus = () => {
         <MenuIcon />
       </IconButton>
       <MenuList visible={visible}>
-        <li>
+        <MenuItem>
           <Link href="/posts" passHref>
             <LinkBox>Posts</LinkBox>
           </Link>
-        </li>
-        <li>
+        </MenuItem>
+        <MenuItem>
+          <Link href="/categories" passHref>
+            <LinkBox>Categories</LinkBox>
+          </Link>
+        </MenuItem>
+        <MenuItem seperator="top">
           <Link href="/about" passHref>
             <LinkBox>About</LinkBox>
           </Link>
-        </li>
+        </MenuItem>
         <Link href="/lab" passHref>
           <LinkBox>Lab</LinkBox>
         </Link>
         {userValue && (
           <>
-            <li>
+            <MenuItem>
               <Link href="/write" passHref>
                 <LinkBox>New Post</LinkBox>
               </Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem>
               <Link href="/temps" passHref>
                 <LinkBox>Temp Posts</LinkBox>
               </Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem seperator="top">
               <LinkBox as="button" onClick={() => logout()}>
                 Logout
               </LinkBox>
-            </li>
+            </MenuItem>
           </>
         )}
       </MenuList>
@@ -97,6 +100,19 @@ const MenuList = styled('ul', {
     visible: {
       true: {
         display: 'block',
+      },
+    },
+  },
+});
+
+const MenuItem = styled('li', {
+  variants: {
+    seperator: {
+      bottom: {
+        borderBottom: '1px solid $mauve7',
+      },
+      top: {
+        borderTop: '1px solid $mauve7',
       },
     },
   },

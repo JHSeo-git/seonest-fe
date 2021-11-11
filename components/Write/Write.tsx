@@ -6,7 +6,7 @@ import { styled } from '@stitches.js';
 import { Editor } from '@toast-ui/react-editor';
 import useSavePost from '@/hooks/useSavePost';
 import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
-import { Category, Post } from '@/lib/api/posts/types';
+import { Post } from '@/lib/api/posts/types';
 import { PostAllContentType } from '@/lib/types/types';
 import Popup from '../common/Popup';
 import WriteTitle from './WriteTitle';
