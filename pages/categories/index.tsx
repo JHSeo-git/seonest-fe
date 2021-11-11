@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { dehydrate } from 'react-query';
 import { styled } from '@stitches.js';
-import AppError from '@/components/AppError';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
 import PageSEO from '@/components/SEO/PageSEO';
