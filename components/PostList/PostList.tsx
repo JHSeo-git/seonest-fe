@@ -6,7 +6,7 @@ import PostItem from './PostItem';
 import PostItemSkeleton from './PostItemSkeleton';
 
 export type PostListProps = {
-  posts: Post[] | null;
+  posts: Post[];
   hasNextPage?: boolean;
   fetchNext?: () => void;
 };
@@ -25,11 +25,9 @@ function PostList({ posts, hasNextPage, fetchNext }: PostListProps) {
 
   return (
     <ListBox>
-      {posts
-        ? posts.map((post) => <PostItem key={post.id} post={post} />)
-        : Array.from({ length: 10 }).map((_, i) => (
-            <PostItemSkeleton key={i} />
-          ))}
+      {posts.map((post) => (
+        <PostItem key={post.id} post={post} />
+      ))}
       {hasNextPage && <PostItemSkeleton ref={ref} />}
     </ListBox>
   );

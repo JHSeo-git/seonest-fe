@@ -10,6 +10,7 @@ import PageSEO from '@/components/SEO/PageSEO';
 import useGetCategoriesQuery, {
   prefetchGetCategoriesQuery,
 } from '@/hooks/query/useGetCategoriesQuery';
+import UndrawEmpty from '@/assets/images/undraw-empty.svg';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetCategoriesQuery();
@@ -28,13 +29,6 @@ function CategoriesPage() {
     if (!data) return null;
     return data;
   }, [data]);
-
-  if (!categories)
-    return (
-      <AppLayout layoutType="naked">
-        <AppError message="Not Found Page" status="404" />
-      </AppLayout>
-    );
 
   return (
     <>
@@ -59,7 +53,10 @@ function CategoriesPage() {
               ))}
             </Box>
           ) : (
-            <div>empty</div>
+            <EmptyBox>
+              <UndrawEmpty className="empty" />
+              <h2>There are no Posts</h2>
+            </EmptyBox>
           )}
         </Container>
       </AppLayout>
@@ -71,7 +68,7 @@ function CategoriesPage() {
 const Title = styled('h1', {
   fontSize: '$4xl',
   fontWeight: 'bold',
-  color: '$mauve12',
+  color: '$mauve11',
   m: 0,
   mb: '$4',
   pb: '$4',
@@ -80,12 +77,17 @@ const Title = styled('h1', {
 
 const Box = styled('div', {
   display: 'grid',
-  gap: '$2',
-  gridTemplateColumns: 'repeat(2, 1fr)',
+  gap: '$4',
+  gridTemplateColumns: 'repeat(1, 1fr)',
+
+  '@xs': {
+    gap: '$2',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
 });
 
 const CategoryLink = styled('a', {
-  height: '$8',
+  height: '6rem',
   display: 'flex',
   jc: 'center',
   ai: 'center',
@@ -100,6 +102,26 @@ const CategoryLink = styled('a', {
     '&:hover': {
       boxShadow: '$interactiveShadow1',
     },
+  },
+
+  '@xs': {
+    height: '8rem',
+  },
+});
+
+const EmptyBox = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  jc: 'center',
+  ai: 'center',
+  '.empty': {
+    my: '$4',
+    width: '90%',
+    height: 'auto',
+  },
+  h2: {
+    fontSize: '$3xl',
+    color: '$mauve10',
   },
 });
 
