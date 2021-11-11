@@ -14,9 +14,25 @@ function Navigation() {
             kind="blueScale"
             size="small"
             ghost
-            style={{ fontWeight: 'normal' }}
+            css={{
+              fontWeight: 'normal',
+              mr: '$2',
+            }}
           >
             Posts
+          </Button>
+        </Link>
+        <Link href="/categories" passHref>
+          <Button
+            as="a"
+            kind="blueScale"
+            size="small"
+            ghost
+            css={{
+              fontWeight: 'normal',
+            }}
+          >
+            Categories
           </Button>
         </Link>
         <Seperator />
