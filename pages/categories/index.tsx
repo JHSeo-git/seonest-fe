@@ -9,7 +9,7 @@ import PageSEO from '@/components/SEO/PageSEO';
 import useGetCategoriesQuery, {
   prefetchGetCategoriesQuery,
 } from '@/hooks/query/useGetCategoriesQuery';
-import UndrawEmpty from '@/assets/images/undraw-empty.svg';
+import EmptyPanel from '@/components/common/EmptyPanel';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetCategoriesQuery();
@@ -52,10 +52,7 @@ function CategoriesPage() {
               ))}
             </Box>
           ) : (
-            <EmptyBox>
-              <UndrawEmpty className="empty" />
-              <h2>There are no Posts</h2>
-            </EmptyBox>
+            <EmptyPanel />
           )}
         </Container>
       </AppLayout>
@@ -91,11 +88,11 @@ const CategoryLink = styled('a', {
   jc: 'center',
   ai: 'center',
   br: '$2',
-  bc: '$blue4',
   color: '$blue10',
   fontSize: '$xl',
   fontWeight: 'bold',
   transition: 'box-shadow 0.2s ease',
+  backgroundImage: 'linear-gradient(to right, $blue4, $sky4)',
 
   '@hover': {
     '&:hover': {
@@ -105,22 +102,6 @@ const CategoryLink = styled('a', {
 
   '@xs': {
     height: '8rem',
-  },
-});
-
-const EmptyBox = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  jc: 'center',
-  ai: 'center',
-  '.empty': {
-    my: '$4',
-    width: '90%',
-    height: 'auto',
-  },
-  h2: {
-    fontSize: '$3xl',
-    color: '$mauve10',
   },
 });
 
