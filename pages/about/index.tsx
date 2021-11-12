@@ -4,6 +4,7 @@ import PageSEO from '@/components/SEO/PageSEO';
 import { keyframes, styled } from '@stitches.js';
 import LogoImage from '@/assets/images/logo.svg';
 
+// TODO: About page
 function AboutPage() {
   return (
     <>
