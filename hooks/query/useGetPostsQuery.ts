@@ -1,15 +1,12 @@
-import { useMemo } from "react";
 import {
-  InfiniteData,
   QueryClient,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
-  useQueryClient,
-} from "react-query";
-import produce from "immer";
-import getPosts from "@/lib/api/posts/getPosts";
-import { Post } from "@/lib/api/posts/types";
+} from 'react-query';
+import getPosts from '@/lib/api/posts/getPosts';
+import { Post } from '@/lib/api/posts/types';
 
+// TODO: add takeLatest prop
 export default function useGetPostsQuery(
   userId?: number,
   options:
@@ -21,7 +18,7 @@ export default function useGetPostsQuery(
           Post[],
           (string | number)[]
         >,
-        "queryKey" | "queryFn"
+        'queryKey' | 'queryFn'
       >
     | undefined = {}
 ) {
@@ -53,27 +50,5 @@ export async function prefetchGetPostsQuery(
   return queryClient;
 }
 
-export function useGetPostsQueryUpdator() {
-  const queryClient = useQueryClient();
-  return useMemo(() => {
-    const remove = (slug: string, userId?: number) => {
-      queryClient.setQueryData<InfiniteData<Post[]> | undefined>(
-        createKey(userId),
-        (prevData) =>
-          produce(prevData, (draft) => {
-            const page = draft?.pages.find((page) =>
-              page.find((post) => post.url_slug === slug)
-            );
-            if (!page) return;
-            const index = page.findIndex((post) => post.url_slug === slug);
-            page.splice(index);
-          })
-      );
-    };
-
-    return { remove };
-  }, [queryClient]);
-}
-
-const createKey = (userId?: number) => ["posts", userId ?? "all"];
+const createKey = (userId?: number) => ['posts', userId ?? 'all'];
 useGetPostsQuery.createKey = createKey;
