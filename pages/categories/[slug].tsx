@@ -4,9 +4,6 @@ import { styled } from '@stitches.js';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { dehydrate } from 'react-query';
 import getCategories from '@/lib/api/categories/getCategories';
-import useGetCategoryBySlugQuery, {
-  prefetchGetCategoryBySlugQuery,
-} from '@/hooks/query/useGetCategoryBySlugQuery';
 import { useMemo } from 'react';
 import PostList from '@/components/PostList';
 import EmptyPanel from '@/components/common/EmptyPanel';
@@ -64,9 +61,7 @@ type CategoryPageProps = {
   slug: string;
 };
 
-// TODO: posts paging
 function CategoryPage({ slug }: CategoryPageProps) {
-  // const { data, error } = useGetCategoryBySlugQuery(slug);
   const { data, hasNextPage, fetchNextPage } =
     useGetRawCategoriesBySlugQuery(slug);
   const category = useMemo(() => {
@@ -85,6 +80,8 @@ function CategoryPage({ slug }: CategoryPageProps) {
         is_temp: curr.post_is_temp,
         created_at: curr.post_created_at,
         updated_at: curr.post_updated_at,
+        read_time: curr.post_read_time,
+        read_count: curr.post_read_count,
         user: {
           id: curr.user_id,
           display_name: curr.user_display_name,

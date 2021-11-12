@@ -24,10 +24,10 @@ export type RawCategory = {
   post_url_slug: string;
   post_is_temp: boolean;
   post_read_time?: number;
-  post_read_count?: number;
   post_created_at: string;
   post_updated_at: string;
   post_user_id: number;
+  post_read_count?: number;
   user_id: number;
   user_email: string;
   user_display_name: string;
