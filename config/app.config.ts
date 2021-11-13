@@ -1,5 +1,5 @@
 const appConfig = {
-  url: 'https://www.seonest.net',
+  url: 'https://seonest.net',
   title: 'Seo Nest',
   author: 'JHSeo',
   description: `Seo's honest nest`,
