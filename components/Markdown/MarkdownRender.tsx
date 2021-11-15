@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -76,8 +77,31 @@ const components: ComponentType = {
       </a>
     );
   },
-  img: ({ node, src, alt, ...props }) => {
+  img: ({ node, ref, src, alt, placeholder, ...props }) => {
     // TODO: image optimization
+    // eslint-disable-next-line @next/next/no-img-element
+    // return <img src={src} loading="lazy" {...props} alt={alt} />;
+    if (!src) {
+      return <ImageEmpty {...props} />;
+    }
+
+    const domain = src.startsWith('https://files.seonest.net');
+
+    if (domain) {
+      return (
+        <ImageWrapper>
+          <Image
+            {...props}
+            className="nextImage"
+            src={src}
+            alt={alt}
+            loading="lazy"
+            layout="fill"
+          />
+        </ImageWrapper>
+      );
+    }
+
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={src} loading="lazy" {...props} alt={alt} />;
   },
@@ -203,6 +227,7 @@ const Box = styled('section', {
     mx: 0,
     py: '$1',
     pl: '$4',
+    pr: '$2',
     bc: '$blue2',
     borderLeft: '$sizes$1 solid $colors$blue8',
   },
@@ -344,6 +369,26 @@ const LanguageLabel = styled('div', {
   px: '$2',
   bbrr: '$2',
   bblr: '$2',
+});
+
+const ImageEmpty = styled('div', {
+  width: '100%',
+  aspectRatio: '1',
+  bc: '$blue7',
+  br: '$2',
+});
+
+const ImageWrapper = styled('div', {
+  width: '100%',
+  '& > *': {
+    position: 'unset !important',
+  },
+  '& .nextImage': {
+    objectFit: 'contain',
+    position: 'relative !important',
+    width: '100% !important',
+    height: 'unset !important',
+  },
 });
 
 export default MarkdownRender;
