@@ -95,7 +95,6 @@ const components: ComponentType = {
             className="nextImage"
             src={src}
             alt={alt}
-            loading="lazy"
             layout="fill"
           />
         </ImageWrapper>
