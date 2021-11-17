@@ -58,6 +58,7 @@ const WriteThumbnail = ({
             layout="fill"
             placeholder="empty"
             objectFit="cover"
+            priority={true}
           />
           <UpdateButton kind="blueScale" onClick={onRemove}>
             REMOVE

@@ -95,6 +95,7 @@ function PostHeader({ post }: PostHeaderProps) {
               placeholder={'blur'}
               blurDataURL={post.thumbnail}
               objectFit="contain"
+              priority={true}
             />
           </ImageWrapper>
         )}
