@@ -96,6 +96,7 @@ const components: ComponentType = {
             src={src}
             alt={alt}
             layout="fill"
+            priority={true}
           />
         </ImageWrapper>
       );
