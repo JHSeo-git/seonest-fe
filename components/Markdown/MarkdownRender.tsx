@@ -2,6 +2,7 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeVideo from 'rehype-video';
 import remarkBreaks from 'remark-breaks';
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeSlug from 'rehype-slug';
@@ -20,11 +21,19 @@ const MarkdownRender = ({ markdown }: MarkdownRenderProps) => {
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[
+          [
+            rehypeVideo,
+            {
+              test: /\/(.*)(.mp4|.mov|.web(p|m))/g,
+              details: false,
+            },
+          ],
           rehypePrism,
           rehypeSlug,
           [
             rehypeAutolinkHeadings,
             {
+              test: ['h1', 'h2', 'h3', 'h4'],
               content: {
                 type: 'element',
                 tagName: 'svg',
@@ -47,7 +56,6 @@ const MarkdownRender = ({ markdown }: MarkdownRenderProps) => {
                   },
                 ],
               },
-              test: ['h1', 'h2', 'h3', 'h4'],
             },
           ],
         ]}
@@ -136,6 +144,9 @@ const components: ComponentType = {
         {match && <LanguageLabel>{match[1]}</LanguageLabel>}
       </PreWrapper>
     );
+  },
+  video: ({ node, ...props }) => {
+    return <video {...props} autoPlay muted={true} loop />;
   },
 };
 
