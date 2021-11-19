@@ -24,7 +24,7 @@ const MarkdownRender = ({ markdown }: MarkdownRenderProps) => {
           [
             rehypeVideo,
             {
-              test: /\/(.*)(.mp4|.mov|.web(p|m))/g,
+              test: /\/(.*)(.mp4|.mov|.web(p|m))$/,
               details: false,
             },
           ],
