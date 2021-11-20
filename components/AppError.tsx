@@ -4,7 +4,7 @@ import Button from './common/Button';
 
 export type AppErrorProps = {
   message: string;
-  status: '401' | '404' | '500';
+  status: '401' | '404' | '500' | 'Offline';
 };
 
 function AppError({ message, status }: AppErrorProps) {
