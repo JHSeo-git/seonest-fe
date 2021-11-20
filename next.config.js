@@ -1,7 +1,14 @@
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+    runtimeCaching,
+  },
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({
@@ -24,4 +31,4 @@ module.exports = {
   images: {
     domains: ['files.seonest.net', 'd1ml1bwdb9n1pg.cloudfront.net'],
   },
-};
+});
