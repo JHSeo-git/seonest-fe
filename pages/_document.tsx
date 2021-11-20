@@ -27,13 +27,20 @@ class MyDocument extends Document {
             href="https://fonts.gstatic.com"
             crossOrigin="true"
           />
-          <link
+
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
             rel="stylesheet"
-          />
+          /> */}
           <link
             href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap"
             rel="stylesheet"
+          />
+          <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
           />
           <link
             rel="apple-touch-icon"
