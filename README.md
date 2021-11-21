@@ -4,4 +4,4 @@ seonest.net front-end
 
 ## license
 
-MIT
+[MIT]('./LICENSE.md')
