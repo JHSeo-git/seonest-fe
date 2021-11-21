@@ -8,7 +8,11 @@ module.exports = withPWA({
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching,
+    buildExcludes: [/middleware-manifest.json$/],
+    register: true,
+    skipWaiting: true,
   },
+  // swcMinify: true,
   reactStrictMode: true,
   webpack: (config) => {
     config.module.rules.push({
