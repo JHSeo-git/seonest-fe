@@ -10,6 +10,7 @@ import CalendarIcon from '@/assets/icons/calendar.svg';
 import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import ClockIcon from '@/assets/icons/clock.svg';
 import EyeIcon from '@/assets/icons/eye.svg';
+import { useMemo } from 'react';
 
 const Updated = ({
   createdAt,
@@ -140,6 +141,11 @@ function getDescription(post: Post) {
 function PostItem({ post, loading }: PostItemProps) {
   const router = useRouter();
 
+  const categories = useMemo(() => {
+    if (!post.categories) return null;
+    return post.categories.sort((a, b) => (a.name > b.name ? 1 : -1));
+  }, [post]);
+
   const onPushRouter = (href: string) => {
     router.push(href);
   };
@@ -162,9 +168,9 @@ function PostItem({ post, loading }: PostItemProps) {
           </ImageWrapper>
           <ContentWrapper>
             <ContentHeader>{post.title}</ContentHeader>
-            {post.categories && post.categories.length > 0 && (
+            {categories && categories.length > 0 && (
               <ContentCategories>
-                {post.categories.map((category) => (
+                {categories.map((category) => (
                   <li key={category.id}>
                     <CategoryLink
                       onClick={(e) => {
