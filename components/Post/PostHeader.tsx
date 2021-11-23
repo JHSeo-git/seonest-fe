@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Post } from '@/lib/api/posts/types';
@@ -30,6 +30,11 @@ function PostHeader({ post }: PostHeaderProps) {
     setVisiblePopup(false);
     router.back();
   };
+
+  const categories = useMemo(() => {
+    if (!post.categories) return null;
+    return post.categories.sort((a, b) => (a.name > b.name ? 1 : -1));
+  }, [post]);
 
   // TODO: Image blur placeholder lib 사용해보기
 
@@ -72,9 +77,9 @@ function PostHeader({ post }: PostHeaderProps) {
             </Button>
           )}
         </SubInfo>
-        {post.categories && post.categories.length > 0 && (
+        {categories && categories.length > 0 && (
           <SubInfo>
-            {post.categories.map((category) => (
+            {categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/categories/${category.url_slug}`}
