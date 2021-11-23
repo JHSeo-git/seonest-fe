@@ -1,5 +1,3 @@
-https://github.com/facebook/create-react-app/issues/6324
-
 # 프로젝트 설정
 
 react to nextjs(CSR to SSR) migration 시에 문제가 될 부분들을 위해 설정 정보를 작성한다.
@@ -7,7 +5,26 @@ react to nextjs(CSR to SSR) migration 시에 문제가 될 부분들을 위해 �
 - 최대한 SSR로 해보려고 하고 더 가능하다면 SSG
 - 빠른 배포를 위해 기존 CSR 기본으로 반영하고 시간을 두고 SSG, SSR로 수정하도록 한다.
 
+## 2021.11.20
+
+> baseline
+
+- 현재는 nextjs@12.x 버전을 사용하고 있다.
+  - 바벨에서 swc로 변경하여 빌드 시 최적화에 관심을 둔다.
+- seo를 위해 next-seo 사용
+- pwa를 위해 next-pwa 사용
+- 페이지는 ssg를 기본적으로 사용하도록 한다.
+  - 예외없이 적용한다.
+  - 그렇지 못한 경우에는 ssg 사용을 위해 나머지를 변경하여 최대한 ssg를 사용한다.
+- 스타일은 sitches.js 사용
+  - light, dark를 위한 theme 사용
+  - 편리한 color token 사용을 위한 radix/colors 사용
+
+# 개발
+
 ## monorepo nohoist: lint, test 등을 위해
+
+> 현재는 monorepo를 사용하지 않음. 하단 내용 참고
 
 프로젝트 package.json (최상위) 에 nohoist에 문제가 될 부분을 추가해서 사전에 hoist되지 않도록 한다.
 
@@ -32,6 +49,9 @@ react to nextjs(CSR to SSR) migration 시에 문제가 될 부분들을 위해 �
 
 ## babel 설정
 
+> 현재 next12버전으로 올라가며 swc 사용을 위해 babel을 사용하지 않는다.  
+> 하단 내용 참고.
+
 emotion 설정과 css-prop preset 적용을 위해 custom config 설정
 
 ```json
@@ -51,8 +71,6 @@ emotion 설정과 css-prop preset 적용을 위해 custom config 설정
   "plugins": ["@emotion/babel-plugin"]
 }
 ```
-
-# 개발
 
 ## dark mode w/ emotion
 
@@ -310,6 +328,8 @@ https://gist.github.com/saqueib/a495af17d7c0e2fd5c2316b0822ebac3
 문제는 nextjs prerender 이슈로 인해 build 시 에러가 계속 난다는 점인데
 window 체크와 별도 예외처리를 해주도록 하자.
 
+> todo: 패키지매니지로 라이브러리 관리할 수 있도록 하여 디펜던시 이슈 제거하자.
+
 ```ts
 // _app.ts
 {
@@ -411,3 +431,24 @@ nextjs는 jamstack에서 사용될 수 있는 한 두가지 mdx 라이브러리�
 ## change babel to swc: nextjs12
 
 nextjs12 에서 babel을 쓰는 것을 swc로 바꾸었다. 다만, .babelrc 처럼 바벨 설정이 있는 경우 optimization을 제외하게 되므로 이를 적용하기 위해서는 babel 설정 파일이 없어야 한다.
+
+## pwa
+
+캐싱과 pwa를 제공하기 위해 `next-pwa` 라이브러리를 적용한다.
+PWA(+오프라인), 웹워커를 통한 캐싱 적용을 위해 사용.
+
+```js
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
+/**
+ * @type {import('next').NextConfig}
+ */
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+    runtimeCaching,
+  },
+  ...
+});
+```
