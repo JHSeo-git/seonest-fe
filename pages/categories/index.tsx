@@ -27,7 +27,7 @@ function CategoriesPage() {
   const categories = useMemo(() => {
     if (!data) return null;
     return data.sort((a, b) =>
-      (a.postsCount ?? 0) - (b.postsCount ?? 0) ? -1 : 1
+      (a.postsCount ?? 0) - (b.postsCount ?? 0) > 0 ? -1 : 1
     );
   }, [data]);
 
