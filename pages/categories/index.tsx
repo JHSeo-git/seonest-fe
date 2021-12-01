@@ -26,7 +26,9 @@ function CategoriesPage() {
   const { data } = useGetCategoriesQuery();
   const categories = useMemo(() => {
     if (!data) return null;
-    return data;
+    return data.sort((a, b) =>
+      (a.postsCount ?? 0) - (b.postsCount ?? 0) ? -1 : 1
+    );
   }, [data]);
 
   return (
@@ -38,7 +40,7 @@ function CategoriesPage() {
             px: '$4',
           }}
         >
-          <Title>Category</Title>
+          <Title>Categories</Title>
           {categories ? (
             <Box>
               {categories.map((category) => (
@@ -47,7 +49,11 @@ function CategoriesPage() {
                   href={`/categories/${category.url_slug}`}
                   passHref
                 >
-                  <CategoryLink>{category.name}</CategoryLink>
+                  <CategoryLink>
+                    {category.name}
+                    <Seperator />
+                    <Count>{category.postsCount ?? 0}</Count>
+                  </CategoryLink>
                 </Link>
               ))}
             </Box>
@@ -72,37 +78,49 @@ const Title = styled('h1', {
 });
 
 const Box = styled('div', {
-  display: 'grid',
+  display: 'flex',
+  flexWrap: 'wrap',
   gap: '$4',
-  gridTemplateColumns: 'repeat(1, 1fr)',
 
   '@xs': {
     gap: '$2',
-    gridTemplateColumns: 'repeat(2, 1fr)',
   },
 });
 
 const CategoryLink = styled('a', {
-  height: '6rem',
   display: 'flex',
   jc: 'center',
   ai: 'center',
+
   br: '$2',
+  px: '$4',
+  py: '$2',
+
   color: '$blue10',
   fontSize: '$xl',
   fontWeight: 'bold',
+
+  border: '1px solid $blue7',
   transition: 'box-shadow 0.2s ease',
-  backgroundImage: 'linear-gradient(to right, $blue4, $sky4)',
 
   '@hover': {
     '&:hover': {
       boxShadow: '$interactiveShadow1',
     },
   },
+});
 
-  '@xs': {
-    height: '8rem',
-  },
+const Count = styled('span', {
+  fontSize: '$base',
+  color: '$mauve12',
+});
+
+const Seperator = styled('div', {
+  height: '1rem',
+  width: '1px',
+  bc: '$blue10',
+
+  mx: '$2',
 });
 
 export default CategoriesPage;
