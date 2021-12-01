@@ -7,6 +7,7 @@ export type Category = {
   created_at: string;
   updated_at: string;
   posts?: Post[];
+  postsCount?: number;
 };
 
 export type RawCategory = {
