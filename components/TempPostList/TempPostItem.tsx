@@ -78,7 +78,7 @@ const TempItemBox = styled('li', {
 
 const LinkBox = styled('a', {
   overflow: 'hidden',
-  height: '4.5rem',
+  height: '5.5rem',
 
   display: 'flex',
   flexDirection: 'column',
