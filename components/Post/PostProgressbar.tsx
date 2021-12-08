@@ -42,7 +42,7 @@ const Box = styled('div', {
 });
 const ProgressBar = styled('div', {
   height: '100%',
-  bc: '$sky9',
+  bc: '$sky8',
 });
 
 export default PostProgressbar;

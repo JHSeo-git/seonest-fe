@@ -21,16 +21,23 @@ const Updated = ({
 }) => {
   const created = new Date(createdAt);
   const updated = new Date(updatedAt);
+  const now = new Date();
 
   const diff = updated.getTime() - created.getTime();
   // 하루 미만일 때는 updated 표시 안하도록
   if (diff < 1000 * 60 * 60 * 24) {
     return null;
   }
+
+  // 현재 날짜에서 1주일이 지났으면 표시안되도록
+  const nowDiff = now.getTime() - updated.getTime();
+  if (nowDiff > 1000 * 60 * 60 * 24 * 7) {
+    return null;
+  }
   return (
     <UpdatedBox>
       <CheckCircleIcon />
-      <span>updated</span>
+      <span>{`${updated.toLocaleDateString()}`} updated</span>
     </UpdatedBox>
   );
 };
@@ -69,7 +76,7 @@ const ContentInfo = ({
       <ContentInfoCol>
         <FlexBox>
           <CalendarIcon className="icon" />
-          <span className="text">{getDiffOfNow(updatedAt)}</span>
+          <span className="text">{getDiffOfNow(createdAt)}</span>
         </FlexBox>
         {readTime && (
           <FlexBox>

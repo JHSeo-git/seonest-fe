@@ -452,3 +452,83 @@ module.exports = withPWA({
   ...
 });
 ```
+
+## svgr
+
+> https://github.com/gregberge/svgr
+
+webpack svgr을 사용하여 react 모듈 형태로 사용할 수 있게 한다.
+
+### viewBox 제거 이슈
+
+svg 파일에 width, height 속성이 있으면 viewBox 속성을 제거한다.
+만약 width, height 속성이 없고 viewBox만 있다면 viewBox는 제거하지 않는다.
+
+### default 형태
+
+svgr을 `import url, { ReactComponent } from '.../...svg'` 형태로 쓰기 위해서는 `url-loader` 웹팩 로더를 같이 사용해야 한다.
+(typescript를 위해 d.ts파일에서 등록해서 쓰도록 하자)
+
+`url-loader`를 쓰지 않으면 default가 react component 모듈이 export된다.
+
+```js
+// next.config.js
+module.exports = {
+  ...
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+
+    return config
+  },
+}
+
+
+// d.ts
+declare module '*.svg' {
+  import * as React from 'react';
+
+  export const ReactComponent: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement>
+  >;
+
+  export default ReactComponent;
+}
+```
+
+```js
+// next.config.js
+module.exports = {
+  ...
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      /**
+       * 1. next/image-types/global에 any로 선언된 .svg 타입을 피하기 위해
+       * 2. url로 사용할 수 있도록
+       *
+       * @see https://react-svgr.com/docs/webpack/#using-with-url-loader-or-file-loader
+       */
+      use: ['@svgr/webpack', 'url-loader'],
+    })
+
+    return config
+  },
+}
+
+// with url-loader
+declare module '*.svg' {
+  // @see webpack config in next.config.js
+  const url: string
+  interface SvgrComponent
+    extends React.FunctionComponent<React.SVGAttributes<SVGElement>> {}
+
+  export default url
+  export const ReactComponent: SvgrComponent
+}
+
+```
+
+가츠비에서 `gatsby-plugin-svgr`에서는 내부에서 위 형태로 로딩해서 쓰는것 처럼 보임.
