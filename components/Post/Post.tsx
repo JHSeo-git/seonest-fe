@@ -17,7 +17,7 @@ export type PostProps = {
 function PostContainer({ post }: PostProps) {
   return (
     <>
-      {/* <PostProgressbar /> */}
+      <PostProgressbar />
       <PostHeader post={post} />
       <PostBody markdown={post.body} />
       <PostFooter
