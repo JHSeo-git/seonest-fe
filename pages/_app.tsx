@@ -39,6 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         attribute="class"
         value={{ light: lightThemeClassName, dark: darkThemeClassName }}
         defaultTheme="system"
+        enableSystem={true}
       >
         <DefaultSEO />
         <RecoilRoot>

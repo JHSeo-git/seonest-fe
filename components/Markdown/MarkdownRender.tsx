@@ -154,7 +154,7 @@ const Box = styled('section', {
   px: '$1',
   py: '$2',
   color: '$mauve12',
-  lineHeight: '1.5',
+  lineHeight: '1.75',
   // fontVariantNumeric: 'tabular-nums',
 
   // hr
