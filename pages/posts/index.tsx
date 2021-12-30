@@ -41,12 +41,13 @@ function PostsPage() {
       <AppLayout>
         <Container>
           {posts ? (
-            <PostList
-              posts={posts}
-              hasNextPage={hasNextPage}
-              fetchNext={fetchNext}
-            />
+            <EmptyPanel />
           ) : (
+            // <PostList
+            //   posts={posts}
+            //   hasNextPage={hasNextPage}
+            //   fetchNext={fetchNext}
+            // />
             <EmptyPanel />
           )}
         </Container>

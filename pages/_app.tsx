@@ -9,10 +9,13 @@ import { darkThemeClassName, lightThemeClassName } from '@stitches.js';
 import RecoilInitializer from '@/components/RecoilInitializer';
 import FullscreenLoader from '@/components/FullscreenLoader';
 import { DefaultSEO } from '@/components/SEO/DefaultSEO';
-import ToastProvider from '@/components/ToastProvider';
 import globalStyle from '@/lib/styles/globalStyle';
 import DebugComponents from '@/components/debug/DebugComponents';
 import FirebaseAnalytics from '@/components/analytics/FirebaseAnalytics';
+import dynamic from 'next/dynamic';
+
+// import ToastProvider from '@/components/ToastProvider';
+const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyle();
@@ -33,6 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        />
       </Head>
       <ThemeProvider
         disableTransitionOnChange

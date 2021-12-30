@@ -21,6 +21,7 @@ class MyDocument extends Document {
             id="stitches"
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
+
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -30,12 +31,6 @@ class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap"
             rel="stylesheet"
-          />
-          <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
           />
 
           <meta name="application-name" content="Seonest" />
