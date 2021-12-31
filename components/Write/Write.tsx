@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { styled } from '@stitches.js';
-import { Editor } from '@toast-ui/react-editor';
 import useSavePost from '@/hooks/useSavePost';
 import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
 import { Post } from '@/lib/api/posts/types';
@@ -14,6 +13,7 @@ import WriteButtons from './WriteButtons';
 import PublishScreen from './PublishScreen';
 import PreviewScreen from './PreviewScreen';
 import TuiEditor from '../Markdown/TuiEditor';
+import type { Editor } from '@toast-ui/react-editor';
 
 export type WriteProps = {
   slug?: string;

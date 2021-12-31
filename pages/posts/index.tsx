@@ -1,15 +1,24 @@
-import React, { useMemo } from 'react';
 import { GetStaticProps } from 'next';
+import React, { useMemo } from 'react';
 import { dehydrate } from 'react-query/hydration';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-import PostList from '@/components/PostList';
+
+// import PostList from '@/components/PostList';
+// import AppLayout from '@/components/AppLayout';
+// import PageSEO from '@/components/SEO/PageSEO';
+// import Container from '@/components/common/Container';
+// import FloatAction from '@/components/FloatAction';
+// import EmptyPanel from '@/components/common/EmptyPanel';
+import dynamic from 'next/dynamic';
+const PostList = dynamic(() => import('@/components/PostList'));
+const AppLayout = dynamic(() => import('@/components/AppLayout'));
+const PageSEO = dynamic(() => import('@/components/SEO/PageSEO'));
+const Container = dynamic(() => import('@/components/common/Container'));
+const FloatAction = dynamic(() => import('@/components/FloatAction'));
+const EmptyPanel = dynamic(() => import('@/components/common/EmptyPanel'));
+
 import useGetPostsQuery, {
   prefetchGetPostsQuery,
 } from '@/hooks/query/useGetPostsQuery';
-import Container from '@/components/common/Container';
-import FloatAction from '@/components/FloatAction';
-import EmptyPanel from '@/components/common/EmptyPanel';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetPostsQuery();

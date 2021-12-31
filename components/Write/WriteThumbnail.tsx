@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import EmptyImage from '@/assets/images/undraw-empty.svg';
 import useUploadImage from '@/hooks/useUploadImage';
 import { styled } from '@stitches.js';
 import Button from '../common/Button';
@@ -66,7 +65,7 @@ const WriteThumbnail = ({
         </ImageWrapper>
       ) : (
         <ImageWrapper placeholder>
-          <EmptyImage className="image-placeholder" />
+          <ImageEmptyText>Empty</ImageEmptyText>
           <IconButton
             kind="blueScale"
             size="large"
@@ -108,11 +107,18 @@ const ImageWrapper = styled('div', {
   variants: {
     placeholder: {
       true: {
-        bc: 'transparent',
-        border: '3px dashed $colors$mauve3',
+        bc: '$mauve2',
+        border: '3px dashed $colors$mauve4',
       },
     },
   },
+});
+
+const ImageEmptyText = styled('span', {
+  fontSize: '$lg',
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+  color: '$mauve10',
 });
 
 const IconButton = styled(Button, {

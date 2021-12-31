@@ -1,5 +1,4 @@
 import { styled } from '@stitches.js';
-import UndrawEmpty from '@/assets/images/undraw-empty.svg';
 
 type EmptyPanelProps = {
   comment?: string;
@@ -8,8 +7,8 @@ type EmptyPanelProps = {
 function EmptyPanel({ comment }: EmptyPanelProps) {
   return (
     <EmptyBox>
-      <UndrawEmpty className="empty" />
-      <h2>{comment ? comment : 'There are no content'}</h2>
+      <EmptyText>¯\_(ツ)_/¯</EmptyText>
+      <h2>{comment ? comment : 'Sorry, There are nothing.'}</h2>
     </EmptyBox>
   );
 }
@@ -28,6 +27,11 @@ const EmptyBox = styled('div', {
     fontSize: '$3xl',
     color: '$mauve10',
   },
+});
+
+const EmptyText = styled('span', {
+  fontSize: '$5xl',
+  color: '$mauve10',
 });
 
 export default EmptyPanel;

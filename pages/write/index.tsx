@@ -1,9 +1,16 @@
 import React from 'react';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-import Write from '@/components/Write';
+
+// import Write from '@/components/Write';
+// import AppError from '@/components/AppError';
+// import AppLayout from '@/components/AppLayout';
+// import PageSEO from '@/components/SEO/PageSEO';
+import dynamic from 'next/dynamic';
+const Write = dynamic(() => import('@/components/Write'));
+const AppError = dynamic(() => import('@/components/AppError'));
+const AppLayout = dynamic(() => import('@/components/AppLayout'));
+const PageSEO = dynamic(() => import('@/components/SEO/PageSEO'));
+
 import { useUserValue } from '@/lib/recoil/authState';
-import AppError from '@/components/AppError';
 
 function WritePage() {
   const user = useUserValue();

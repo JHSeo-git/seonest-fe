@@ -1,7 +1,7 @@
 import { DefaultSeo } from 'next-seo';
 import appConfig from '@/config/app.config';
 
-export const DefaultSEO = () => {
+const DefaultSEO = () => {
   return (
     <DefaultSeo
       title={appConfig.title}
@@ -22,3 +22,5 @@ export const DefaultSEO = () => {
     />
   );
 };
+
+export default DefaultSEO;
