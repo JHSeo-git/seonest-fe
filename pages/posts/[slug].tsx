@@ -3,19 +3,19 @@ import markdownToText from 'markdown-to-text';
 import { dehydrate } from 'react-query/hydration';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
-// import Post from '@/components/Post';
-// import AppError from '@/components/AppError';
-// import PostSEO from '@/components/SEO/PostSEO';
-// import AppLayout from '@/components/AppLayout';
-// import FloatAction from '@/components/FloatAction';
-// import Container from '@/components/common/Container';
-import dynamic from 'next/dynamic';
-const Post = dynamic(() => import('@/components/Post'));
-const AppError = dynamic(() => import('@/components/AppError'));
-const PostSEO = dynamic(() => import('@/components/SEO/PostSEO'));
-const AppLayout = dynamic(() => import('@/components/AppLayout'));
-const FloatAction = dynamic(() => import('@/components/FloatAction'));
-const Container = dynamic(() => import('@/components/common/Container'));
+import Post from '@/components/Post';
+import AppError from '@/components/AppError';
+import PostSEO from '@/components/SEO/PostSEO';
+import AppLayout from '@/components/AppLayout';
+import FloatAction from '@/components/FloatAction';
+import Container from '@/components/common/Container';
+// import dynamic from 'next/dynamic';
+// const Post = dynamic(() => import('@/components/Post'));
+// const AppError = dynamic(() => import('@/components/AppError'));
+// const PostSEO = dynamic(() => import('@/components/SEO/PostSEO'));
+// const AppLayout = dynamic(() => import('@/components/AppLayout'));
+// const FloatAction = dynamic(() => import('@/components/FloatAction'));
+// const Container = dynamic(() => import('@/components/common/Container'));
 
 import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
