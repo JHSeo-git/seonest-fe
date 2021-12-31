@@ -1,17 +1,26 @@
 import React, { useMemo } from 'react';
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import { dehydrate } from 'react-query/hydration';
 import markdownToText from 'markdown-to-text';
-import Post from '@/components/Post';
-import AppLayout from '@/components/AppLayout';
+import { dehydrate } from 'react-query/hydration';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+
+// import Post from '@/components/Post';
+// import AppError from '@/components/AppError';
+// import PostSEO from '@/components/SEO/PostSEO';
+// import AppLayout from '@/components/AppLayout';
+// import FloatAction from '@/components/FloatAction';
+// import Container from '@/components/common/Container';
+import dynamic from 'next/dynamic';
+const Post = dynamic(() => import('@/components/Post'));
+const AppError = dynamic(() => import('@/components/AppError'));
+const PostSEO = dynamic(() => import('@/components/SEO/PostSEO'));
+const AppLayout = dynamic(() => import('@/components/AppLayout'));
+const FloatAction = dynamic(() => import('@/components/FloatAction'));
+const Container = dynamic(() => import('@/components/common/Container'));
+
 import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
   prefetchGetPostBySlugQuery,
 } from '@/hooks/query/useGetPostBySlugQuery';
-import Container from '@/components/common/Container';
-import PostSEO from '@/components/SEO/PostSEO';
-import FloatAction from '@/components/FloatAction';
-import AppError from '@/components/AppError';
 
 export const getStaticProps: GetStaticProps = async ({
   params,

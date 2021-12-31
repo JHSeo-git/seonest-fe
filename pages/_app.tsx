@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { Hydrate } from 'react-query/hydration';
 import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
+import React, { useState } from 'react';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
-import { RecoilRoot } from 'recoil';
-import { darkThemeClassName, lightThemeClassName } from '@stitches.js';
+import { Hydrate } from 'react-query/hydration';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+// import DefaultSEO from '@/components/SEO/DefaultSEO';
+// import ToastProvider from '@/components/ToastProvider';
+// import FullscreenLoader from '@/components/FullscreenLoader';
+import dynamic from 'next/dynamic';
+const DefaultSEO = dynamic(() => import('@/components/SEO/DefaultSEO'));
+const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
+const FullscreenLoader = dynamic(() => import('@/components/FullscreenLoader'));
+
 import RecoilInitializer from '@/components/RecoilInitializer';
-import FullscreenLoader from '@/components/FullscreenLoader';
-import { DefaultSEO } from '@/components/SEO/DefaultSEO';
-import globalStyle from '@/lib/styles/globalStyle';
 import DebugComponents from '@/components/debug/DebugComponents';
 import FirebaseAnalytics from '@/components/analytics/FirebaseAnalytics';
-import dynamic from 'next/dynamic';
 
-// import ToastProvider from '@/components/ToastProvider';
-const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
+import globalStyle from '@/lib/styles/globalStyle';
+import { darkThemeClassName, lightThemeClassName } from '@stitches.js';
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyle();
 
-  // set retry 3 time, retryDelay 3 sec
+  // set retry only 1,
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            retryDelay: 3000,
+            retry: 1,
           },
         },
       })
@@ -40,8 +44,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           rel="stylesheet"
           type="text/css"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
         />
+
+        {/* <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        /> */}
       </Head>
       <ThemeProvider
         disableTransitionOnChange
