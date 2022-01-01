@@ -1,14 +1,16 @@
 import React from 'react';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
 import { keyframes, styled } from '@stitches.js';
+
+import PageSEO from '@/components/SEO/PageSEO';
+import AppLayout from '@/components/AppLayout';
+
 import LogoImage from '@/assets/images/logo.svg';
 
 // TODO: About page
 function AboutPage() {
   return (
     <>
-      <PageSEO title="About" description="About Seo Nest Blog" />
+      <PageSEO url="/about" title="About" description="About Seo Nest Blog" />
       <AppLayout>
         <BG />
         <Box>

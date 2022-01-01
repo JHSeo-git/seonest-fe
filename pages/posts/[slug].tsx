@@ -9,13 +9,6 @@ import PostSEO from '@/components/SEO/PostSEO';
 import AppLayout from '@/components/AppLayout';
 import FloatAction from '@/components/FloatAction';
 import Container from '@/components/common/Container';
-// import dynamic from 'next/dynamic';
-// const Post = dynamic(() => import('@/components/Post'));
-// const AppError = dynamic(() => import('@/components/AppError'));
-// const PostSEO = dynamic(() => import('@/components/SEO/PostSEO'));
-// const AppLayout = dynamic(() => import('@/components/AppLayout'));
-// const FloatAction = dynamic(() => import('@/components/FloatAction'));
-// const Container = dynamic(() => import('@/components/common/Container'));
 
 import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
@@ -84,6 +77,7 @@ function PostPage({ slug }: PostPageProps) {
   return (
     <>
       <PostSEO
+        url={`/posts/${slug}`}
         title={post.title}
         description={
           post.short_description ??
@@ -94,9 +88,7 @@ function PostPage({ slug }: PostPageProps) {
         publishedTime={post.created_at}
       />
       <AppLayout>
-        <Container>
-          <Post post={post} />
-        </Container>
+        <Container>{/* <Post post={post} /> */}</Container>
         <FloatAction editSlug={post.url_slug} />
       </AppLayout>
     </>

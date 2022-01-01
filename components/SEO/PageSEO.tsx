@@ -1,31 +1,30 @@
 import { NextSeo } from 'next-seo';
 import appConfig from '@/config/app.config';
-import { useRouter } from 'next/router';
 
 export type PageSEOProps = {
+  url: string;
   title: string;
   description: string;
-  url?: string;
   noRobots?: boolean;
 };
 
 const PageSEO = ({
+  url,
   title,
   description,
-  url,
   noRobots = false,
 }: PageSEOProps) => {
-  const router = useRouter();
+  const fullUrl = `${appConfig.url}${url.startsWith('/') ? url : `/${url}`}`;
   return (
     <NextSeo
       title={`${title} – ${appConfig.title}`}
       description={description}
-      canonical={url ?? `${appConfig.url}${router.pathname}`}
+      canonical={fullUrl}
       openGraph={{
         type: 'website',
         title: `${title} – ${appConfig.title}`,
         description,
-        url: url ?? `${appConfig.url}${router.pathname}`,
+        url: fullUrl,
         images: [{ alt: title, url: appConfig.siteLogo }],
       }}
       twitter={{

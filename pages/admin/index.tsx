@@ -1,11 +1,13 @@
 import React from 'react';
-import GoogleLoginButton from '@/components/GoogleLoginButton';
-import { useUserValue } from '@/lib/recoil/authState';
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
 import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
+
+import PageSEO from '@/components/SEO/PageSEO';
+import AppLayout from '@/components/AppLayout';
 import Button from '@/components/common/Button';
+import GoogleLoginButton from '@/components/GoogleLoginButton';
+
+import { useUserValue } from '@/lib/recoil/authState';
 
 function Admin() {
   const userState = useUserValue();
@@ -28,7 +30,12 @@ function Admin() {
 
   return (
     <>
-      <PageSEO title="Admin" description="admin page" noRobots={true} />
+      <PageSEO
+        url="/admin"
+        title="Admin"
+        description="admin page"
+        noRobots={true}
+      />
       <AppLayout>
         <Box>
           <GoogleLoginButton />

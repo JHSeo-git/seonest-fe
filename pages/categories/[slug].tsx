@@ -1,17 +1,19 @@
+import { useMemo } from 'react';
+import { styled } from '@stitches.js';
+import { dehydrate } from 'react-query';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+
+import PostList from '@/components/PostList';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
-import { styled } from '@stitches.js';
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import { dehydrate } from 'react-query';
-import getCategories from '@/lib/api/categories/getCategories';
-import { useMemo } from 'react';
-import PostList from '@/components/PostList';
 import EmptyPanel from '@/components/common/EmptyPanel';
+
+import { Post } from '@/lib/api/posts/types';
+import { Category } from '@/lib/api/categories/types';
+import getCategories from '@/lib/api/categories/getCategories';
 import useGetRawCategoriesBySlugQuery, {
   prefetchGetRawCategoriesBySlugQuery,
 } from '@/hooks/query/useGetRawCategoriesBySlugQuery';
-import { Category } from '@/lib/api/categories/types';
-import { Post } from '@/lib/api/posts/types';
 
 export const getStaticProps: GetStaticProps = async ({
   params,

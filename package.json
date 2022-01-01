@@ -23,7 +23,8 @@
     "build:analyze": "ANALYZE=true yarn build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lh:local": "lighthouse http://localhost:3000/ --view"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.8.0",

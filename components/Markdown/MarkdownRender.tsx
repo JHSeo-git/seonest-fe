@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import { styled } from '@stitches.js';
 import rehypeVideo from 'rehype-video';
 import remarkBreaks from 'remark-breaks';
+import ReactMarkdown from 'react-markdown';
 import rehypePrism from '@mapbox/rehype-prism';
-import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { styled } from '@stitches.js';
+import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
 type MarkdownRenderProps = {
   markdown: string;

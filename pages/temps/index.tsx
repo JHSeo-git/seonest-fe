@@ -1,14 +1,16 @@
 import React, { useMemo } from 'react';
 import { GetStaticProps } from 'next';
 import { dehydrate } from 'react-query/hydration';
-import TempPostList from '@/components/TempPostList';
-import AppLayout from '@/components/AppLayout';
+
 import PageSEO from '@/components/SEO/PageSEO';
+import AppLayout from '@/components/AppLayout';
+import FloatAction from '@/components/FloatAction';
+import TempPostList from '@/components/TempPostList';
+import Container from '@/components/common/Container';
+
 import useGetTempPostsQuery, {
   prefetchGetTempPostsQuery,
 } from '@/hooks/query/useGetTempPostsQuery';
-import Container from '@/components/common/Container';
-import FloatAction from '@/components/FloatAction';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetTempPostsQuery();
@@ -36,7 +38,7 @@ function TempsPage() {
 
   return (
     <>
-      <PageSEO title="Temp Posts" description="temp posts" />
+      <PageSEO url="/temps" title="Temp Posts" description="temp posts" />
       <AppLayout>
         <Container>
           <TempPostList

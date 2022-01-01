@@ -37,7 +37,7 @@ module.exports = withBundleAnalyzer(
       return config;
     },
     images: {
-      domains: ['files.seonest.net'],
+      domains: ['files.seonest.net', 'd1ml1bwdb9n1pg.cloudfront.net'],
     },
   })
 );

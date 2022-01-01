@@ -1,15 +1,17 @@
-import React, { useMemo } from 'react';
-import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { dehydrate } from 'react-query';
 import { styled } from '@stitches.js';
+import { GetStaticProps } from 'next';
+import React, { useMemo } from 'react';
+import { dehydrate } from 'react-query';
+
+import PageSEO from '@/components/SEO/PageSEO';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
-import PageSEO from '@/components/SEO/PageSEO';
+import EmptyPanel from '@/components/common/EmptyPanel';
+
 import useGetCategoriesQuery, {
   prefetchGetCategoriesQuery,
 } from '@/hooks/query/useGetCategoriesQuery';
-import EmptyPanel from '@/components/common/EmptyPanel';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetCategoriesQuery();
@@ -33,7 +35,11 @@ function CategoriesPage() {
 
   return (
     <>
-      <PageSEO title="Categories" description="Seo's honest post categories" />
+      <PageSEO
+        url="/categories"
+        title="Categories"
+        description="Seo's honest post categories"
+      />
       <AppLayout>
         <Container
           css={{
