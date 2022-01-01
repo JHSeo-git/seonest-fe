@@ -1,9 +1,9 @@
 import React from 'react';
-import { BlogJsonLd, NextSeo } from 'next-seo';
 import appConfig from '@/config/app.config';
-import { useRouter } from 'next/router';
+import { BlogJsonLd, NextSeo } from 'next-seo';
 
 export type PostSEOProps = {
+  url: string;
   title: string;
   description: string;
   publishedTime: string;
@@ -13,6 +13,7 @@ export type PostSEOProps = {
 };
 
 const PostSEO = ({
+  url,
   title,
   description,
   publishedTime,
@@ -20,8 +21,8 @@ const PostSEO = ({
   images,
   noRobots = false,
 }: PostSEOProps) => {
-  const router = useRouter();
-  const url = `${appConfig.url}${router.asPath}`;
+  // const router = useRouter();
+  const fullUrl = `${appConfig.url}${url.startsWith('/') ? url : `/${url}`}`;
   const ogImages = images.map((image) => ({
     url: image,
     alt: `${title} thumbnail`,
@@ -31,7 +32,7 @@ const PostSEO = ({
       <NextSeo
         title={`${title} – ${appConfig.title}`}
         description={description}
-        canonical={url}
+        canonical={fullUrl}
         openGraph={{
           type: 'article',
           url,

@@ -1,8 +1,9 @@
-import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 import { GetServerSideProps } from 'next';
+import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
+
 import appConfig from '@/config/app.config';
-import getCategories from '@/lib/api/categories/getCategories';
 import getPosts from '@/lib/api/posts/getPosts';
+import getCategories from '@/lib/api/categories/getCategories';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = await getPosts();

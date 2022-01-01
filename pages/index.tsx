@@ -1,17 +1,19 @@
-import React, { useMemo } from 'react';
-import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { dehydrate } from 'react-query/hydration';
 import { styled } from '@stitches.js';
+import { GetStaticProps } from 'next';
+import React, { useMemo } from 'react';
+import { dehydrate } from 'react-query/hydration';
+
+import PostList from '@/components/PostList';
+import PageSEO from '@/components/SEO/PageSEO';
+import AppLayout from '@/components/AppLayout';
+import Button from '@/components/common/Button';
+import Container from '@/components/common/Container';
+
+import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
 import useGetPostsByLatestQuery, {
   prefetchGetPostsByLatestQuery,
 } from '@/hooks/query/useGetPostsByLatestQuery';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-import Container from '@/components/common/Container';
-import Button from '@/components/common/Button';
-import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
-import PostList from '@/components/PostList';
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const queryClient = await prefetchGetPostsByLatestQuery();
@@ -34,7 +36,7 @@ function HomePage() {
 
   return (
     <>
-      <PageSEO title="Seonest" description="Seo's honest nest" />
+      <PageSEO url="/" title="Seonest" description="Seo's honest nest" />
       <AppLayout>
         <Hero>
           <h1>Slow but Steady</h1>

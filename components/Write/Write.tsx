@@ -1,19 +1,21 @@
+import { styled } from '@stitches.js';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
+import type { Editor } from '@toast-ui/react-editor';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { styled } from '@stitches.js';
-import useSavePost from '@/hooks/useSavePost';
-import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
-import { Post } from '@/lib/api/posts/types';
-import { PostAllContentType } from '@/lib/types/types';
+
 import Popup from '../common/Popup';
 import WriteTitle from './WriteTitle';
 import WriteButtons from './WriteButtons';
 import PublishScreen from './PublishScreen';
 import PreviewScreen from './PreviewScreen';
 import TuiEditor from '../Markdown/TuiEditor';
-import type { Editor } from '@toast-ui/react-editor';
+
+import { Post } from '@/lib/api/posts/types';
+import { PostAllContentType } from '@/lib/types/types';
+import useSavePost from '@/hooks/useSavePost';
+import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
 
 export type WriteProps = {
   slug?: string;
