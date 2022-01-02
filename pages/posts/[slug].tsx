@@ -88,7 +88,9 @@ function PostPage({ slug }: PostPageProps) {
         publishedTime={post.created_at}
       />
       <AppLayout>
-        <Container>{/* <Post post={post} /> */}</Container>
+        <Container>
+          <Post post={post} />
+        </Container>
         <FloatAction editSlug={post.url_slug} />
       </AppLayout>
     </>
