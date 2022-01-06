@@ -15,16 +15,18 @@ const PageSEO = ({
   noRobots = false,
 }: PageSEOProps) => {
   const fullUrl = `${appConfig.url}${url.startsWith('/') ? url : `/${url}`}`;
+  const encodedUrl = encodeURI(fullUrl);
+
   return (
     <NextSeo
-      title={`${title} – ${appConfig.title}`}
+      title={`${title}`}
       description={description}
-      canonical={fullUrl}
+      canonical={encodedUrl}
       openGraph={{
         type: 'website',
-        title: `${title} – ${appConfig.title}`,
+        title: `${title}`,
         description,
-        url: fullUrl,
+        url: encodedUrl,
         images: [{ alt: title, url: appConfig.siteLogo }],
       }}
       twitter={{

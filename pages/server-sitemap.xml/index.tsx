@@ -17,13 +17,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       loc: `${appConfig.url}/categories/`,
     },
     ...posts.map<ISitemapField>((post) => ({
-      loc: `${appConfig.url}/posts/${post.url_slug}/`,
+      loc: `${appConfig.url}/posts/${encodeURI(post.url_slug)}/`,
       changefreq: 'daily',
       priority: 0.7,
       lastmod: post.updated_at,
     })),
     ...categories.map<ISitemapField>((category) => ({
-      loc: `${appConfig.url}/categories/${category.url_slug}/`,
+      loc: `${appConfig.url}/categories/${encodeURI(category.url_slug)}/`,
       changefreq: 'daily',
       priority: 0.3,
       lastmod: category.updated_at,
