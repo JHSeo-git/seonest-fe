@@ -3,6 +3,8 @@ const runtimeCaching = require('next-pwa/cache');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -19,6 +21,12 @@ module.exports = withBundleAnalyzer(
     // swcMinify: true,
     reactStrictMode: true,
     webpack: (config) => {
+      config.plugins.push(new DuplicatePackageCheckerPlugin());
+      config.resolve.alias['fast-deep-equal'] = path.resolve(
+        __dirname,
+        'node_modules',
+        'fast-deep-equal'
+      );
       config.module.rules.push({
         test: /\.svg$/,
         use: [
