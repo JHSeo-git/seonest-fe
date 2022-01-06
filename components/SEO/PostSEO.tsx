@@ -23,6 +23,7 @@ const PostSEO = ({
 }: PostSEOProps) => {
   // const router = useRouter();
   const fullUrl = `${appConfig.url}${url.startsWith('/') ? url : `/${url}`}`;
+  const encodedUrl = encodeURI(fullUrl);
   const ogImages = images.map((image) => ({
     url: image,
     alt: `${title} thumbnail`,
@@ -30,13 +31,13 @@ const PostSEO = ({
   return (
     <>
       <NextSeo
-        title={`${title} – ${appConfig.title}`}
+        title={`${title}`}
         description={description}
-        canonical={fullUrl}
+        canonical={encodedUrl}
         openGraph={{
           type: 'article',
           url,
-          title: `${title} – ${appConfig.title}`,
+          title: `${title}`,
           description,
           article: {
             publishedTime,
@@ -60,7 +61,7 @@ const PostSEO = ({
         description={description}
         images={images}
         title={title}
-        url={url}
+        url={encodedUrl}
       />
     </>
   );

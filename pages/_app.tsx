@@ -7,13 +7,13 @@ import { Hydrate } from 'react-query/hydration';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import DefaultSEO from '@/components/SEO/DefaultSEO';
-import ToastProvider from '@/components/ToastProvider';
+// import ToastProvider from '@/components/ToastProvider';
 import FullscreenLoader from '@/components/FullscreenLoader';
 import RecoilInitializer from '@/components/RecoilInitializer';
 import DebugComponents from '@/components/debug/DebugComponents';
 import FirebaseAnalytics from '@/components/analytics/FirebaseAnalytics';
-// import dynamic from 'next/dynamic';
-// const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
+import dynamic from 'next/dynamic';
+const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
 // const FullscreenLoader = dynamic(() => import('@/components/FullscreenLoader'));
 
 import globalStyle from '@/lib/styles/globalStyle';

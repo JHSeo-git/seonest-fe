@@ -6,5 +6,4 @@ Allow: /
 Host: https://www.seonest.net
 
 # Sitemaps
-Sitemap: https://www.seonest.net/sitemap.xml
 Sitemap: https://www.seonest.net/server-sitemap.xml
