@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@firebase/analytics-types": "^0.4.0",
+    "@firebase/analytics-types": "^0.7.0",
     "@next/bundle-analyzer": "^12.0.7",
     "@svgr/webpack": "^5.5.0",
     "@types/axios": "^0.14.0",
