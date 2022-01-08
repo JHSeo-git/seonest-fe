@@ -1,9 +1,11 @@
 import { styled } from '@stitches.js';
+
 import Button from '../common/Button';
-import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
-import FilePlusIcon from '@/assets/icons/file-plus.svg';
-import Pencil2Icon from '@/assets/icons/pencil2.svg';
-import CameraIcon from '@/assets/icons/camera.svg';
+
+import { ReactComponent as CameraIcon } from '@/assets/icons/camera.svg';
+import { ReactComponent as Pencil2Icon } from '@/assets/icons/pencil2.svg';
+import { ReactComponent as FilePlusIcon } from '@/assets/icons/file-plus.svg';
+import { ReactComponent as ChevronRightIcon } from '@/assets/icons/chevron-right.svg';
 
 export type WriteButtonsProps = {
   isEditPost: boolean;

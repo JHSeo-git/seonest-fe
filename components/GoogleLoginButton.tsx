@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react';
 import Script from 'next/script';
-import useGoogleLoginEffect from '@/hooks/useGoogleLoginEffect';
-import Button from './common/Button';
-import GoogleIcon from '@/assets/icons/google.svg';
 import { styled } from '@stitches.js';
+import React, { useRef, useState } from 'react';
+
+import useGoogleLoginEffect from '@/hooks/useGoogleLoginEffect';
+
+import Button from './common/Button';
+
+import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg';
 
 function GoogleLoginButton() {
   const buttonRef = useRef<HTMLButtonElement>(null);

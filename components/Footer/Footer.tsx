@@ -1,7 +1,8 @@
 import { styled } from '@stitches.js';
-import GithubIcon from '@/assets/icons/github.svg';
-import LogoImage from '@/assets/images/logo.svg';
 import Button from '../common/Button';
+
+import { ReactComponent as GithubIcon } from '@/assets/icons/github.svg';
+import { ReactComponent as LogoImage } from '@/assets/images/logo.svg';
 
 function Footer() {
   return (

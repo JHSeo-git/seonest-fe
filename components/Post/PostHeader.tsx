@@ -1,19 +1,22 @@
-import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { styled } from '@stitches.js';
+import { useRouter } from 'next/router';
+import React, { useMemo, useState } from 'react';
+
 import { Post } from '@/lib/api/posts/types';
+import { humanizeTime } from '@/lib/utils/viewerUtils';
 import { useUserValue } from '@/lib/recoil/authState';
 import { stringToDateMoreDetail } from '@/lib/utils/dateUtils';
-import { humanizeTime } from '@/lib/utils/viewerUtils';
 import useDeletePost from '@/hooks/useDeletePost';
-import { useRouter } from 'next/router';
-import { styled } from '@stitches.js';
+
 import Button from '../common/Button';
 import Popup from '../common/Popup';
-import EyeIcon from '@/assets/icons/eye.svg';
-import CubeIcon from '@/assets/icons/cube.svg';
-import ClockIcon from '@/assets/icons/clock.svg';
-import CalendarIcon from '@/assets/icons/calendar.svg';
+
+import { ReactComponent as EyeIcon } from '@/assets/icons/eye.svg';
+import { ReactComponent as CubeIcon } from '@/assets/icons/cube.svg';
+import { ReactComponent as ClockIcon } from '@/assets/icons/clock.svg';
+import { ReactComponent as CalendarIcon } from '@/assets/icons/calendar.svg';
 
 export type PostHeaderProps = {
   post: Post;

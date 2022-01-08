@@ -1,7 +1,8 @@
 import { styled } from '@stitches.js';
 import Link from 'next/link';
-import Button from '../common/Button';
+
 import Menus from './Menus';
+import Button from '../common/Button';
 import ThemeToggle from './ThemeToggle';
 
 function Navigation() {

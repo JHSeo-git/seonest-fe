@@ -1,11 +1,14 @@
 import { styled } from '@stitches.js';
+
 import useLazyClose from '@/hooks/useLazyClose';
-import CloseIcon from '@/assets/icons/close.svg';
 import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
+
 import Modal from '../common/Modal';
 import Button from '../common/Button';
 import Container from '../common/Container';
 import MarkdownRender from '../Markdown/MarkdownRender';
+
+import { ReactComponent as CloseIcon } from '@/assets/icons/close.svg';
 
 export type PreviewScreenProps = {
   visible: boolean;

@@ -1,8 +1,11 @@
-import { useScreenLoadingValue } from '@/lib/recoil/appState';
-import useLazyClose from '@/hooks/useLazyClose';
 import { styled } from '@stitches.js';
-import SpinnerIcon from '@/assets/icons/spinner.svg';
+
+import useLazyClose from '@/hooks/useLazyClose';
+
+import { useScreenLoadingValue } from '@/lib/recoil/appState';
 import { fadeIn, fadeOut, loadingAnimation } from '@/lib/styles/animation';
+
+import { ReactComponent as SpinnerIcon } from '@/assets/icons/spinner.svg';
 
 function FullscreenLoader() {
   const screenLoading = useScreenLoadingValue();

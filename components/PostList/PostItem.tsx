@@ -1,16 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useMemo } from 'react';
+import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import markdownToText from 'markdown-to-text';
-import { styled } from '@stitches.js';
+
 import { Post } from '@/lib/api/posts/types';
 import { getDiffOfNow } from '@/lib/utils/dateUtils';
 import { humanizeTime } from '@/lib/utils/viewerUtils';
-import CalendarIcon from '@/assets/icons/calendar.svg';
-import CheckCircleIcon from '@/assets/icons/check-circle.svg';
-import ClockIcon from '@/assets/icons/clock.svg';
-import EyeIcon from '@/assets/icons/eye.svg';
-import { useMemo } from 'react';
+
+import { ReactComponent as EyeIcon } from '@/assets/icons/eye.svg';
+import { ReactComponent as ClockIcon } from '@/assets/icons/clock.svg';
+import { ReactComponent as CalendarIcon } from '@/assets/icons/calendar.svg';
+import { ReactComponent as CheckCircleIcon } from '@/assets/icons/check-circle.svg';
 
 const Updated = ({
   createdAt,

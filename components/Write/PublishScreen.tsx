@@ -1,12 +1,14 @@
-import { useForm, UseFormGetValues, UseFormRegister } from 'react-hook-form';
+import { useState } from 'react';
 import { styled } from '@stitches.js';
+import { useForm, UseFormGetValues, UseFormRegister } from 'react-hook-form';
+
 import useLazyClose from '@/hooks/useLazyClose';
 import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
+
 import Modal from '../common/Modal';
 import Button from '../common/Button';
 import { WriteInputs } from './Write';
 import WriteThumbnail from './WriteThumbnail';
-import { useState } from 'react';
 
 export type PublishScreenProps = {
   isEditPost: boolean;

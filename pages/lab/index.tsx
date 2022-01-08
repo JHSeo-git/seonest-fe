@@ -1,7 +1,8 @@
 import { styled } from '@stitches.js';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
-import MagicWand from '@/assets/icons/magic-wand.svg';
+
+import { ReactComponent as MagicWand } from '@/assets/icons/magic-wand.svg';
 
 function LabPage() {
   return (

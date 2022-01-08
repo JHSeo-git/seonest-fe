@@ -7,7 +7,7 @@ import remarkBreaks from 'remark-breaks';
 import ReactMarkdown from 'react-markdown';
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
+import type { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
 type MarkdownRenderProps = {
   markdown: string;
@@ -196,19 +196,15 @@ const Box = styled('section', {
   },
   h1: {
     fontSize: '$4xl',
-    pb: '$3',
   },
   h2: {
     fontSize: '$3xl',
-    pb: '$3',
   },
   h3: {
     fontSize: '$2xl',
-    pb: '$2',
   },
   h4: {
     fontSize: '$xl',
-    pb: '$2',
   },
   h5: {
     fontSize: '$base',
@@ -277,6 +273,7 @@ const Box = styled('section', {
   // codeblock pre, code
   'pre[class*="language-"]': {
     p: '1.5em',
+    pt: '2.25em',
     m: '1em 0',
     overflow: 'auto',
     br: '0.3em',
