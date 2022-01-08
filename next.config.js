@@ -23,11 +23,15 @@ module.exports = withBundleAnalyzer(
     reactStrictMode: true,
     webpack: (config) => {
       config.plugins.push(new DuplicatePackageCheckerPlugin());
-      config.resolve.alias['fast-deep-equal'] = path.resolve(
-        __dirname,
-        'node_modules',
-        'fast-deep-equal'
-      );
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'fast-deep-equal': path.resolve(
+          __dirname,
+          'node_modules',
+          'fast-deep-equal'
+        ),
+      };
+
       config.module.rules.push({
         test: /\.svg$/,
         use: [
