@@ -7,7 +7,7 @@ import remarkBreaks from 'remark-breaks';
 import ReactMarkdown from 'react-markdown';
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
+import type { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
 type MarkdownRenderProps = {
   markdown: string;

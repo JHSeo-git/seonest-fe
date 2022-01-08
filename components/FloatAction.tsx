@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { styled } from '@stitches.js';
-import Button from './common/Button';
-import PlusIcon from '@/assets/icons/plus.svg';
-import Pencil1 from '@/assets/icons/pencil1.svg';
-import Pencil2 from '@/assets/icons/pencil2.svg';
 import Link from 'next/link';
+import { styled } from '@stitches.js';
+import React, { useState } from 'react';
+
+import Button from './common/Button';
+
 import { useUserValue } from '@/lib/recoil/authState';
+
+import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
+import { ReactComponent as Pencil1 } from '@/assets/icons/pencil1.svg';
+import { ReactComponent as Pencil2 } from '@/assets/icons/pencil2.svg';
 
 type FloatActionProps = {
   editSlug?: string;

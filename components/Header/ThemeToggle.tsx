@@ -1,7 +1,9 @@
 import { styled } from '@stitches.js';
 import { useTheme } from 'next-themes';
-import Sun from '@/assets/icons/sun.svg';
+
 import Button from '../common/Button';
+
+import { ReactComponent as Sun } from '@/assets/icons/sun.svg';
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();

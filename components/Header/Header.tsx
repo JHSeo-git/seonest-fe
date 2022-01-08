@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { keyframes, styled } from '@stitches.js';
-import Container from '../common/Container';
+
 import Navigation from './Navigation';
-import LogoIcon from '@/assets/images/logo.svg';
+import Container from '../common/Container';
+
+import { ReactComponent as LogoIcon } from '@/assets/images/logo.svg';
 
 function Header() {
   return (

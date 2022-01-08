@@ -10,7 +10,7 @@ import AppLayout from '@/components/AppLayout';
 import Button from '@/components/common/Button';
 import Container from '@/components/common/Container';
 
-import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
+import { ReactComponent as ChevronRightIconSvg } from '@/assets/icons/chevron-right.svg';
 import useGetPostsByLatestQuery, {
   prefetchGetPostsByLatestQuery,
 } from '@/hooks/query/useGetPostsByLatestQuery';
@@ -97,6 +97,10 @@ const LinkWrapper = styled('div', {
   jc: 'flex-end',
   px: '$2',
   my: '$4',
+});
+
+const ChevronRightIcon = styled(ChevronRightIconSvg, {
+  size: '15px',
 });
 
 export default HomePage;

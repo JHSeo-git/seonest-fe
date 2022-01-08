@@ -1,15 +1,19 @@
-import { useState } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import markdownToText from 'markdown-to-text';
-import { styled } from '@stitches.js';
+
 import { Post } from '@/lib/api/posts/types';
 import { getDiffOfNow } from '@/lib/utils/dateUtils';
 import { useUserValue } from '@/lib/recoil/authState';
+
 import useDeletePost from '@/hooks/useDeletePost';
-import Button from '../common/Button';
-import CalendarIcon from '@/assets/icons/calendar.svg';
+
 import Popup from '../common/Popup';
+import Button from '../common/Button';
+
+import { ReactComponent as CalendarIcon } from '@/assets/icons/calendar.svg';
 
 export type TempPostItemProps = {
   post: Post;

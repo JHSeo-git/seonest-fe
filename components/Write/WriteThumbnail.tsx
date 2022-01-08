@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import useUploadImage from '@/hooks/useUploadImage';
 import { styled } from '@stitches.js';
+import React, { useEffect, useRef, useState } from 'react';
+
+import useUploadImage from '@/hooks/useUploadImage';
+
 import Button from '../common/Button';
-import PlusIcon from '@/assets/icons/plus.svg';
+
+import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
 
 export type WriteThumbnailProps = {
   thumbnailUrl?: string;

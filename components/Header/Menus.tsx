@@ -1,11 +1,14 @@
-import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { styled } from '@stitches.js';
-import useOnClickOutside from '@/hooks/useOnClickOutside';
-import { useUserValue } from '@/lib/recoil/authState';
-import MenuIcon from '@/assets/icons/menu.svg';
+import React, { useRef, useState } from 'react';
+
 import Button from '../common/Button';
+
 import useAuthManage from '@/hooks/useAuthManage';
+import { useUserValue } from '@/lib/recoil/authState';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
+
+import { ReactComponent as MenuIcon } from '@/assets/icons/menu.svg';
 
 const Menus = () => {
   const userValue = useUserValue();

@@ -4,7 +4,7 @@ import { keyframes, styled } from '@stitches.js';
 import PageSEO from '@/components/SEO/PageSEO';
 import AppLayout from '@/components/AppLayout';
 
-import LogoImage from '@/assets/images/logo.svg';
+import { ReactComponent as LogoImage } from '@/assets/images/logo.svg';
 
 // TODO: About page
 function AboutPage() {

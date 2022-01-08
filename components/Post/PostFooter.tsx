@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { styled } from '@stitches.js';
 import { PostShortInfo } from '@/lib/api/posts/types';
-import ChevronRightIcon from '@/assets/icons/chevron-right.svg';
+
+import { ReactComponent as ChevronRightIcon } from '@/assets/icons/chevron-right.svg';
 
 export type PostFooterProps = {
   isTemp: boolean;
