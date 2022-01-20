@@ -36,7 +36,7 @@ const PostSEO = ({
         canonical={encodedUrl}
         openGraph={{
           type: 'article',
-          url,
+          url: encodedUrl,
           title: `${title}`,
           description,
           article: {
