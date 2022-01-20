@@ -40,7 +40,6 @@ class MyDocument extends Document {
             content="default"
           />
           <meta name="apple-mobile-web-app-title" content="Seonest" />
-          <meta name="description" content="JHSeo's dev blog" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
