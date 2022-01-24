@@ -3,14 +3,12 @@ import markdownToText from 'markdown-to-text';
 import { dehydrate } from 'react-query/hydration';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
-// import Post from '@/components/Post';
+import Post from '@/components/Post';
 import AppError from '@/components/AppError';
 import PostSEO from '@/components/SEO/PostSEO';
 import AppLayout from '@/components/AppLayout';
 import FloatAction from '@/components/FloatAction';
 import Container from '@/components/common/Container';
-import dynamic from 'next/dynamic';
-const Post = dynamic(() => import('@/components/Post'));
 
 import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
