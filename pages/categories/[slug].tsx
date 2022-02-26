@@ -3,7 +3,9 @@ import { styled } from '@stitches.js';
 import { dehydrate } from 'react-query';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
+import AppError from '@/components/AppError';
 import PostList from '@/components/PostList';
+import PageSEO from '@/components/SEO/PageSEO';
 import AppLayout from '@/components/AppLayout';
 import Container from '@/components/common/Container';
 import EmptyPanel from '@/components/common/EmptyPanel';
@@ -112,21 +114,35 @@ function CategoryPage({ slug }: CategoryPageProps) {
     fetchNextPage();
   };
 
+  if (!category)
+    return (
+      <AppLayout layoutType="naked">
+        <AppError message="Not Found Page" status="404" />
+      </AppLayout>
+    );
+
   return (
-    <AppLayout>
-      <Container>
-        <Title>{category?.name}</Title>
-        {category?.posts ? (
-          <PostList
-            posts={category.posts}
-            hasNextPage={hasNextPage}
-            fetchNext={fetchNext}
-          />
-        ) : (
-          <EmptyPanel />
-        )}
-      </Container>
-    </AppLayout>
+    <>
+      <PageSEO
+        url={`/categories/${category.url_slug}`}
+        title={`${category.name} category`}
+        description={`${category.name} category`}
+      />
+      <AppLayout>
+        <Container>
+          <Title>{category.name}</Title>
+          {category.posts ? (
+            <PostList
+              posts={category.posts}
+              hasNextPage={hasNextPage}
+              fetchNext={fetchNext}
+            />
+          ) : (
+            <EmptyPanel />
+          )}
+        </Container>
+      </AppLayout>
+    </>
   );
 }
 
