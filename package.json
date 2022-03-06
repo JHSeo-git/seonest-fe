@@ -27,6 +27,7 @@
     "lh:local": "lighthouse http://localhost:3000/ --view"
   },
   "dependencies": {
+    "@giscus/react": "^1.1.2",
     "@mapbox/rehype-prism": "^0.8.0",
     "@radix-ui/colors": "^0.1.7",
     "@stitches/core": "^1.2.5",
