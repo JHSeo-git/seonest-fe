@@ -11,7 +11,9 @@ function Footer() {
         <LogoImage className="logo" />
       </FlexBox>
       <FlexBox>
-        <p className="copywrite">&#169; 2021 &#183; seonest.net</p>
+        <p className="copywrite">
+          &#169; {new Date().getFullYear()} &#183; seonest.net
+        </p>
         <Button
           as="a"
           kind="grayScale"
