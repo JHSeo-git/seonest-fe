@@ -1,11 +1,11 @@
 import React from 'react';
-import { styled } from '@stitches.js';
-import { Giscus } from '@giscus/react';
 
 import PostBody from './PostBody';
 import PostHeader from './PostHeader';
 import PostFooter from './PostFooter';
 import PostProgressbar from './PostProgressbar';
+import dynamic from 'next/dynamic';
+const GiscusComment = dynamic(() => import('../GiscusComment'), { ssr: false });
 
 import { Post } from '@/lib/api/posts/types';
 // const UtterancsComment = dynamic(() => import('../UtterancsComment'), {
@@ -28,26 +28,9 @@ function PostContainer({ post }: PostProps) {
         prevPost={post.prev_post}
       />
       {/* <UtterancsComment /> */}
-      <GiscusBox>
-        <Giscus
-          repo="jhseo-git/seonest-comments"
-          repoId="R_kgDOGRegJA"
-          category="Announcements"
-          categoryId="DIC_kwDOGRegJM4CN-hf"
-          mapping="pathname"
-          reactionsEnabled="1"
-          emitMetadata="0"
-          inputPosition="top"
-          theme="light"
-          lang="ko"
-        />
-      </GiscusBox>
+      <GiscusComment />
     </>
   );
 }
-
-const GiscusBox = styled('div', {
-  mt: '4rem',
-});
 
 export default PostContainer;
