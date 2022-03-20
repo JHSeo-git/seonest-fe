@@ -32,6 +32,12 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap"
             rel="stylesheet"
           />
+          <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
+          />
 
           <meta name="application-name" content="Seonest" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
