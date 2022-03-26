@@ -22,7 +22,9 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true yarn build",
     "postbuild": "next-sitemap",
+    "build:cf": "next build && next export",
     "start": "next start",
+    "start:export": "serve -l 3080 ./out",
     "lint": "next lint",
     "lh:local": "lighthouse http://localhost:3000/ --view"
   },
@@ -76,6 +78,7 @@
     "fast-deep-equal": "^3.1.3",
     "lighthouse": "^9.2.0",
     "next-sitemap": "^1.6.148",
+    "serve": "^13.0.2",
     "typescript": "4.3.4",
     "url-loader": "^4.1.1"
   }

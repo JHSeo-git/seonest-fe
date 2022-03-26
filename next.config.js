@@ -41,5 +41,9 @@ module.exports = withBundleAnalyzer(
     images: {
       domains: ['files.seonest.net', 'd1ml1bwdb9n1pg.cloudfront.net'],
     },
+    // images: {
+    //   loader: 'imgix',
+    //   path: '',
+    // },
   })
 );
