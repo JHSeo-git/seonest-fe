@@ -12,7 +12,7 @@ import { ReactComponent as MenuIcon } from '@/assets/icons/menu.svg';
 
 const Menus = () => {
   const userValue = useUserValue();
-  const { logout } = useAuthManage();
+  const { loggedout } = useAuthManage();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -62,7 +62,7 @@ const Menus = () => {
               </Link>
             </MenuItem>
             <MenuItem seperator="top">
-              <LinkBox as="button" onClick={() => logout()}>
+              <LinkBox as="button" onClick={() => loggedout()}>
                 Logout
               </LinkBox>
             </MenuItem>
