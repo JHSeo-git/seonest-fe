@@ -165,6 +165,7 @@ const Box = styled('section', {
 
   // heading
   'h1, h2, h3, h4': {
+    scrollMarginTop: '80px',
     borderBottom: '1px solid $colors$mauve6',
     position: 'relative',
 
@@ -281,6 +282,10 @@ const Box = styled('section', {
 
   ':not(pre) > code[class*="language-"], pre[class*="language-"]': {
     background: '#2b2b2b',
+  },
+
+  table: {
+    width: '100%',
   },
 });
 
