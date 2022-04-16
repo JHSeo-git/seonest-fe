@@ -1,6 +1,6 @@
 import { styled } from '@stitches.js';
 
-import Button from '../common/Button';
+import Button from '../Button';
 
 import { ReactComponent as CameraIcon } from '@/assets/icons/camera.svg';
 import { ReactComponent as Pencil2Icon } from '@/assets/icons/pencil2.svg';

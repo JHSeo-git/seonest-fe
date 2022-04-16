@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { styled } from '@stitches.js';
 import React, { useRef, useState } from 'react';
 
-import Button from '../common/Button';
+import Button from '../Button';
 
 import useAuthManage from '@/hooks/useAuthManage';
 import { useUserValue } from '@/lib/recoil/authState';

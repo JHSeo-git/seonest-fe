@@ -5,10 +5,10 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
 import AppError from '@/components/AppError';
 import PostList from '@/components/PostList';
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
-import Container from '@/components/common/Container';
-import EmptyPanel from '@/components/common/EmptyPanel';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
+import Container from '@/components/Container';
+import EmptyPanel from '@/components/EmptyPanel';
 
 import { Post } from '@/lib/api/posts/types';
 import { Category } from '@/lib/api/categories/types';
@@ -116,9 +116,9 @@ function CategoryPage({ slug }: CategoryPageProps) {
 
   if (!category)
     return (
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <AppError message="Not Found Page" status="404" />
-      </AppLayout>
+      </Layout>
     );
 
   return (
@@ -128,7 +128,7 @@ function CategoryPage({ slug }: CategoryPageProps) {
         title={`${category.name} category`}
         description={`${category.name} category`}
       />
-      <AppLayout>
+      <Layout>
         <Container>
           <Title>{category.name}</Title>
           {category.posts ? (
@@ -141,7 +141,7 @@ function CategoryPage({ slug }: CategoryPageProps) {
             <EmptyPanel />
           )}
         </Container>
-      </AppLayout>
+      </Layout>
     </>
   );
 }

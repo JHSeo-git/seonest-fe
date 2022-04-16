@@ -1,10 +1,9 @@
-import React from 'react';
 import useAppInitializeEffect from '@/hooks/useAppInitializeEffect';
 
 function RecoilInitializer() {
   useAppInitializeEffect();
 
-  return <></>;
+  return null;
 }
 
 export default RecoilInitializer;

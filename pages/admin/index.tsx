@@ -2,9 +2,9 @@ import React from 'react';
 import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
-import Button from '@/components/common/Button';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
+import Button from '@/components/Button';
 import GoogleLoginButton from '@/components/GoogleLoginButton';
 
 import { useUserValue } from '@/lib/recoil/authState';
@@ -15,7 +15,7 @@ function Admin() {
 
   if (userState)
     return (
-      <AppLayout>
+      <Layout>
         <Box
           css={{
             flexDirection: 'column',
@@ -25,7 +25,7 @@ function Admin() {
           <h2>Already Logged In</h2>
           <Button onClick={() => back()}>Go Back</Button>
         </Box>
-      </AppLayout>
+      </Layout>
     );
 
   return (
@@ -36,11 +36,11 @@ function Admin() {
         description="admin page"
         noRobots={true}
       />
-      <AppLayout>
+      <Layout>
         <Box>
           <GoogleLoginButton />
         </Box>
-      </AppLayout>
+      </Layout>
     </>
   );
 }

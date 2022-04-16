@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { GetStaticProps } from 'next';
 import { dehydrate } from 'react-query/hydration';
 
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
 import FloatAction from '@/components/FloatAction';
 import TempPostList from '@/components/TempPostList';
-import Container from '@/components/common/Container';
+import Container from '@/components/Container';
 
 import useGetTempPostsQuery, {
   prefetchGetTempPostsQuery,
@@ -39,7 +39,7 @@ function TempsPage() {
   return (
     <>
       <PageSEO url="/temps" title="Temp Posts" description="temp posts" />
-      <AppLayout>
+      <Layout>
         <Container>
           <TempPostList
             posts={posts}
@@ -48,7 +48,7 @@ function TempsPage() {
           />
         </Container>
         <FloatAction />
-      </AppLayout>
+      </Layout>
     </>
   );
 }

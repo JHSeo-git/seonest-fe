@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 
 import useGoogleLoginEffect from '@/hooks/useGoogleLoginEffect';
 
-import Button from './common/Button';
+import Button from '../Button';
 
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg';
 

@@ -4,10 +4,10 @@ import { GetStaticProps } from 'next';
 import React, { useMemo } from 'react';
 import { dehydrate } from 'react-query';
 
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
-import Container from '@/components/common/Container';
-import EmptyPanel from '@/components/common/EmptyPanel';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
+import Container from '@/components/Container';
+import EmptyPanel from '@/components/EmptyPanel';
 
 import useGetCategoriesQuery, {
   prefetchGetCategoriesQuery,
@@ -40,7 +40,7 @@ function CategoriesPage() {
         title="Categories"
         description="Seo's honest post categories"
       />
-      <AppLayout>
+      <Layout>
         <Container
           css={{
             px: '$4',
@@ -67,7 +67,7 @@ function CategoriesPage() {
             <EmptyPanel />
           )}
         </Container>
-      </AppLayout>
+      </Layout>
     </>
   );
 }

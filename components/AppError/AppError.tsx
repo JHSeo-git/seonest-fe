@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { styled } from '@stitches.js';
-import Button from './common/Button';
+import Button from '../Button';
 
 export type AppErrorProps = {
   message: string;

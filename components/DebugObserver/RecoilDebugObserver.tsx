@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilSnapshot } from 'recoil';
 
-export type RecoilDebugObserverProps = {};
-
-const RecoilDebugObserver = (props: RecoilDebugObserverProps) => {
+const RecoilDebugObserver = () => {
   const snapshot = useRecoilSnapshot();
   useEffect(() => {
     console.group('Recoil Modifed');

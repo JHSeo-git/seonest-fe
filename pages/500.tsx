@@ -1,11 +1,11 @@
 import AppError from '@/components/AppError';
-import AppLayout from '@/components/AppLayout';
+import Layout from '@/components/Layout';
 
 function InternalServerErrorPage() {
   return (
-    <AppLayout layoutType="naked">
+    <Layout layoutType="naked">
       <AppError message="Internal Server Error" status="500" />
-    </AppLayout>
+    </Layout>
   );
 }
 

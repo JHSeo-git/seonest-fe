@@ -1,8 +1,7 @@
-import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import RecoilDebugObserver from './RecoilDebugObserver';
 
-function DebugComponents() {
+function DebugObserver() {
   if (process.env.NODE_ENV === 'production') {
     return null;
   }
@@ -14,4 +13,4 @@ function DebugComponents() {
   );
 }
 
-export default React.memo(DebugComponents);
+export default DebugObserver;

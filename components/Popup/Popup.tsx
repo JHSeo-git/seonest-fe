@@ -1,7 +1,7 @@
 import useLazyClose from '@/hooks/useLazyClose';
 import { styled } from '@stitches.js';
-import Button from '../common/Button';
-import Modal from '../common/Modal';
+import Button from '../Button';
+import Modal from '../Modal';
 
 type PopupProps = {
   visible: boolean;

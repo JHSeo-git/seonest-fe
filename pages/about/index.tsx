@@ -1,8 +1,8 @@
 import React from 'react';
 import { keyframes, styled } from '@stitches.js';
 
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
 
 import { ReactComponent as LogoImage } from '@/assets/images/logo.svg';
 
@@ -11,7 +11,7 @@ function AboutPage() {
   return (
     <>
       <PageSEO url="/about" title="About" description="About Seo Nest Blog" />
-      <AppLayout>
+      <Layout>
         <BG />
         <Box>
           <LogoImage className="logo" />
@@ -45,7 +45,7 @@ function AboutPage() {
               </ul>
             </section> */}
         </Box>
-      </AppLayout>
+      </Layout>
     </>
   );
 }

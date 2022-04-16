@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import useUploadImage from '@/hooks/useUploadImage';
 
-import Button from '../common/Button';
+import Button from '../Button';
 
 import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
 

@@ -6,12 +6,12 @@ import { ThemeProvider } from 'next-themes';
 import { Hydrate } from 'react-query/hydration';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import DefaultSEO from '@/components/SEO/DefaultSEO';
+import { DefaultSEO } from '@/components/SEO';
 // import ToastProvider from '@/components/ToastProvider';
 import FullscreenLoader from '@/components/FullscreenLoader';
 import RecoilInitializer from '@/components/RecoilInitializer';
-import DebugComponents from '@/components/debug/DebugComponents';
-import FirebaseAnalytics from '@/components/analytics/FirebaseAnalytics';
+import DebugObserver from '@/components/DebugObserver';
+import Analytics from '@/components/Analytics';
 import dynamic from 'next/dynamic';
 const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
 // const FullscreenLoader = dynamic(() => import('@/components/FullscreenLoader'));
@@ -38,12 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
-        /> */}
       </Head>
       <ThemeProvider
         disableTransitionOnChange
@@ -61,10 +55,10 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Component {...pageProps} />
               <FullscreenLoader />
             </Hydrate>
-            <DebugComponents />
+            <DebugObserver />
           </QueryClientProvider>
         </RecoilRoot>
-        <FirebaseAnalytics />
+        <Analytics />
       </ThemeProvider>
     </>
   );

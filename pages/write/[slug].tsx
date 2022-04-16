@@ -4,11 +4,8 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
 import Write from '@/components/Write';
 import AppError from '@/components/AppError';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-// const AppError = dynamic(() => import('@/components/AppError'));
-// const AppLayout = dynamic(() => import('@/components/AppLayout'));
-// const PageSEO = dynamic(() => import('@/components/SEO/PageSEO'));
+import Layout from '@/components/Layout';
+import { PageSEO } from '@/components/SEO';
 
 import { useUserValue } from '@/lib/recoil/authState';
 import useGetPostBySlugQuery, {
@@ -83,9 +80,9 @@ function EditPage({ slug }: EditPageProps) {
 
   if (!user) {
     return (
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <AppError message="Not Authorized Page" status="401" />
-      </AppLayout>
+      </Layout>
     );
   }
 
@@ -97,9 +94,9 @@ function EditPage({ slug }: EditPageProps) {
         description="edit post"
         noRobots={true}
       />
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <Write slug={slug} post={post} lastTempPost={lastTempPost} />
-      </AppLayout>
+      </Layout>
     </>
   );
 }

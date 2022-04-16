@@ -2,13 +2,8 @@ import React from 'react';
 
 import Write from '@/components/Write';
 import AppError from '@/components/AppError';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-// import dynamic from 'next/dynamic';
-// const Write = dynamic(() => import('@/components/Write'), { ssr: false });
-// const AppError = dynamic(() => import('@/components/AppError'));
-// const AppLayout = dynamic(() => import('@/components/AppLayout'));
-// const PageSEO = dynamic(() => import('@/components/SEO/PageSEO'));
+import Layout from '@/components/Layout';
+import { PageSEO } from '@/components/SEO';
 
 import { useUserValue } from '@/lib/recoil/authState';
 
@@ -17,9 +12,9 @@ function WritePage() {
 
   if (!user) {
     return (
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <AppError message="Not Authorized Page" status="401" />
-      </AppLayout>
+      </Layout>
     );
   }
 
@@ -31,9 +26,9 @@ function WritePage() {
         description="new post"
         noRobots={true}
       />
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <Write />
-      </AppLayout>
+      </Layout>
     </>
   );
 }

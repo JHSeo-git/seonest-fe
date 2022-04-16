@@ -1,11 +1,11 @@
 import AppError from '@/components/AppError';
-import AppLayout from '@/components/AppLayout';
+import Layout from '@/components/Layout';
 
 function NotFoundPage() {
   return (
-    <AppLayout layoutType="naked">
+    <Layout layoutType="naked">
       <AppError message="Not Found Error" status="404" />
-    </AppLayout>
+    </Layout>
   );
 }
 

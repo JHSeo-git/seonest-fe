@@ -3,10 +3,10 @@ import { styled } from '@stitches.js';
 import useLazyClose from '@/hooks/useLazyClose';
 import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
 
-import Modal from '../common/Modal';
-import Button from '../common/Button';
-import Container from '../common/Container';
-import MarkdownRender from '../Markdown/MarkdownRender';
+import Modal from '../Modal';
+import Button from '../Button';
+import Container from '../Container';
+import { MarkdownRender } from '../Markdown';
 
 import { ReactComponent as CloseIcon } from '@/assets/icons/close.svg';
 

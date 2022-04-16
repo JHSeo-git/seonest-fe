@@ -5,10 +5,10 @@ import React, { useMemo } from 'react';
 import { dehydrate } from 'react-query/hydration';
 
 import PostList from '@/components/PostList';
-import PageSEO from '@/components/SEO/PageSEO';
-import AppLayout from '@/components/AppLayout';
-import Button from '@/components/common/Button';
-import Container from '@/components/common/Container';
+import { PageSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
+import Button from '@/components/Button';
+import Container from '@/components/Container';
 
 import { ReactComponent as ChevronRightIconSvg } from '@/assets/icons/chevron-right.svg';
 import useGetPostsByLatestQuery, {
@@ -37,7 +37,7 @@ function HomePage() {
   return (
     <>
       <PageSEO url="/" title="Seonest" description="Seo's honest nest" />
-      <AppLayout>
+      <Layout>
         <Hero>
           <h1>Slow but Steady</h1>
         </Hero>
@@ -67,7 +67,7 @@ function HomePage() {
             </Link>
           </LinkWrapper>
         </Container>
-      </AppLayout>
+      </Layout>
     </>
   );
 }

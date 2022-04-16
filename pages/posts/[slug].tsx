@@ -5,10 +5,10 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 
 import Post from '@/components/Post';
 import AppError from '@/components/AppError';
-import PostSEO from '@/components/SEO/PostSEO';
-import AppLayout from '@/components/AppLayout';
+import { PostSEO } from '@/components/SEO';
+import Layout from '@/components/Layout';
 import FloatAction from '@/components/FloatAction';
-import Container from '@/components/common/Container';
+import Container from '@/components/Container';
 
 import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
@@ -69,9 +69,9 @@ function PostPage({ slug }: PostPageProps) {
 
   if (!post)
     return (
-      <AppLayout layoutType="naked">
+      <Layout layoutType="naked">
         <AppError message="Not Found Page" status="404" />
-      </AppLayout>
+      </Layout>
     );
 
   return (
@@ -87,12 +87,12 @@ function PostPage({ slug }: PostPageProps) {
         modifiedTime={post.updated_at}
         publishedTime={post.created_at}
       />
-      <AppLayout>
+      <Layout>
         <Container>
           <Post post={post} />
         </Container>
         <FloatAction editSlug={post.url_slug} />
-      </AppLayout>
+      </Layout>
     </>
   );
 }

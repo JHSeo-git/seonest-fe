@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { keyframes, styled } from '@stitches.js';
 
 import Navigation from './Navigation';
-import Container from '../common/Container';
+import Container from '../Container';
 
 import { ReactComponent as LogoIcon } from '@/assets/images/logo.svg';
 

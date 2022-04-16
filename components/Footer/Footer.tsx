@@ -1,5 +1,5 @@
 import { styled } from '@stitches.js';
-import Button from '../common/Button';
+import Button from '../Button';
 
 import { ReactComponent as GithubIcon } from '@/assets/icons/github.svg';
 import { ReactComponent as LogoImage } from '@/assets/images/logo.svg';

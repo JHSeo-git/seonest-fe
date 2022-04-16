@@ -3,11 +3,11 @@ import React, { useMemo } from 'react';
 import { dehydrate } from 'react-query/hydration';
 
 import PostList from '@/components/PostList';
-import AppLayout from '@/components/AppLayout';
-import PageSEO from '@/components/SEO/PageSEO';
-import Container from '@/components/common/Container';
+import Layout from '@/components/Layout';
+import { PageSEO } from '@/components/SEO';
+import Container from '@/components/Container';
 import FloatAction from '@/components/FloatAction';
-import EmptyPanel from '@/components/common/EmptyPanel';
+import EmptyPanel from '@/components/EmptyPanel';
 
 import useGetPostsQuery, {
   prefetchGetPostsQuery,
@@ -40,7 +40,7 @@ function PostsPage() {
   return (
     <>
       <PageSEO url="/posts" title="Posts" description="Seo's honest posts" />
-      <AppLayout>
+      <Layout>
         <Container>
           {posts ? (
             <PostList
@@ -54,7 +54,7 @@ function PostsPage() {
         </Container>
         {/* <FloatLinkButton iconName="write" to="/write" /> */}
         <FloatAction />
-      </AppLayout>
+      </Layout>
     </>
   );
 }

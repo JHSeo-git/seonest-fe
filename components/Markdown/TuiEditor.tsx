@@ -1,12 +1,8 @@
 import { forwardRef, useCallback, useEffect } from 'react';
-import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
-import { TuiEditorWithForwardedProps } from './TuiEditorWrapper';
+import type { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
 
 import dynamic from 'next/dynamic';
-const Editor = dynamic<TuiEditorWithForwardedProps>(
-  () => import('./TuiEditorWrapper'),
-  { ssr: false }
-);
+const Editor = dynamic(() => import('./TuiEditorWrapper'), { ssr: false });
 
 export type TuiEditorProps = EditorProps & {
   markdown?: string;

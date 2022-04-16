@@ -1,7 +1,7 @@
 import { styled } from '@stitches.js';
 import { useTheme } from 'next-themes';
 
-import Button from '../common/Button';
+import Button from '../Button';
 
 import { ReactComponent as Sun } from '@/assets/icons/sun.svg';
 

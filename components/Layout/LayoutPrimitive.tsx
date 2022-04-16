@@ -1,21 +1,21 @@
 import { styled } from '@stitches.js';
 import useHeaderScrolled from '@/hooks/useHeaderScrolled';
 
-function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }) {
   return <LayoutBox>{children}</LayoutBox>;
 }
 
-function Header({ children }: { children: React.ReactNode }) {
+export function Header({ children }: { children: React.ReactNode }) {
   const { scrolled } = useHeaderScrolled();
 
   return <HeaderBox scrolled={scrolled}>{children}</HeaderBox>;
 }
 
-function Main({ children }: { children: React.ReactNode }) {
+export function Main({ children }: { children: React.ReactNode }) {
   return <MainBox>{children}</MainBox>;
 }
 
-function Footer({ children }: { children: React.ReactNode }) {
+export function Footer({ children }: { children: React.ReactNode }) {
   return <FooterBox>{children}</FooterBox>;
 }
 
@@ -59,9 +59,3 @@ const FooterBox = styled('footer', {
   borderTop: '1px solid $colors$gray6',
   bc: '$mauve1',
 });
-
-Layout.Header = Header;
-Layout.Main = Main;
-Layout.Footer = Footer;
-
-export default Layout;

@@ -1,4 +1,4 @@
-import MarkdownRender from '../Markdown/MarkdownRender';
+import { MarkdownRender } from '../Markdown';
 
 export type PostBodyProps = {
   markdown: string;

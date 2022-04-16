@@ -1,12 +1,12 @@
 import { styled } from '@stitches.js';
-import AppLayout from '@/components/AppLayout';
-import Container from '@/components/common/Container';
+import Layout from '@/components/Layout';
+import Container from '@/components/Container';
 
 import { ReactComponent as MagicWand } from '@/assets/icons/magic-wand.svg';
 
 function LabPage() {
   return (
-    <AppLayout>
+    <Layout>
       <Container>
         <Title>
           <MagicWand className="icon" />
@@ -16,7 +16,7 @@ function LabPage() {
           <ListItem></ListItem>
         </ListBox>
       </Container>
-    </AppLayout>
+    </Layout>
   );
 }
 const Title = styled('div', {

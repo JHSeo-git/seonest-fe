@@ -5,8 +5,8 @@ import { useForm, UseFormGetValues, UseFormRegister } from 'react-hook-form';
 import useLazyClose from '@/hooks/useLazyClose';
 import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
 
-import Modal from '../common/Modal';
-import Button from '../common/Button';
+import Modal from '../Modal';
+import Button from '../Button';
 import { WriteInputs } from './Write';
 import WriteThumbnail from './WriteThumbnail';
 

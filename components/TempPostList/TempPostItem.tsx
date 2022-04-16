@@ -10,8 +10,8 @@ import { useUserValue } from '@/lib/recoil/authState';
 
 import useDeletePost from '@/hooks/useDeletePost';
 
-import Popup from '../common/Popup';
-import Button from '../common/Button';
+import Popup from '../Popup';
+import Button from '../Button';
 
 import { ReactComponent as CalendarIcon } from '@/assets/icons/calendar.svg';
 

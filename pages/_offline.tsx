@@ -1,11 +1,11 @@
 import AppError from '@/components/AppError';
-import AppLayout from '@/components/AppLayout';
+import Layout from '@/components/Layout';
 
 function OfflineFallbackPage() {
   return (
-    <AppLayout layoutType="naked">
+    <Layout layoutType="naked">
       <AppError message="Offline" status="Offline" />
-    </AppLayout>
+    </Layout>
   );
 }
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import Script from 'next/script';
 
 function FirebaseAnalytics() {
@@ -40,4 +39,4 @@ function FirebaseAnalytics() {
   );
 }
 
-export default React.memo(FirebaseAnalytics);
+export default FirebaseAnalytics;

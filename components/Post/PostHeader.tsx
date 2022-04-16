@@ -10,8 +10,8 @@ import { useUserValue } from '@/lib/recoil/authState';
 import { stringToDateMoreDetail } from '@/lib/utils/dateUtils';
 import useDeletePost from '@/hooks/useDeletePost';
 
-import Button from '../common/Button';
-import Popup from '../common/Popup';
+import Button from '../Button';
+import Popup from '../Popup';
 
 import { ReactComponent as EyeIcon } from '@/assets/icons/eye.svg';
 import { ReactComponent as CubeIcon } from '@/assets/icons/cube.svg';
