@@ -16,11 +16,7 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/assets/*": ["assets/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/config/*": ["config/*"],
+      "@/*": ["src/*"],
       "@stitches.js": ["stitches.config.ts"]
     }
   },
