@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { styled } from '@stitches.js';
 import useInView from '@/hooks/useInView';
-import { Post } from '@/lib/api/posts/types';
+import { Post } from '@/helpers/api/posts/types';
 import PostItem from './PostItem';
 import PostItemSkeleton from './PostItemSkeleton';
 

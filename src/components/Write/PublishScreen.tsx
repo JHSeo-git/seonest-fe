@@ -3,7 +3,7 @@ import { styled } from '@stitches.js';
 import { useForm, UseFormGetValues, UseFormRegister } from 'react-hook-form';
 
 import useLazyClose from '@/hooks/useLazyClose';
-import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
+import { slideDownAnimation, slideUpAnimation } from '@/constants/animation';
 
 import Modal from '../Modal';
 import Button from '../Button';

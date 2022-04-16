@@ -1,6 +1,6 @@
 import { styled } from '@stitches.js';
 import useInView from '@/hooks/useInView';
-import { Post } from '@/lib/api/posts/types';
+import { Post } from '@/helpers/api/posts/types';
 import React, { useEffect, useRef } from 'react';
 
 import TempPostItem from './TempPostItem';

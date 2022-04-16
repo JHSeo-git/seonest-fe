@@ -7,7 +7,7 @@ import PostProgressbar from './PostProgressbar';
 import dynamic from 'next/dynamic';
 const GiscusComment = dynamic(() => import('../GiscusComment'), { ssr: false });
 
-import { Post } from '@/lib/api/posts/types';
+import { Post } from '@/helpers/api/posts/types';
 // const UtterancsComment = dynamic(() => import('../UtterancsComment'), {
 //   ssr: false,
 // });

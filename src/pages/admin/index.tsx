@@ -7,7 +7,7 @@ import Layout from '@/components/Layout';
 import Button from '@/components/Button';
 import GoogleLoginButton from '@/components/GoogleLoginButton';
 
-import { useUserValue } from '@/lib/recoil/authState';
+import { useUserValue } from '@/helpers/recoil/authState';
 
 function Admin() {
   const userState = useUserValue();

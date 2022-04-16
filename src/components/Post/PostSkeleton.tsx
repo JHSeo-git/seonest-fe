@@ -1,4 +1,4 @@
-import { shinyAnimation } from '@/lib/styles/animation';
+import { shinyAnimation } from '@/constants/animation';
 import { styled } from '@stitches.js';
 
 function PostSkeleton() {

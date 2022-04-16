@@ -1,5 +1,5 @@
-import { useSetUser } from '@/lib/recoil/authState';
-import userStorage from '@/lib/storage/userStorage';
+import { useSetUser } from '@/helpers/recoil/authState';
+import userStorage from '@/utils/userStorage';
 import { useEffect } from 'react';
 
 export default function useAppInitializeEffect() {

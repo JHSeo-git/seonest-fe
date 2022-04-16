@@ -4,9 +4,9 @@ import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import markdownToText from 'markdown-to-text';
 
-import { Post } from '@/lib/api/posts/types';
-import { getDiffOfNow } from '@/lib/utils/dateUtils';
-import { useUserValue } from '@/lib/recoil/authState';
+import { Post } from '@/helpers/api/posts/types';
+import { getDiffOfNow } from '@/utils/dateUtils';
+import { useUserValue } from '@/helpers/recoil/authState';
 
 import useDeletePost from '@/hooks/useDeletePost';
 

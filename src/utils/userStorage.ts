@@ -1,6 +1,6 @@
-import { User } from '../api/auth/types';
+import { User } from '../helpers/api/auth/types';
 
-const key = '__NEXT__CATCH_A_NEST_USER';
+const key = '__NEXT_SEONSET_USER__';
 
 const userStorage = {
   get() {

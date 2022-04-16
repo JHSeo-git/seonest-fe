@@ -12,8 +12,8 @@ import WriteButtons from './WriteButtons';
 import PublishScreen from './PublishScreen';
 import PreviewScreen from './PreviewScreen';
 
-import { Post } from '@/lib/api/posts/types';
-import { PostAllContentType } from '@/lib/types/types';
+import { Post } from '@/helpers/api/posts/types';
+import { PostAllContentType } from '@/helpers/types/types';
 import useSavePost from '@/hooks/useSavePost';
 import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
 

@@ -4,10 +4,10 @@ import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
 
-import { Post } from '@/lib/api/posts/types';
-import { humanizeTime } from '@/lib/utils/viewerUtils';
-import { useUserValue } from '@/lib/recoil/authState';
-import { stringToDateMoreDetail } from '@/lib/utils/dateUtils';
+import { Post } from '@/helpers/api/posts/types';
+import { humanizeTime } from '@/utils/viewerUtils';
+import { useUserValue } from '@/helpers/recoil/authState';
+import { stringToDateMoreDetail } from '@/utils/dateUtils';
 import useDeletePost from '@/hooks/useDeletePost';
 
 import Button from '../Button';

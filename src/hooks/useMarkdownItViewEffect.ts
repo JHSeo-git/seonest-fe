@@ -1,5 +1,5 @@
-import { useSetTOCHeadingId } from '@/lib/recoil/viewerState';
-import { getScrollTop } from '@/lib/utils/viewerUtils';
+import { useSetTOCHeadingId } from '@/helpers/recoil/viewerState';
+import { getScrollTop } from '@/utils/viewerUtils';
 import { useCallback, useEffect, useState } from 'react';
 
 type MarkdownItViewEffectProps = {

@@ -16,7 +16,7 @@ import dynamic from 'next/dynamic';
 const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
 // const FullscreenLoader = dynamic(() => import('@/components/FullscreenLoader'));
 
-import globalStyle from '@/lib/styles/globalStyle';
+import globalStyle from '@/utils/globalStyles';
 import { darkThemeClassName, lightThemeClassName } from '@stitches.js';
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -10,7 +10,7 @@ import Layout from '@/components/Layout';
 import FloatAction from '@/components/FloatAction';
 import Container from '@/components/Container';
 
-import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
+import getAllPostSlug from '@/helpers/api/posts/getAllPostSlug';
 import useGetPostBySlugQuery, {
   prefetchGetPostBySlugQuery,
 } from '@/hooks/query/useGetPostBySlugQuery';

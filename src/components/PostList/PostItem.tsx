@@ -5,9 +5,9 @@ import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import markdownToText from 'markdown-to-text';
 
-import { Post } from '@/lib/api/posts/types';
-import { getDiffOfNow } from '@/lib/utils/dateUtils';
-import { humanizeTime } from '@/lib/utils/viewerUtils';
+import { Post } from '@/helpers/api/posts/types';
+import { getDiffOfNow } from '@/utils/dateUtils';
+import { humanizeTime } from '@/utils/viewerUtils';
 
 import { ReactComponent as EyeIcon } from '@/assets/icons/eye.svg';
 import { ReactComponent as ClockIcon } from '@/assets/icons/clock.svg';

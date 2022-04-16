@@ -1,5 +1,5 @@
-import getPostBySlug from '@/lib/api/posts/getPostBySlug';
-import { Post } from '@/lib/api/posts/types';
+import getPostBySlug from '@/helpers/api/posts/getPostBySlug';
+import { Post } from '@/helpers/api/posts/types';
 import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
 
 export default function useGetPostBySlugQuery(

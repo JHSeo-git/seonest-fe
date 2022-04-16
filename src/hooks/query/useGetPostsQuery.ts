@@ -3,8 +3,8 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryOptions,
 } from 'react-query';
-import getPosts from '@/lib/api/posts/getPosts';
-import { Post } from '@/lib/api/posts/types';
+import getPosts from '@/helpers/api/posts/getPosts';
+import { Post } from '@/helpers/api/posts/types';
 
 // TODO: add takeLatest prop
 export default function useGetPostsQuery(

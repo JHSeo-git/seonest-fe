@@ -1,5 +1,5 @@
-import getPosts from '@/lib/api/posts/getPosts';
-import { Post } from '@/lib/api/posts/types';
+import getPosts from '@/helpers/api/posts/getPosts';
+import { Post } from '@/helpers/api/posts/types';
 import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
 
 export default function useGetPostsByLatestQuery(

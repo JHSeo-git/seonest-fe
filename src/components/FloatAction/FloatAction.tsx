@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import Button from '../Button';
 
-import { useUserValue } from '@/lib/recoil/authState';
+import { useUserValue } from '@/helpers/recoil/authState';
 
 import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
 import { ReactComponent as Pencil1 } from '@/assets/icons/pencil1.svg';

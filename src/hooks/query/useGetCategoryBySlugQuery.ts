@@ -1,5 +1,5 @@
-import getCategory from '@/lib/api/categories/getCategoryBySlug';
-import { Category } from '@/lib/api/categories/types';
+import getCategory from '@/helpers/api/categories/getCategoryBySlug';
+import { Category } from '@/helpers/api/categories/types';
 import {
   FetchQueryOptions,
   QueryClient,

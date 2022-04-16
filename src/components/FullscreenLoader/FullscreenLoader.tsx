@@ -2,8 +2,8 @@ import { styled } from '@stitches.js';
 
 import useLazyClose from '@/hooks/useLazyClose';
 
-import { useScreenLoadingValue } from '@/lib/recoil/appState';
-import { fadeIn, fadeOut, loadingAnimation } from '@/lib/styles/animation';
+import { useScreenLoadingValue } from '@/helpers/recoil/appState';
+import { fadeIn, fadeOut, loadingAnimation } from '@/constants/animation';
 
 import { ReactComponent as SpinnerIcon } from '@/assets/icons/spinner.svg';
 

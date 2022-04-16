@@ -1,5 +1,5 @@
-import deletePostBySlug from '@/lib/api/posts/deletePostBySlug';
-import { useSetScreenLoadingState } from '@/lib/recoil/appState';
+import deletePostBySlug from '@/helpers/api/posts/deletePostBySlug';
+import { useSetScreenLoadingState } from '@/helpers/recoil/appState';
 import { useEffect } from 'react';
 import { useMutation } from 'react-query';
 

@@ -1,8 +1,8 @@
 import { RefObject, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useSetGoogleToken } from '@/lib/recoil/authState';
-import googleLogin from '@/lib/api/auth/googleLogin';
+import { useSetGoogleToken } from '@/helpers/recoil/authState';
+import googleLogin from '@/helpers/api/auth/googleLogin';
 import useAuthManage from './useAuthManage';
 
 export default function useGoogleLoginEffect(

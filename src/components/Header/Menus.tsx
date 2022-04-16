@@ -5,7 +5,7 @@ import React, { useRef, useState } from 'react';
 import Button from '../Button';
 
 import useAuthManage from '@/hooks/useAuthManage';
-import { useUserValue } from '@/lib/recoil/authState';
+import { useUserValue } from '@/helpers/recoil/authState';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 import { ReactComponent as MenuIcon } from '@/assets/icons/menu.svg';

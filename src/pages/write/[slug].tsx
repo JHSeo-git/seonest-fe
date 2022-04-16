@@ -7,11 +7,11 @@ import AppError from '@/components/AppError';
 import Layout from '@/components/Layout';
 import { PageSEO } from '@/components/SEO';
 
-import { useUserValue } from '@/lib/recoil/authState';
+import { useUserValue } from '@/helpers/recoil/authState';
 import useGetPostBySlugQuery, {
   prefetchGetPostBySlugQuery,
 } from '@/hooks/query/useGetPostBySlugQuery';
-import getAllPostSlug from '@/lib/api/posts/getAllPostSlug';
+import getAllPostSlug from '@/helpers/api/posts/getAllPostSlug';
 import useGetLastTempPostBySlugQuery, {
   prefetchGetLastTempPostBySlugQuery,
 } from '@/hooks/query/useGetLastTempPostBySlugQuery';

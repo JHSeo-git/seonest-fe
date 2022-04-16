@@ -1,6 +1,6 @@
 import { QueryClient, useQuery, UseQueryOptions } from 'react-query';
-import getLastTempPost from '@/lib/api/posts/getLastTempPost';
-import { Post } from '@/lib/api/posts/types';
+import getLastTempPost from '@/helpers/api/posts/getLastTempPost';
+import { Post } from '@/helpers/api/posts/types';
 
 export default function useGetLastTempPostBySlugQuery(
   slug: string,

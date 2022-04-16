@@ -2,8 +2,8 @@ import { GetServerSideProps, GetStaticProps } from 'next';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 
 import appConfig from '@/config/app.config';
-import getCategories from '@/lib/api/categories/getCategories';
-import getAllPosts from '@/lib/api/posts/getAllPosts';
+import getCategories from '@/helpers/api/categories/getCategories';
+import getAllPosts from '@/helpers/api/posts/getAllPosts';
 
 // exclude
 export const getStaticProps: GetStaticProps = async () => {

@@ -1,12 +1,12 @@
 import { useMutation } from 'react-query';
-import saveNewPost from '@/lib/api/posts/saveNewPost';
-import saveNewTempPost from '@/lib/api/posts/saveNewTempPost';
-import saveTempPost from '@/lib/api/posts/saveTempPost';
-import updatePost from '@/lib/api/posts/updatePost';
+import saveNewPost from '@/helpers/api/posts/saveNewPost';
+import saveNewTempPost from '@/helpers/api/posts/saveNewTempPost';
+import saveTempPost from '@/helpers/api/posts/saveTempPost';
+import updatePost from '@/helpers/api/posts/updatePost';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
-import { useSetScreenLoadingState } from '@/lib/recoil/appState';
-import { PostAllContentType } from '@/lib/types/types';
+import { useSetScreenLoadingState } from '@/helpers/recoil/appState';
+import { PostAllContentType } from '@/helpers/types/types';
 
 export default function useSavePost() {
   const router = useRouter();

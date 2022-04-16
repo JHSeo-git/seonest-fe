@@ -5,7 +5,7 @@ import AppError from '@/components/AppError';
 import Layout from '@/components/Layout';
 import { PageSEO } from '@/components/SEO';
 
-import { useUserValue } from '@/lib/recoil/authState';
+import { useUserValue } from '@/helpers/recoil/authState';
 
 function WritePage() {
   const user = useUserValue();

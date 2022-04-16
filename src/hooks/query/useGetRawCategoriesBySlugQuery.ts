@@ -4,8 +4,8 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryOptions,
 } from 'react-query';
-import getRawCategories from '@/lib/api/categories/getRawCategoriesBySlug';
-import { RawCategory } from '@/lib/api/categories/types';
+import getRawCategories from '@/helpers/api/categories/getRawCategoriesBySlug';
+import { RawCategory } from '@/helpers/api/categories/types';
 
 // TODO: add takeLatest prop
 export default function useGetRawCategoriesBySlugQuery(

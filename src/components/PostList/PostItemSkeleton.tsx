@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@stitches.js';
-import { shinyAnimation } from '@/lib/styles/animation';
+import { shinyAnimation } from '@/constants/animation';
 
 const PostItemSkeleton = React.forwardRef<React.ElementRef<'div'>, {}>(
   ({}, ref) => {

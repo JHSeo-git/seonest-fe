@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
-import { User } from '@/lib/api/auth/types';
-import { useSetUser } from '@/lib/recoil/authState';
-import userStorage from '@/lib/storage/userStorage';
-import logout from '@/lib/api/auth/logout';
+import { User } from '@/helpers/api/auth/types';
+import { useSetUser } from '@/helpers/recoil/authState';
+import userStorage from '@/utils/userStorage';
+import logout from '@/helpers/api/auth/logout';
 
 export default function useAuthManage() {
   const setUser = useSetUser();

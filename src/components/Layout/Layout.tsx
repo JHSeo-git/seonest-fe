@@ -11,7 +11,7 @@ export type LayoutProps = {
 
 function Layout({ layoutType = 'basic', children }: LayoutProps) {
   if (layoutType === 'naked') {
-    return <Layout>{children}</Layout>;
+    return <LayoutPrimitive.Layout>{children}</LayoutPrimitive.Layout>;
   }
   return (
     <LayoutPrimitive.Layout>

@@ -7,8 +7,8 @@ import {
   useQueryClient,
 } from 'react-query';
 import produce from 'immer';
-import getTempPosts from '@/lib/api/posts/getTempPosts';
-import { Post } from '@/lib/api/posts/types';
+import getTempPosts from '@/helpers/api/posts/getTempPosts';
+import { Post } from '@/helpers/api/posts/types';
 
 export default function useGetTempPostsQuery(
   userId?: number,

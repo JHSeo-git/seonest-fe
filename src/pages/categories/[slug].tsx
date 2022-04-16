@@ -10,9 +10,9 @@ import Layout from '@/components/Layout';
 import Container from '@/components/Container';
 import EmptyPanel from '@/components/EmptyPanel';
 
-import { Post } from '@/lib/api/posts/types';
-import { Category } from '@/lib/api/categories/types';
-import getCategories from '@/lib/api/categories/getCategories';
+import { Post } from '@/helpers/api/posts/types';
+import { Category } from '@/helpers/api/categories/types';
+import getCategories from '@/helpers/api/categories/getCategories';
 import useGetRawCategoriesBySlugQuery, {
   prefetchGetRawCategoriesBySlugQuery,
 } from '@/hooks/query/useGetRawCategoriesBySlugQuery';

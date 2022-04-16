@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { styled } from '@stitches.js';
-import { PostShortInfo } from '@/lib/api/posts/types';
+import { PostShortInfo } from '@/helpers/api/posts/types';
 
 import { ReactComponent as ChevronRightIcon } from '@/assets/icons/chevron-right.svg';
 

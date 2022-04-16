@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import uploadImage from '@/lib/api/upload/uploadImage';
+import uploadImage from '@/helpers/api/upload/uploadImage';
 
 export default function useUploadImage() {
   const [loading, setLoading] = useState(false);

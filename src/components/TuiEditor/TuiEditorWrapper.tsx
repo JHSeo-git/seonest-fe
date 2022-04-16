@@ -5,7 +5,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor, EditorProps } from '@toast-ui/react-editor';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import Prism from 'prismjs';
-import { convertSpaceToEncodedString } from '@/lib/utils/viewerUtils';
+import { convertSpaceToEncodedString } from '@/utils/viewerUtils';
 import useUploadImage from '@/hooks/useUploadImage';
 import { styled } from '@stitches.js';
 
