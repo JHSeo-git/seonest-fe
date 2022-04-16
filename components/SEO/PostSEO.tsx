@@ -1,6 +1,6 @@
 import React from 'react';
 import appConfig from '@/config/app.config';
-import { BlogJsonLd, NextSeo } from 'next-seo';
+import { ArticleJsonLd, NextSeo } from 'next-seo';
 
 export type PostSEOProps = {
   url: string;
@@ -54,7 +54,8 @@ const PostSEO = ({
         noindex={noRobots}
         nofollow={noRobots}
       />
-      <BlogJsonLd
+      <ArticleJsonLd
+        type="Blog"
         authorName={appConfig.author}
         dateModified={modifiedTime}
         datePublished={publishedTime}
