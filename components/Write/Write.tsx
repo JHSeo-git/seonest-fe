@@ -6,11 +6,11 @@ import type { Editor } from '@toast-ui/react-editor';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import Popup from '../Popup';
+import TuiEditor from '../TuiEditor';
 import WriteTitle from './WriteTitle';
 import WriteButtons from './WriteButtons';
 import PublishScreen from './PublishScreen';
 import PreviewScreen from './PreviewScreen';
-import { TuiEditor } from '../Markdown';
 
 import { Post } from '@/lib/api/posts/types';
 import { PostAllContentType } from '@/lib/types/types';

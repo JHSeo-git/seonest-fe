@@ -6,7 +6,7 @@ import { slideDownAnimation, slideUpAnimation } from '@/lib/styles/animation';
 import Modal from '../Modal';
 import Button from '../Button';
 import Container from '../Container';
-import { MarkdownRender } from '../Markdown';
+import MarkdownRender from '../MarkdownRender';
 
 import { ReactComponent as CloseIcon } from '@/assets/icons/close.svg';
 
