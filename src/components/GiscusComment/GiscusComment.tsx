@@ -9,7 +9,7 @@ function GiscusComment(props: GiscusCommentProps) {
   return (
     <GiscusBox>
       <Giscus
-        repo="jhseo-git/seonest-comments"
+        repo="JHSeo-git/seonest-comments"
         repoId="R_kgDOGRegJA"
         category="Announcements"
         categoryId="DIC_kwDOGRegJM4CN-hf"
