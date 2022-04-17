@@ -1,5 +1,5 @@
 import { styled } from '@stitches.js';
-import useHeaderScrolled from '@/hooks/useHeaderScrolled';
+import useHeaderScrolled from './useHeaderScrolled.hook';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return <LayoutBox>{children}</LayoutBox>;

@@ -1,4 +1,4 @@
-import useAppInitializeEffect from '@/hooks/useAppInitializeEffect';
+import useAppInitializeEffect from './useAppInitializeEffect.hook';
 
 function RecoilInitializer() {
   useAppInitializeEffect();

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { useSetGoogleToken } from '@/helpers/recoil/authState';
 import googleLogin from '@/helpers/api/auth/googleLogin';
-import useAuthManage from './useAuthManage';
+import useAuthManage from '@/hooks/useAuthManage';
 
 export default function useGoogleLoginEffect(
   ref: RefObject<Element>,
