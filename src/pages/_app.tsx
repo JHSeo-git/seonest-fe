@@ -17,7 +17,7 @@ const ToastProvider = dynamic(() => import('@/components/ToastProvider'));
 // const FullscreenLoader = dynamic(() => import('@/components/FullscreenLoader'));
 
 import globalStyle from '@/utils/globalStyles';
-import { darkThemeClassName, lightThemeClassName } from '@stitches.js';
+import { darkTheme } from '@stitches.js';
 
 function MyApp({ Component, pageProps }: AppProps) {
   globalStyle();
@@ -42,9 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider
         disableTransitionOnChange
         attribute="class"
-        value={{ light: lightThemeClassName, dark: darkThemeClassName }}
+        value={{ light: 'light', dark: darkTheme.className }}
         defaultTheme="system"
-        enableSystem={true}
       >
         <DefaultSEO />
         <RecoilRoot>

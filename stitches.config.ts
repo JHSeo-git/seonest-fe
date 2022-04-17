@@ -1,126 +1,18 @@
-import { createStitches, PropertyValue } from '@stitches/react';
-import {
-  amber,
-  amberA,
-  amberDark,
-  amberDarkA,
-  blue,
-  blueA,
-  blueDark,
-  blueDarkA,
-  bronze,
-  bronzeA,
-  bronzeDark,
-  bronzeDarkA,
-  brown,
-  brownA,
-  brownDark,
-  brownDarkA,
-  crimson,
-  crimsonA,
-  crimsonDark,
-  crimsonDarkA,
-  cyan,
-  cyanA,
-  cyanDark,
-  cyanDarkA,
-  gold,
-  goldA,
-  goldDark,
-  goldDarkA,
-  grass,
-  grassA,
-  grassDark,
-  grassDarkA,
-  gray,
-  grayA,
-  grayDark,
-  grayDarkA,
-  green,
-  greenA,
-  greenDark,
-  greenDarkA,
-  indigo,
-  indigoA,
-  indigoDark,
-  indigoDarkA,
-  lime,
-  limeA,
-  limeDark,
-  limeDarkA,
-  mauve,
-  mauveA,
-  mauveDark,
-  mauveDarkA,
-  mint,
-  mintA,
-  mintDark,
-  mintDarkA,
-  olive,
-  oliveA,
-  oliveDark,
-  oliveDarkA,
-  orange,
-  orangeA,
-  orangeDark,
-  orangeDarkA,
-  pink,
-  pinkA,
-  pinkDark,
-  pinkDarkA,
-  plum,
-  plumA,
-  plumDark,
-  plumDarkA,
-  purple,
-  purpleA,
-  purpleDark,
-  purpleDarkA,
-  red,
-  redA,
-  redDark,
-  redDarkA,
-  sage,
-  sageA,
-  sageDark,
-  sageDarkA,
-  sand,
-  sandA,
-  sandDark,
-  sandDarkA,
-  sky,
-  skyA,
-  skyDark,
-  skyDarkA,
-  slate,
-  slateA,
-  slateDark,
-  slateDarkA,
-  teal,
-  tealA,
-  tealDark,
-  tealDarkA,
-  tomato,
-  tomatoA,
-  tomatoDark,
-  tomatoDarkA,
-  violet,
-  violetA,
-  violetDark,
-  violetDarkA,
-  yellow,
-  yellowA,
-  yellowDark,
-  yellowDarkA,
-} from '@radix-ui/colors';
+import { createStitches } from '@stitches/react';
+import * as colors from '@/constants/colorTokens';
+import type * as Stitches from '@stitches/react';
 
-const {
+export const {
+  //
   styled,
-  getCssText,
-  keyframes,
-  theme: lightTheme,
+  css,
+  theme,
   createTheme,
+  getCssText,
   globalCss,
+  keyframes,
+  config,
+  reset,
 } = createStitches({
   media: {
     '3xl': '(min-width: 2200px)', // 137.5rem
@@ -136,83 +28,7 @@ const {
     light: '(prefers-color-scheme: light)',
   },
   theme: {
-    colors: {
-      // gray-scale colors
-      ...gray,
-      ...grayA,
-      ...mauve,
-      ...mauveA,
-      ...slate,
-      ...slateA,
-      ...sage,
-      ...sageA,
-      ...olive,
-      ...oliveA,
-      ...sand,
-      ...sandA,
-
-      // red-scale colors
-      ...tomato,
-      ...tomatoA,
-      ...red,
-      ...redA,
-      ...crimson,
-      ...crimsonA,
-      ...pink,
-      ...pinkA,
-      ...plum,
-      ...plumA,
-
-      // blue-scale colors
-      ...purple,
-      ...purpleA,
-      ...violet,
-      ...violetA,
-      ...indigo,
-      ...indigoA,
-      ...blue,
-      ...blueA,
-      ...cyan,
-      ...cyanA,
-
-      // green-scale colors
-      ...teal,
-      ...tealA,
-      ...green,
-      ...greenA,
-      ...grass,
-      ...grassA,
-
-      //
-      ...orange,
-      ...orangeA,
-      ...brown,
-      ...brownA,
-
-      // bright-scale colors
-      ...sky,
-      ...skyA,
-      ...mint,
-      ...mintA,
-      ...lime,
-      ...limeA,
-      ...yellow,
-      ...yellowA,
-      ...amber,
-      ...amberA,
-
-      // metal-scale colors
-      ...gold,
-      ...goldA,
-      ...bronze,
-      ...bronzeA,
-
-      // semantic colors
-      black: '#000',
-      white: '#fff',
-      hiContrast: '$mauve12',
-      loContrast: 'white',
-    },
+    colors: colors.lightColors,
     fonts: {
       // base: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
       base: `Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif`,
@@ -297,102 +113,116 @@ const {
     borderWidths: {},
   },
   utils: {
-    p: (value: PropertyValue<'padding'>) => ({
+    p: (value: Stitches.PropertyValue<'padding'>) => ({
       padding: value,
     }),
-    pt: (value: PropertyValue<'paddingTop'>) => ({
+    pt: (value: Stitches.PropertyValue<'paddingTop'>) => ({
       paddingTop: value,
     }),
-    pr: (value: PropertyValue<'paddingRight'>) => ({
+    pr: (value: Stitches.PropertyValue<'paddingRight'>) => ({
       paddingRight: value,
     }),
-    pb: (value: PropertyValue<'paddingBottom'>) => ({
+    pb: (value: Stitches.PropertyValue<'paddingBottom'>) => ({
       paddingBottom: value,
     }),
-    pl: (value: PropertyValue<'paddingLeft'>) => ({
+    pl: (value: Stitches.PropertyValue<'paddingLeft'>) => ({
       paddingLeft: value,
     }),
-    px: (value: PropertyValue<'paddingLeft'>) => ({
+    px: (value: Stitches.PropertyValue<'paddingLeft'>) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    py: (value: PropertyValue<'paddingTop'>) => ({
+    py: (value: Stitches.PropertyValue<'paddingTop'>) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    m: (value: PropertyValue<'margin'>) => ({
+    m: (value: Stitches.PropertyValue<'margin'>) => ({
       margin: value,
     }),
-    mt: (value: PropertyValue<'marginTop'>) => ({
+    mt: (value: Stitches.PropertyValue<'marginTop'>) => ({
       marginTop: value,
     }),
-    mr: (value: PropertyValue<'marginRight'>) => ({
+    mr: (value: Stitches.PropertyValue<'marginRight'>) => ({
       marginRight: value,
     }),
-    mb: (value: PropertyValue<'marginBottom'>) => ({
+    mb: (value: Stitches.PropertyValue<'marginBottom'>) => ({
       marginBottom: value,
     }),
-    ml: (value: PropertyValue<'marginLeft'>) => ({
+    ml: (value: Stitches.PropertyValue<'marginLeft'>) => ({
       marginLeft: value,
     }),
-    mx: (value: PropertyValue<'marginLeft'>) => ({
+    mx: (value: Stitches.PropertyValue<'marginLeft'>) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    my: (value: PropertyValue<'marginTop'>) => ({
+    my: (value: Stitches.PropertyValue<'marginTop'>) => ({
       marginTop: value,
       marginBottom: value,
     }),
-    ta: (value: PropertyValue<'textAlign'>) => ({ textAlign: value }),
-    fd: (value: PropertyValue<'flexDirection'>) => ({ flexDirection: value }),
-    fw: (value: PropertyValue<'flexWrap'>) => ({ flexWrap: value }),
-    ai: (value: PropertyValue<'alignItems'>) => ({ alignItems: value }),
-    ac: (value: PropertyValue<'alignContent'>) => ({ alignContent: value }),
-    jc: (value: PropertyValue<'justifyContent'>) => ({ justifyContent: value }),
-    as: (value: PropertyValue<'alignSelf'>) => ({ alignSelf: value }),
-    fg: (value: PropertyValue<'flexGrow'>) => ({ flexGrow: value }),
-    fs: (value: PropertyValue<'flexShrink'>) => ({ flexShrink: value }),
-    fb: (value: PropertyValue<'flexBasis'>) => ({ flexBasis: value }),
-    bc: (value: PropertyValue<'backgroundColor'>) => ({
+    ta: (value: Stitches.PropertyValue<'textAlign'>) => ({ textAlign: value }),
+    fd: (value: Stitches.PropertyValue<'flexDirection'>) => ({
+      flexDirection: value,
+    }),
+    fw: (value: Stitches.PropertyValue<'flexWrap'>) => ({ flexWrap: value }),
+    ai: (value: Stitches.PropertyValue<'alignItems'>) => ({
+      alignItems: value,
+    }),
+    ac: (value: Stitches.PropertyValue<'alignContent'>) => ({
+      alignContent: value,
+    }),
+    jc: (value: Stitches.PropertyValue<'justifyContent'>) => ({
+      justifyContent: value,
+    }),
+    as: (value: Stitches.PropertyValue<'alignSelf'>) => ({ alignSelf: value }),
+    fg: (value: Stitches.PropertyValue<'flexGrow'>) => ({ flexGrow: value }),
+    fs: (value: Stitches.PropertyValue<'flexShrink'>) => ({
+      flexShrink: value,
+    }),
+    fb: (value: Stitches.PropertyValue<'flexBasis'>) => ({ flexBasis: value }),
+    bc: (value: Stitches.PropertyValue<'backgroundColor'>) => ({
       backgroundColor: value,
     }),
-    br: (value: PropertyValue<'borderRadius'>) => ({
+    br: (value: Stitches.PropertyValue<'borderRadius'>) => ({
       borderRadius: value,
     }),
-    btrr: (value: PropertyValue<'borderTopRightRadius'>) => ({
+    btrr: (value: Stitches.PropertyValue<'borderTopRightRadius'>) => ({
       borderTopRightRadius: value,
     }),
-    bbrr: (value: PropertyValue<'borderBottomRightRadius'>) => ({
+    bbrr: (value: Stitches.PropertyValue<'borderBottomRightRadius'>) => ({
       borderBottomRightRadius: value,
     }),
-    bblr: (value: PropertyValue<'borderBottomLeftRadius'>) => ({
+    bblr: (value: Stitches.PropertyValue<'borderBottomLeftRadius'>) => ({
       borderBottomLeftRadius: value,
     }),
-    btlr: (value: PropertyValue<'borderTopLeftRadius'>) => ({
+    btlr: (value: Stitches.PropertyValue<'borderTopLeftRadius'>) => ({
       borderTopLeftRadius: value,
     }),
-    bs: (value: PropertyValue<'boxShadow'>) => ({ boxShadow: value }),
-    lh: (value: PropertyValue<'lineHeight'>) => ({ lineHeight: value }),
-    ox: (value: PropertyValue<'overflowX'>) => ({ overflowX: value }),
-    oy: (value: PropertyValue<'overflowY'>) => ({ overflowY: value }),
-    pe: (value: PropertyValue<'pointerEvents'>) => ({ pointerEvents: value }),
-    us: (value: PropertyValue<'userSelect'>) => ({
+    bs: (value: Stitches.PropertyValue<'boxShadow'>) => ({ boxShadow: value }),
+    lh: (value: Stitches.PropertyValue<'lineHeight'>) => ({
+      lineHeight: value,
+    }),
+    ox: (value: Stitches.PropertyValue<'overflowX'>) => ({ overflowX: value }),
+    oy: (value: Stitches.PropertyValue<'overflowY'>) => ({ overflowY: value }),
+    pe: (value: Stitches.PropertyValue<'pointerEvents'>) => ({
+      pointerEvents: value,
+    }),
+    us: (value: Stitches.PropertyValue<'userSelect'>) => ({
       WebkitUserSelect: value,
       userSelect: value,
     }),
-    userSelect: (value: PropertyValue<'userSelect'>) => ({
+    userSelect: (value: Stitches.PropertyValue<'userSelect'>) => ({
       WebkitUserSelect: value,
       userSelect: value,
     }),
-    size: (value: PropertyValue<'width'>) => ({
+    size: (value: Stitches.PropertyValue<'width'>) => ({
       width: value,
       height: value,
     }),
-    appearance: (value: PropertyValue<'appearance'>) => ({
+    appearance: (value: Stitches.PropertyValue<'appearance'>) => ({
       WebkitAppearance: value,
       appearance: value,
     }),
-    backgroundClip: (value: PropertyValue<'backgroundClip'>) => ({
+    backgroundClip: (value: Stitches.PropertyValue<'backgroundClip'>) => ({
       WebkitBackgroundClip: value,
       backgroundClip: value,
     }),
@@ -402,87 +232,71 @@ const {
       WebkitBoxOrient: 'vertical',
       overflow: 'hidden',
     }),
+    /**
+     * @see https://tailwindcss.com/docs/transition-property
+     */
+    tst: (
+      value:
+        | 'base'
+        | 'all'
+        | 'colors'
+        | 'opacity'
+        | 'shadow'
+        | 'transform' = 'base'
+    ) => {
+      switch (value) {
+        case 'base':
+          return {
+            'transition-property':
+              'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        case 'all':
+          return {
+            'transition-property': 'all',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        case 'colors':
+          return {
+            'transition-property':
+              'color, background-color, border-color, text-decoration-color, fill, stroke',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        case 'opacity':
+          return {
+            'transition-property': 'opacity',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        case 'shadow':
+          return {
+            'transition-property': 'box-shadow',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        case 'transform':
+          return {
+            'transition-property': 'transform',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+        default:
+          return {
+            'transition-property':
+              'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+            'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+            'transition-duration': '0.2s',
+          };
+      }
+    },
   },
 });
 
-const darkTheme = createTheme('dark-theme', {
-  colors: {
-    // gray-scale colors
-    ...grayDark,
-    ...grayDarkA,
-    ...mauveDark,
-    ...mauveDarkA,
-    ...slateDark,
-    ...slateDarkA,
-    ...sageDark,
-    ...sageDarkA,
-    ...oliveDark,
-    ...oliveDarkA,
-    ...sandDark,
-    ...sandDarkA,
+export type CSS = Stitches.CSS<typeof config>;
 
-    // red-scale colors
-    ...tomatoDark,
-    ...tomatoDarkA,
-    ...redDark,
-    ...redDarkA,
-    ...crimsonDark,
-    ...crimsonDarkA,
-    ...pinkDark,
-    ...pinkDarkA,
-    ...plumDark,
-    ...plumDarkA,
-
-    // blue-scale colors
-    ...purpleDark,
-    ...purpleDarkA,
-    ...violetDark,
-    ...violetDarkA,
-    ...indigoDark,
-    ...indigoDarkA,
-    ...blueDark,
-    ...blueDarkA,
-    ...cyanDark,
-    ...cyanDarkA,
-
-    // green-scale colors
-    ...tealDark,
-    ...tealDarkA,
-    ...greenDark,
-    ...greenDarkA,
-    ...grassDark,
-    ...grassDarkA,
-
-    //
-    ...orangeDark,
-    ...orangeDarkA,
-    ...brownDark,
-    ...brownDarkA,
-
-    // bright-scale colors
-    ...skyDark,
-    ...skyDarkA,
-    ...mintDark,
-    ...mintDarkA,
-    ...limeDark,
-    ...limeDarkA,
-    ...yellowDark,
-    ...yellowDarkA,
-    ...amberDark,
-    ...amberDarkA,
-
-    // metal-scale colors
-    ...goldDark,
-    ...goldDarkA,
-    ...bronzeDark,
-    ...bronzeDarkA,
-
-    // semantic colors
-    hiContrast: '$mauve12',
-    loContrast: '$mauve2',
-  },
+export const darkTheme = createTheme('dark', {
+  colors: colors.darkColors,
 });
-
-export const lightThemeClassName = lightTheme.className;
-export const darkThemeClassName = darkTheme.className;
-export { globalCss, styled, getCssText, keyframes };
