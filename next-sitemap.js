@@ -6,6 +6,7 @@ module.exports = {
   exclude: [
     '/admin',
     '/admin/*',
+    '/categories/*',
     '/lab',
     '/lab/*',
     '/write',
