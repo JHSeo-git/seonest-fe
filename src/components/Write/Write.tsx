@@ -14,8 +14,8 @@ import PreviewScreen from './PreviewScreen';
 
 import { Post } from '@/helpers/api/posts/types';
 import { PostAllContentType } from '@/helpers/types/types';
-import useSavePost from '@/hooks/useSavePost';
-import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
+import useSavePost from './useSavePost.hook';
+import useWarnIfUnsavedChanges from './useWarnIfUnsavedChanges.hook';
 
 export type WriteProps = {
   slug?: string;

@@ -1,6 +1,6 @@
 // import appConfig from '@/config/app.config';
-import { useUtterances } from '@/hooks/useUtterances';
 import { styled } from '@stitches.js';
+import { useUtterances } from './useUtterances.hook';
 
 function UtterancsComment() {
   const ref = useUtterances();

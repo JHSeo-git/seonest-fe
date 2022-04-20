@@ -16,3 +16,4 @@ interface Window {
 }
 
 declare module '@mapbox/rehype-prism';
+declare module '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight-all.js';
