@@ -3,11 +3,13 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor, EditorProps } from '@toast-ui/react-editor';
-import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
-import Prism from 'prismjs';
 import { convertSpaceToEncodedString } from '@/utils/viewerUtils';
 import useUploadImage from '@/hooks/useUploadImage';
 import { styled } from '@stitches.js';
+
+// import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight-all.js';
+import Prism from 'prismjs';
 
 export type TuiEditorWithForwardedProps = EditorProps & {
   forwardedRef?: React.MutableRefObject<Editor>;
