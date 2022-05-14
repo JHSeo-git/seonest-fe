@@ -1,135 +1,59 @@
-import React from 'react';
-import { keyframes, styled } from '@stitches.js';
+import { styled } from '@stitches.js';
 
 import { PageSEO } from '@/components/SEO';
 import Layout from '@/components/Layout';
+import Container from '@/components/Container';
 
-import { ReactComponent as LogoImage } from '@/assets/images/logo.svg';
-
-// TODO: About page
 function AboutPage() {
   return (
     <>
-      <PageSEO url="/about" title="About" description="About Seo Nest Blog" />
+      <PageSEO url="/about" title="About" description="About JHSeo's Blog" />
       <Layout>
-        <BG />
-        <Box>
-          <LogoImage className="logo" />
-          <H1>Hi👋 I&apos;m JHSeo.</H1>
-          {/* <H2>
-              I&apos;m a <Strong>developer</Strong>.
-            </H2> */}
-          {/* <section>
-              <h3>Front-end</h3>
-              <ul>
-                <li>Typescript</li>
-                <li>React</li>
-                <li>Nextjs</li>
-                <li>Recoiljs</li>
-                <li>Vercel</li>
-                <li>Axios</li>
-                <li>@emotion</li>
-                <li>@toast-ui/editor</li>
-                <li>Markdown-it</li>
-              </ul>
-              <h3>Back-end</h3>
-              <ul>
-                <li>Nodejs(Koa)</li>
-                <li>Mariadb</li>
-                <li>Typeorm</li>
-                <li>AWS-EC2</li>
-                <li>AWS-S3</li>
-                <li>PM2</li>
-                <li>nginx</li>
-                <li>Cloudflare</li>
-              </ul>
-            </section> */}
-        </Box>
+        <Container>
+          <Content>
+            HI, I&apos;m <Strong>JHSeo</Strong>
+          </Content>
+          <Content>
+            I am very interested in learning for programming. Specially Web
+            front-end engineering.
+          </Content>
+          <Content>
+            So, I started this blog. and I have been writing posts about that. I
+            learn while writing posts.
+          </Content>
+          <Content next>
+            My motto <Strong>Slow but Steady</Strong>
+          </Content>
+          <Content>
+            I am slow to acquire new knowledge. But I am steady to learn.
+          </Content>
+          <Content>
+            If you see this blog, I hope this blog can be some help.
+          </Content>
+          <Content>Enjoy your Happy coding.</Content>
+        </Container>
       </Layout>
     </>
   );
 }
-
-const logoAnimation = keyframes({
-  '0%': {
-    color: 'transparent',
-  },
-  '100%': {
-    color: '$mauveA10',
-  },
-});
-
-const fadeInAnimation = keyframes({
-  from: {
-    opacity: 0,
-    transform: 'translateY(-20px)',
-  },
-  to: {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-});
-
-const Box = styled('article', {
-  position: 'absolute',
-  inset: 0,
-  letterSpacing: '0.5px',
-  display: 'flex',
-  flexDirection: 'column',
-  jc: 'center',
-  ai: 'center',
-
-  '& .logo': {
-    width: '100%',
-    height: 'auto',
-    maxHeight: '15rem',
-
-    animation: `${logoAnimation} 5s ease forwards, ${fadeInAnimation} 2s ease forwards`,
-
-    '@sm': {
-      height: '15rem',
-      mx: 0,
-    },
-  },
-});
-
-const H1 = styled('h1', {
-  fontSize: '$4xl',
-  color: '$mauve11',
-});
-
-const H2 = styled('h2', {
-  fontSize: '$2xl',
-});
 
 const Strong = styled('strong', {
   br: '$2',
   color: '$blue11',
   bc: '$blue3',
   px: '$2',
+  py: '$1',
+  mx: '$1',
 });
 
-const flowAnimation = keyframes({
-  '0%': {
-    backgroundPosition: '0% 50%',
+const Content = styled('p', {
+  variants: {
+    next: {
+      true: {
+        mt: '$6',
+      },
+    },
   },
-  '50%': {
-    backgroundPosition: '100% 50%',
-  },
-  '100%': {
-    backgroundPosition: '0% 50%',
-  },
-});
-
-const BG = styled('div', {
-  position: 'absolute',
-  inset: 0,
-  zIndex: '-1',
-
-  backgroundImage:
-    'linear-gradient(45deg, $colors$pink6, $colors$plum6, $colors$yellow6, $colors$amber6)',
-  backgroundSize: '400% 100%',
-  animation: `${flowAnimation} 10s ease infinite`,
 });
 
 export default AboutPage;
