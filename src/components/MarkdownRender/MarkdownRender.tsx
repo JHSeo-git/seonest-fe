@@ -263,8 +263,8 @@ const Box = styled('section', {
   // inline
   'code.inline': {
     fontFamily: '$code',
-    color: '$pink11',
-    bc: '$pink5',
+    color: '$pink10',
+    // bc: '$pink1',
     fontWeight: 'bold',
     px: '0.3em',
     py: '0.1em',
