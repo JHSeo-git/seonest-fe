@@ -146,7 +146,7 @@ const components: ComponentType = {
     );
   },
   video: ({ node, ...props }) => {
-    return <video {...props} autoPlay muted={true} loop />;
+    return <video {...props} autoPlay muted={true} loop playsInline />;
   },
 };
 
