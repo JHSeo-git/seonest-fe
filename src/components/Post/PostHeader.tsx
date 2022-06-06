@@ -100,8 +100,8 @@ function PostHeader({ post }: PostHeaderProps) {
               alt="thumbnail"
               width={768}
               height={500}
-              placeholder={'blur'}
-              blurDataURL={post.thumbnail}
+              // placeholder={'blur'}
+              // blurDataURL={post.thumbnail}
               objectFit="contain"
               priority={true}
             />
