@@ -52,7 +52,7 @@ function PostHeader({ post }: PostHeaderProps) {
               {stringToDateMoreDetail(post.created_at)}
             </span>
           </WithIcon>
-          {post.read_time && (
+          {post.read_time ? (
             <>
               <Seperator />
               <WithIcon color="pink">
@@ -60,7 +60,7 @@ function PostHeader({ post }: PostHeaderProps) {
                 <span className="text">{humanizeTime(post.read_time)}</span>
               </WithIcon>
             </>
-          )}
+          ) : null}
           <Seperator />
           <WithIcon>
             <EyeIcon className="icon" />
