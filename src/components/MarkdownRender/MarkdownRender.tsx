@@ -5,7 +5,7 @@ import { styled } from '@stitches.js';
 import rehypeVideo from 'rehype-video';
 import remarkBreaks from 'remark-breaks';
 import ReactMarkdown from 'react-markdown';
-import rehypePrism from '@mapbox/rehype-prism';
+import rehypePrismPlus from 'rehype-prism-plus';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import type { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
@@ -28,7 +28,7 @@ const MarkdownRender = ({ markdown }: MarkdownRenderProps) => {
               details: false,
             },
           ],
-          rehypePrism,
+          rehypePrismPlus,
           rehypeSlug,
           [
             rehypeAutolinkHeadings,
