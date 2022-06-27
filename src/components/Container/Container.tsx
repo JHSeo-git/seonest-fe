@@ -1,6 +1,6 @@
 import { styled } from '@stitches.js';
 
-const Container = styled('section', {
+const Container = styled('article', {
   height: '100%',
   maxWidth: '$maxWidth',
   m: '0 auto',

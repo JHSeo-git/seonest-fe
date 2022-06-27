@@ -1,10 +1,9 @@
+import { useRef, useState } from 'react';
 import Script from 'next/script';
 import { styled } from '@stitches.js';
-import React, { useRef, useState } from 'react';
-
-import useGoogleLoginEffect from '@/hooks/useGoogleLoginEffect';
 
 import Button from '../Button';
+import useGoogleLoginEffect from './useGoogleLoginEffect.hook';
 
 import { ReactComponent as GoogleIcon } from '@/assets/icons/google.svg';
 
