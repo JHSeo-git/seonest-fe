@@ -18,6 +18,11 @@ module.exports = withBundleAnalyzer(
       skipWaiting: true,
     },
     // swcMinify: true,
+    experimental: {
+      images: {
+        allowFutureImage: true,
+      },
+    },
     reactStrictMode: true,
     webpack: (config) => {
       config.module.rules.push({

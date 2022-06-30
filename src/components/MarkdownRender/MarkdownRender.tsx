@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import { styled } from '@stitches.js';
@@ -98,12 +98,11 @@ const components: ComponentType = {
     if (domain) {
       return (
         <ImageWrapper>
-          <Image
+          <StyledImage
             {...props}
             className="nextImage"
             src={src}
             alt={alt}
-            layout="fill"
             priority={true}
           />
         </ImageWrapper>
@@ -393,15 +392,12 @@ const ImageEmpty = styled('div', {
 
 const ImageWrapper = styled('div', {
   width: '100%',
-  '& > *': {
-    position: 'unset !important',
-  },
-  '& .nextImage': {
-    objectFit: 'contain',
-    position: 'relative !important',
-    width: '100% !important',
-    height: 'unset !important',
-  },
+});
+
+const StyledImage = styled(Image, {
+  width: '100%',
+  height: '100%',
+  objectFit: 'contain',
 });
 
 export default MarkdownRender;

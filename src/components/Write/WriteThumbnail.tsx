@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { styled } from '@stitches.js';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import useUploadImage from '@/hooks/useUploadImage';
 
@@ -53,13 +53,11 @@ const WriteThumbnail = ({
     <>
       {localThumbnailUrl ? (
         <ImageWrapper>
-          <Image
+          <StyledImage
             className="image-thumbnail"
             src={localThumbnailUrl}
             alt="thumbnail"
-            layout="fill"
             placeholder="empty"
-            objectFit="cover"
             priority={true}
           />
           <UpdateButton kind="blueScale" onClick={onRemove}>
@@ -97,7 +95,7 @@ const ImageWrapper = styled('div', {
   overflow: 'hidden',
   jc: 'center',
   ai: 'center',
-  py: '$3',
+  // py: '$3',
   mb: '$3',
   br: '$3',
   bc: '$mauve3',
@@ -115,6 +113,12 @@ const ImageWrapper = styled('div', {
       },
     },
   },
+});
+
+const StyledImage = styled(Image, {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
 });
 
 const ImageEmptyText = styled('span', {

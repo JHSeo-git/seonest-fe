@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
 import React, { useMemo, useState } from 'react';
@@ -95,14 +95,11 @@ function PostHeader({ post }: PostHeaderProps) {
         )}
         {post.thumbnail && (
           <ImageWrapper>
-            <Image
+            <StyledImage
               src={post.thumbnail}
               alt="thumbnail"
               width={768}
               height={500}
-              // placeholder={'blur'}
-              // blurDataURL={post.thumbnail}
-              objectFit="contain"
               priority={true}
             />
           </ImageWrapper>
@@ -199,8 +196,13 @@ const Seperator = styled('div', {
 
 const ImageWrapper = styled('div', {
   position: 'relative',
-  mx: 'auto',
   mb: '$6',
+});
+
+const StyledImage = styled(Image, {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
 });
 
 export default PostHeader;
