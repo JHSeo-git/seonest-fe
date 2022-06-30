@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { useMemo } from 'react';
 import { styled } from '@stitches.js';
 import { useRouter } from 'next/router';
@@ -165,13 +165,11 @@ function PostItem({ post, loading }: PostItemProps) {
         <LinkBox>
           <ImageWrapper>
             {post.thumbnail && (
-              <Image
+              <StyledImage
                 src={post.thumbnail}
                 alt="post thumbnail"
-                layout="fill"
                 placeholder={'blur'}
                 blurDataURL={post.thumbnail}
-                objectFit="cover"
               />
             )}
           </ImageWrapper>
@@ -230,6 +228,12 @@ const ImageWrapper = styled('div', {
     display: 'block',
     width: '220px',
   },
+});
+
+const StyledImage = styled(Image, {
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
 });
 
 const ContentWrapper = styled('div', {
